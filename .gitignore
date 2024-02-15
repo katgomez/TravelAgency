@@ -14,7 +14,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 # Visual Studio 2015/2017 cache/options directory
-#.vs/
+.vs/
 
 # Files built by Visual Studio
 *_i.c
@@ -49,4 +49,3 @@ bld/
 #more
 .idea
 *.db
-.vs/TravelAgency/FileContentIndex/*
