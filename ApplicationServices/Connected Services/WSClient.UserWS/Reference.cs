@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UserServices
+namespace WSClient.UserWS
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
     public partial class User : object
     {
@@ -109,32 +109,32 @@ namespace UserServices
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/user/", ConfigurationName="UserServices.IUserServices")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/user/", ConfigurationName="WSClient.UserWS.IUserServices")]
     public interface IUserServices
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/GetUsers", ReplyAction="http://ws.agencytravel/user/IUserServices/GetUsersResponse")]
-        System.Threading.Tasks.Task<UserServices.User[]> GetUsersAsync();
+        System.Threading.Tasks.Task<WSClient.UserWS.User[]> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/GetUser", ReplyAction="http://ws.agencytravel/user/IUserServices/GetUserResponse")]
-        System.Threading.Tasks.Task<UserServices.User> GetUserAsync(string email, string username);
+        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/CreateUser", ReplyAction="http://ws.agencytravel/user/IUserServices/CreateUserResponse")]
-        System.Threading.Tasks.Task CreateUserAsync(UserServices.User user);
+        System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/UpdateUser", ReplyAction="http://ws.agencytravel/user/IUserServices/UpdateUserResponse")]
-        System.Threading.Tasks.Task UpdateUserAsync(UserServices.User user);
+        System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public interface IUserServicesChannel : UserServices.IUserServices, System.ServiceModel.IClientChannel
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    public interface IUserServicesChannel : WSClient.UserWS.IUserServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class UserServicesClient : System.ServiceModel.ClientBase<UserServices.IUserServices>, UserServices.IUserServices
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    public partial class UserServicesClient : System.ServiceModel.ClientBase<WSClient.UserWS.IUserServices>, WSClient.UserWS.IUserServices
     {
         
         /// <summary>
@@ -177,22 +177,22 @@ namespace UserServices
         {
         }
         
-        public System.Threading.Tasks.Task<UserServices.User[]> GetUsersAsync()
+        public System.Threading.Tasks.Task<WSClient.UserWS.User[]> GetUsersAsync()
         {
             return base.Channel.GetUsersAsync();
         }
         
-        public System.Threading.Tasks.Task<UserServices.User> GetUserAsync(string email, string username)
+        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email, string username)
         {
             return base.Channel.GetUserAsync(email, username);
         }
         
-        public System.Threading.Tasks.Task CreateUserAsync(UserServices.User user)
+        public System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user)
         {
             return base.Channel.CreateUserAsync(user);
         }
         
-        public System.Threading.Tasks.Task UpdateUserAsync(UserServices.User user)
+        public System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user)
         {
             return base.Channel.UpdateUserAsync(user);
         }

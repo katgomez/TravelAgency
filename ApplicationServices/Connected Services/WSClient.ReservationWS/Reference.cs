@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace WSClient.ReservationWS
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Reservation", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
     public partial class Reservation : object
     {
         
-        private ServiceReference1.FlightReservation FlightReservationField;
+        private WSClient.ReservationWS.FlightReservation FlightReservationField;
         
         private int IdField;
         
@@ -26,14 +26,14 @@ namespace ServiceReference1
         
         private decimal PriceField;
         
-        private ServiceReference1.DateOnly ReservationDateField;
+        private WSClient.ReservationWS.DateOnly ReservationDateField;
         
         private string ReservationStatusField;
         
         private int UserIdField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.FlightReservation FlightReservation
+        public WSClient.ReservationWS.FlightReservation FlightReservation
         {
             get
             {
@@ -85,7 +85,7 @@ namespace ServiceReference1
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.DateOnly ReservationDate
+        public WSClient.ReservationWS.DateOnly ReservationDate
         {
             get
             {
@@ -125,18 +125,18 @@ namespace ServiceReference1
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FlightReservation", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
     public partial class FlightReservation : object
     {
         
         private string AirlineField;
         
-        private ServiceReference1.DateOnly DepartureDateField;
+        private WSClient.ReservationWS.DateOnly DepartureDateField;
         
         private string DestinationAirportField;
         
-        private ServiceReference1.DateOnly DestinationDateField;
+        private WSClient.ReservationWS.DateOnly DestinationDateField;
         
         private string DpartureAirportField;
         
@@ -162,7 +162,7 @@ namespace ServiceReference1
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.DateOnly DepartureDate
+        public WSClient.ReservationWS.DateOnly DepartureDate
         {
             get
             {
@@ -188,7 +188,7 @@ namespace ServiceReference1
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.DateOnly DestinationDate
+        public WSClient.ReservationWS.DateOnly DestinationDate
         {
             get
             {
@@ -267,7 +267,7 @@ namespace ServiceReference1
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DateOnly", Namespace="http://schemas.datacontract.org/2004/07/System")]
     public partial struct DateOnly
     {
@@ -280,9 +280,9 @@ namespace ServiceReference1
         
         private int DayOfYearField;
         
-        private ServiceReference1.DateOnly MaxValueField;
+        private WSClient.ReservationWS.DateOnly MaxValueField;
         
-        private ServiceReference1.DateOnly MinValueField;
+        private WSClient.ReservationWS.DateOnly MinValueField;
         
         private int MonthField;
         
@@ -341,7 +341,7 @@ namespace ServiceReference1
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.DateOnly MaxValue
+        public WSClient.ReservationWS.DateOnly MaxValue
         {
             get
             {
@@ -354,7 +354,7 @@ namespace ServiceReference1
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.DateOnly MinValue
+        public WSClient.ReservationWS.DateOnly MinValue
         {
             get
             {
@@ -393,34 +393,34 @@ namespace ServiceReference1
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/reservation/", ConfigurationName="ServiceReference1.IReservationServices")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/reservation/", ConfigurationName="WSClient.ReservationWS.IReservationServices")]
     public interface IReservationServices
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/GetReservations", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/GetReservationsResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.Reservation[]> GetReservationsAsync();
+        System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation[]> GetReservationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/GetReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/GetReservationResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.Reservation> GetReservationAsync(int id);
+        System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/CreateReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/CreateReservationResponse" +
             "")]
-        System.Threading.Tasks.Task CreateReservationAsync(ServiceReference1.Reservation reservation);
+        System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/UpdateReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/UpdateReservationResponse" +
             "")]
-        System.Threading.Tasks.Task UpdateReservationAsync(ServiceReference1.Reservation reservation);
+        System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public interface IReservationServicesChannel : ServiceReference1.IReservationServices, System.ServiceModel.IClientChannel
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    public interface IReservationServicesChannel : WSClient.ReservationWS.IReservationServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    public partial class ReservationServicesClient : System.ServiceModel.ClientBase<ServiceReference1.IReservationServices>, ServiceReference1.IReservationServices
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    public partial class ReservationServicesClient : System.ServiceModel.ClientBase<WSClient.ReservationWS.IReservationServices>, WSClient.ReservationWS.IReservationServices
     {
         
         /// <summary>
@@ -463,22 +463,22 @@ namespace ServiceReference1
         {
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.Reservation[]> GetReservationsAsync()
+        public System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation[]> GetReservationsAsync()
         {
             return base.Channel.GetReservationsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.Reservation> GetReservationAsync(int id)
+        public System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationAsync(int id)
         {
             return base.Channel.GetReservationAsync(id);
         }
         
-        public System.Threading.Tasks.Task CreateReservationAsync(ServiceReference1.Reservation reservation)
+        public System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation)
         {
             return base.Channel.CreateReservationAsync(reservation);
         }
         
-        public System.Threading.Tasks.Task UpdateReservationAsync(ServiceReference1.Reservation reservation)
+        public System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation)
         {
             return base.Channel.UpdateReservationAsync(reservation);
         }

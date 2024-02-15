@@ -1,14 +1,14 @@
 {
   "ExtendedData": {
     "inputs": [
-      "http://localhost:9090/UserServices.svc"
+      "http://localhost:9090/ReservationServices.svc"
     ],
     "collectionTypes": [
       "System.Array",
       "System.Collections.Generic.Dictionary`2"
     ],
     "namespaceMappings": [
-      "*, UserServices"
+      "*, WSClient.ReservationWS"
     ],
     "targetFramework": "net7.0",
     "typeReuseMode": "All"

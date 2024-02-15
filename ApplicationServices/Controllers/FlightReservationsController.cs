@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceReference1;
 
 namespace ApplicationServices.Controllers
 {
@@ -14,7 +15,7 @@ namespace ApplicationServices.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> FlightReservations()
+        public async Task<ActionResult<IEnumerable<FlightReservation>>> FlightReservations()
         {
             return Ok();
         }
