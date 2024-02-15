@@ -11,7 +11,7 @@ namespace WS.DataServices.Model
         public int ReservationID { get; set; }
         public string ActivityId { get; set; }
         public string ActivityName { get; set; }
-        public DateOnly ActivityDate { get; set; }
+        public DateTime ActivityDate { get; set; }
         public string Location { get; set; }
         public decimal Price { get; set; }
     }

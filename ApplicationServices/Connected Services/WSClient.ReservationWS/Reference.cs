@@ -26,7 +26,7 @@ namespace WSClient.ReservationWS
         
         private decimal PriceField;
         
-        private WSClient.ReservationWS.DateOnly ReservationDateField;
+        private System.DateTime ReservationDateField;
         
         private string ReservationStatusField;
         
@@ -85,7 +85,7 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.DateOnly ReservationDate
+        public System.DateTime ReservationDate
         {
             get
             {
@@ -132,13 +132,13 @@ namespace WSClient.ReservationWS
         
         private string AirlineField;
         
-        private WSClient.ReservationWS.DateOnly DepartureDateField;
+        private string DepartureAirportField;
+        
+        private System.DateTime DepartureDateField;
         
         private string DestinationAirportField;
         
-        private WSClient.ReservationWS.DateOnly DestinationDateField;
-        
-        private string DpartureAirportField;
+        private System.DateTime DestinationDateField;
         
         private string FlightIdField;
         
@@ -162,7 +162,20 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.DateOnly DepartureDate
+        public string DepartureAirport
+        {
+            get
+            {
+                return this.DepartureAirportField;
+            }
+            set
+            {
+                this.DepartureAirportField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DepartureDate
         {
             get
             {
@@ -188,7 +201,7 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.DateOnly DestinationDate
+        public System.DateTime DestinationDate
         {
             get
             {
@@ -197,19 +210,6 @@ namespace WSClient.ReservationWS
             set
             {
                 this.DestinationDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DpartureAirport
-        {
-            get
-            {
-                return this.DpartureAirportField;
-            }
-            set
-            {
-                this.DpartureAirportField = value;
             }
         }
         
@@ -262,133 +262,6 @@ namespace WSClient.ReservationWS
             set
             {
                 this.ReservationIDField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DateOnly", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial struct DateOnly
-    {
-        
-        private int DayField;
-        
-        private int DayNumberField;
-        
-        private System.DayOfWeek DayOfWeekField;
-        
-        private int DayOfYearField;
-        
-        private WSClient.ReservationWS.DateOnly MaxValueField;
-        
-        private WSClient.ReservationWS.DateOnly MinValueField;
-        
-        private int MonthField;
-        
-        private int YearField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Day
-        {
-            get
-            {
-                return this.DayField;
-            }
-            set
-            {
-                this.DayField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DayNumber
-        {
-            get
-            {
-                return this.DayNumberField;
-            }
-            set
-            {
-                this.DayNumberField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.DayOfWeek DayOfWeek
-        {
-            get
-            {
-                return this.DayOfWeekField;
-            }
-            set
-            {
-                this.DayOfWeekField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DayOfYear
-        {
-            get
-            {
-                return this.DayOfYearField;
-            }
-            set
-            {
-                this.DayOfYearField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.DateOnly MaxValue
-        {
-            get
-            {
-                return this.MaxValueField;
-            }
-            set
-            {
-                this.MaxValueField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.DateOnly MinValue
-        {
-            get
-            {
-                return this.MinValueField;
-            }
-            set
-            {
-                this.MinValueField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Month
-        {
-            get
-            {
-                return this.MonthField;
-            }
-            set
-            {
-                this.MonthField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Year
-        {
-            get
-            {
-                return this.YearField;
-            }
-            set
-            {
-                this.YearField = value;
             }
         }
     }

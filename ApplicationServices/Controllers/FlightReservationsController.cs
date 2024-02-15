@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WSClient.FlightReservationWS;
 using WSClient.ReservationWS;
 
 namespace ApplicationServices.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[reservation]")]
     [ApiController]
     public class FlightReservationsController : ControllerBase
     {
         private IConfiguration _configuration;
-        private FlightReservationServicesClient FlightReservationServicesClient = new FlightReservationServicesClient();
         private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();  
         public FlightReservationsController(IConfiguration configuration)
         {
@@ -18,9 +16,15 @@ namespace ApplicationServices.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<String>>> FlightReservations()
+        public ActionResult<IEnumerable<Reservation>> GetFlightReservations()
         {
-            return Ok();
+            return Ok(reservationServicesClient.GetReservationsAsync());
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Reservation>> GetFlightReservation(int reservationId)
+        {
+            return Ok(reservationServicesClient.GetReservationAsync(reservationId));
         }
 
     }

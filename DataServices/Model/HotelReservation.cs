@@ -11,8 +11,8 @@ namespace WS.DataServices.Model
         public int ReservationID { get; set; }
         public string HotelId { get; set; }
         public string HotelName { get; set; }
-        public DateOnly CheckInDate { get; set; }
-        public DateOnly CheckOutDate { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
         public string Location { get; set; }
         public decimal Price { get; set; }
     }
