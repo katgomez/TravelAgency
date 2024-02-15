@@ -49,3 +49,4 @@ bld/
 #more
 .idea
 *.db
+.vs/TravelAgency/FileContentIndex/*
