@@ -4,7 +4,7 @@ using WSClient.ReservationWS;
 
 namespace ApplicationServices.Controllers
 {
-    [Route("api/[reservation]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class FlightReservationsController : ControllerBase
     {
