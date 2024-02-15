@@ -1,0 +1,31 @@
+﻿using ApplicationServices.Model.Country;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using RestSharp;
+
+namespace ApplicationServices.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CountriesController : ControllerBase
+    {
+        private IConfiguration _configuration;
+        public CountriesController(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+        }
+        [HttpGet]
+        public CountryResultDto GetCountries()
+        {
+
+            var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:CountriesEndPoint"));
+
+            var request = new RestRequest("",Method.Get);
+
+            CountryResultDto dto =  client.ExecuteAsync<CountryResultDto>(request).Result.Data;
+            return dto;
+        }
+    
+    }
+}
