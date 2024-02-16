@@ -12,7 +12,7 @@ namespace DataServices.Service
         [OperationContract]
         public User GetUser(string email);
         [OperationContract]
-        public void CreateUser(User user);
+        public int CreateUser(User user);
         [OperationContract]
         public void UpdateUser(User user);
         [OperationContract]

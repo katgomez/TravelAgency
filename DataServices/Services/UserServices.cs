@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using DataServices.Errors;
 using DataServices.Model;
 
 namespace DataServices.Service
@@ -10,8 +11,12 @@ namespace DataServices.Service
         {
             _daoFactory = daoFactory ?? new DAOFactory();
         }
-        public void CreateUser(User user)
+        public int CreateUser(User user)
         {
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.Password))
+            {
+                return -1;
+            }
             using (DAOFactory factory = _daoFactory)
             {
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Email == user.Email);
@@ -20,6 +25,7 @@ namespace DataServices.Service
                     "User already exists!!!"), new FaultCode("400"), "");
                 factory.UserDao.Add(user);
             }
+            return user.Id;
 
         }
 
@@ -28,7 +34,12 @@ namespace DataServices.Service
             using (DAOFactory factory = _daoFactory)
             {
                 User[] users = factory.UserDao.All().ToArray();
-                return users.First(p => p.Email == email);
+                User user = users.FirstOrDefault(p => p.Email == email);
+                if (user == null)
+                {
+                    throw new NotFoundException("User not found for the specified email address.");
+                }
+                return user;
             }
         }
 

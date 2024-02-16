@@ -1,11 +1,13 @@
 ﻿using AutoFixture;
 using DataServices;
 using DataServices.DAO.Impl;
+using DataServices.Errors;
 using DataServices.Model;
 using DataServices.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.ServiceModel;
 
 namespace DataServicesTests.Services
 {
@@ -34,11 +36,80 @@ namespace DataServicesTests.Services
         }
 
         [Fact]
-        public void GetUser_ResultOkObject()
+        public void GetUsers_ResultOkObject()
         {
             var actionResult = userServices.GetUsers();
             Assert.NotNull(actionResult);
             Assert.Equal(15d, actionResult.Count(), 0);
         }
+
+        [Fact]
+        public void GetUser_ResultNotFound()
+        {
+            string email = "";
+            Assert.Throws<NotFoundException>(() => userServices.GetUser(email));
+        }
+
+        [Fact]
+        public void GetValidUser_ResultOkObject()
+        {
+            User user = new User
+            {
+                Email = "Newdummy@dummy.com",
+                Password = "newdummy"
+            };
+            string email = "";
+            Assert.Throws<NotFoundException>(() => userServices.GetUser(email));
+        }
+
+        [Fact]
+        public void CreateUser_ValidUser_ReturnsUserId()
+        {
+            User user = new User
+            {
+                FirstName = "dummy",
+                LastName = "dummy",
+                Email = "Newdummy@dummy.com",
+                Password = "newdummy"
+            };
+            int userId = userServices.CreateUser(user);
+            Assert.NotEqual(-1, userId); 
+        }
+
+        [Fact]
+        public void CreateUser_InvalidUser_ReturnsFailure()
+        {
+            User user = new User
+            {
+                FirstName = "dummy",
+                Email = "Newdummy@dummy.com",
+            };
+            var userId = userServices.CreateUser(user);
+            Assert.Equal(-1, userId);
+        }
+
+        [Fact]
+        public void CreateUser_UserAlreadyExists_ThrowsFaultException()
+        {
+            User existingUser = new User
+            {
+                Email = "test@example.com",
+                FirstName = "Existing",
+                LastName = "User",
+                Password = "password"
+            };
+            var userFirstId = userServices.CreateUser(existingUser);
+            User newUser = new User
+            {
+                Email = "test@example.com",
+                FirstName = "New",
+                LastName = "User",
+                Password = "password"
+            }; 
+            Assert.Throws<FaultException>(() => userServices.CreateUser(newUser));
+        }
+
+
+
     }
 }
