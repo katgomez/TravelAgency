@@ -5,9 +5,18 @@ namespace DataServices.Service;
 
 public class FlightReservationServices : IFlightReservationServices
 {
+    private readonly DAOFactory _daoFactory;
+    public FlightReservationServices()
+    {
+        _daoFactory = new DAOFactory();
+    }
+    public FlightReservationServices(DAOFactory daoFactory)
+    {
+        _daoFactory = daoFactory;
+    }
     public FlightReservation[] GetFlights()
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             return factory.FlightReservationDao.All().ToArray();
         }
@@ -15,7 +24,7 @@ public class FlightReservationServices : IFlightReservationServices
 
     public FlightReservation GetFlight(int id)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             FlightReservation[] flight = factory.FlightReservationDao.All().ToArray();
             return flight.First(p => p.Id == id);
@@ -24,7 +33,7 @@ public class FlightReservationServices : IFlightReservationServices
 
     public void CreateFlight(FlightReservation flightReservation)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             FlightReservation flight = factory.FlightReservationDao.All().FirstOrDefault(p => p.Id == flightReservation.Id);
             if (flight != null)
@@ -35,7 +44,7 @@ public class FlightReservationServices : IFlightReservationServices
 
     public void UpdateFlight(FlightReservation flightReservation)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             FlightReservation flight = factory.FlightReservationDao.All().FirstOrDefault(p => p.Id == flightReservation.Id);
             if (flight == null)

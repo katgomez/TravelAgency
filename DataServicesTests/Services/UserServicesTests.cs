@@ -37,8 +37,6 @@ namespace DataServicesTests.Services
         public void GetUser_ResultOkObject()
         {
             var actionResult = userServices.GetUsers();
-            Debug.WriteLine($"Result: {actionResult}");
-            Console.WriteLine($"Result: {actionResult}");
             Assert.NotNull(actionResult);
             Assert.Equal(15d, actionResult.Count(), 0);
         }

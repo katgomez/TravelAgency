@@ -5,9 +5,18 @@ namespace DataServices.Service;
 
 public class ReservationServices : IReservationServices
 {
+    private readonly DAOFactory _daoFactory;
+    public ReservationServices()
+    {
+        _daoFactory = new DAOFactory();
+    }
+    public ReservationServices(DAOFactory daoFactory)
+    {
+        _daoFactory = daoFactory;
+    }
     public Reservation[] GetReservations()
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             return factory.ReservationDao.All().ToArray();
         }
@@ -15,7 +24,7 @@ public class ReservationServices : IReservationServices
 
     public Reservation[] GetReservationsByUserId(int id)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             return factory.ReservationDao.All().Where(reservation => reservation.UserId == id).ToArray();
         }
@@ -23,7 +32,7 @@ public class ReservationServices : IReservationServices
 
     public Reservation GetReservationById(int id)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             Reservation[] reservations = factory.ReservationDao.All().ToArray();
             return reservations.First(p => p.Id == id);
@@ -32,7 +41,7 @@ public class ReservationServices : IReservationServices
 
     public void CreateReservation(Reservation reservation)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == reservation.Id);
             if (checkedReservation != null)
@@ -43,7 +52,7 @@ public class ReservationServices : IReservationServices
 
     public void UpdateReservation(Reservation reservation)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == reservation.Id);
             if (checkedReservation == null)
@@ -54,7 +63,7 @@ public class ReservationServices : IReservationServices
 
     public void DeleteReservation(int id)
     {
-        using (DAOFactory factory = new DAOFactory())
+        using (DAOFactory factory = _daoFactory)
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == id);
             if (checkedReservation == null)
