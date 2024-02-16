@@ -6,13 +6,9 @@ namespace DataServices.Service;
 public class FlightReservationServices : IFlightReservationServices
 {
     private readonly DAOFactory _daoFactory;
-    public FlightReservationServices()
-    {
-        _daoFactory = new DAOFactory();
-    }
     public FlightReservationServices(DAOFactory daoFactory)
     {
-        _daoFactory = daoFactory;
+        _daoFactory = daoFactory ?? new DAOFactory();
     }
     public FlightReservation[] GetFlights()
     {

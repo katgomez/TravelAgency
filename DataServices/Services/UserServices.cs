@@ -6,14 +6,9 @@ namespace DataServices.Service
     public class UserServices : IUserServices
     {
         private readonly DAOFactory _daoFactory;
-
-        public UserServices()
-        {
-            _daoFactory = new DAOFactory();
-        }
         public UserServices(DAOFactory daoFactory)
         {
-            _daoFactory = daoFactory;
+            _daoFactory = daoFactory ?? new DAOFactory();
         }
         public void CreateUser(User user)
         {

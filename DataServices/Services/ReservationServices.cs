@@ -6,13 +6,9 @@ namespace DataServices.Service;
 public class ReservationServices : IReservationServices
 {
     private readonly DAOFactory _daoFactory;
-    public ReservationServices()
-    {
-        _daoFactory = new DAOFactory();
-    }
     public ReservationServices(DAOFactory daoFactory)
     {
-        _daoFactory = daoFactory;
+        _daoFactory = daoFactory ?? new DAOFactory();
     }
     public Reservation[] GetReservations()
     {
