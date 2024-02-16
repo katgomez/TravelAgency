@@ -1,0 +1,24 @@
+Arrancar en docker
+
+docker build -t travel_agency_mysql .
+docker run -d -p 3306:3306 travel_agency_mysql
+
+
+---------------------
+Para generar el esquema de base de datos desde Visual
+
+Herramientas -> paquetes nuget -> consola
+
+Asegurarse de seleccionar el proyecto DataService
+
+correr el siguiente comando 
+
+	Add-Migration Initial
+
+Cuando finalice, lanzar
+
+	Update-Database
+
+--------------------------
+
+

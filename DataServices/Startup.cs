@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using SoapCore;
 using System.ServiceModel;
 using WS.DataServices.Model;
@@ -27,7 +28,7 @@ namespace WS.DataServices
             {
                 var context = new DataContext();
                 //context.Database.EnsureDeleted(); //Delete ddbb always
-                context.Database.EnsureCreated();
+                //context.Database.Migrate();
             }
             app.UseSoapEndpoint<IUserServices>("/UserServices.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer,
             false, null, null, true, true);
