@@ -10,10 +10,16 @@ public interface IReservationServices
 {
     [OperationContract]
     public Reservation[] GetReservations();
+    
     [OperationContract]
-    public Reservation GetReservation(int id);
+    public Reservation[] GetReservationsByUserId(int id);
+
+    [OperationContract]
+    public Reservation GetReservationById(int id);
+    
     [OperationContract]
     public void CreateReservation(Reservation reservation);
+    
     [OperationContract]
     public void UpdateReservation(Reservation reservation);
 
