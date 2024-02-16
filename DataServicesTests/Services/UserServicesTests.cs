@@ -47,7 +47,7 @@ namespace DataServicesTests.Services
         public void GetUser_ResultNotFound()
         {
             string email = "";
-            Assert.Throws<NotFoundException>(() => userServices.GetUser(email));
+            Assert.Throws<NotFoundException>(() => userServices.GetUserByEmail(email));
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace DataServicesTests.Services
                 Password = "newdummy"
             };
             string email = "";
-            Assert.Throws<NotFoundException>(() => userServices.GetUser(email));
+            Assert.Throws<NotFoundException>(() => userServices.GetUserByEmail(email));
         }
 
         [Fact]

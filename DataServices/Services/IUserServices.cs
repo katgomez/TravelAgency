@@ -10,7 +10,9 @@ namespace DataServices.Service
         [OperationContract]
         public User[] GetUsers();
         [OperationContract]
-        public User GetUser(string email);
+        public User GetUserByEmail(string email);
+        [OperationContract]
+        public User GetUserById(int id);
         [OperationContract]
         public int CreateUser(User user);
         [OperationContract]

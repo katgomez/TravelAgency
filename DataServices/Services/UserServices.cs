@@ -21,26 +21,11 @@ namespace DataServices.Service
             {
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Email == user.Email);
                 if (checkedUser != null)
-                    throw new FaultException(new FaultReason(
-                    "User already exists!!!"), new FaultCode("400"), "");
+                    throw new FaultException(new FaultReason("User already exists!!!"), new FaultCode("400"), "");
                 factory.UserDao.Add(user);
             }
             return user.Id;
 
-        }
-
-        public User GetUser(string? email)
-        {
-            using (DAOFactory factory = _daoFactory)
-            {
-                User[] users = factory.UserDao.All().ToArray();
-                User user = users.FirstOrDefault(p => p.Email == email);
-                if (user == null)
-                {
-                    throw new NotFoundException("User not found for the specified email address.");
-                }
-                return user;
-            }
         }
 
         public User[] GetUsers()
@@ -76,6 +61,32 @@ namespace DataServices.Service
             }
         }
 
+        public User GetUserByEmail(string email)
+        {
+            using (DAOFactory factory = _daoFactory)
+            {
+                User[] users = factory.UserDao.All().ToArray();
+                User user = users.FirstOrDefault(p => p.Email == email);
+                if (user == null)
+                {
+                    throw new NotFoundException("User not found for the specified email address.");
+                }
+                return user;
+            }
+        }
 
+        public User GetUserById(int id)
+        {
+            using (DAOFactory factory = _daoFactory)
+            {
+                User[] users = factory.UserDao.All().ToArray();
+                User user = users.FirstOrDefault(p => p.Id == id);
+                if (user == null)
+                {
+                    throw new NotFoundException("User not found for the specified email address.");
+                }
+                return user;
+            }
+        }
     }
 }
