@@ -1,4 +1,4 @@
-using WS.DataServices;
+using DataServices;
 
 internal class Program
 {

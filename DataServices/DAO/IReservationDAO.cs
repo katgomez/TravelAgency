@@ -1,8 +1,8 @@
-﻿using WS.DataServices.Model;
+﻿using DataServices.Model;
 
-namespace WS.DataServices.DAO;
+namespace DataServices.DAO;
 
 public interface IReservationDAO : IGenericDAO<Reservation>
 {
-    
+
 }

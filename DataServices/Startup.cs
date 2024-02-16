@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataServices.Services;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using SoapCore;
 using System.ServiceModel;
-using WS.DataServices.Model;
-using WS.DataServices.Service;
 
-namespace WS.DataServices
+namespace DataServices
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WS.DataServices.Model
+namespace DataServices.Model
 {
     public class Reservation
     {

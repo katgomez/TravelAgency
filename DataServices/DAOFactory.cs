@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WS.DataServices;
-using WS.DataServices.DAO;
-using WS.DataServices.DAO.Impl;
+﻿using DataServices.DAO;
+using DataServices.DAO.Impl;
 
-namespace WS.DataServices
+namespace DataServices
 {
     public class DAOFactory : IDisposable
     {

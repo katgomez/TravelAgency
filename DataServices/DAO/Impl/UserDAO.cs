@@ -1,6 +1,7 @@
-﻿using WS.DataServices.Model;
+﻿using DataServices;
+using DataServices.Model;
 
-namespace WS.DataServices.DAO.Impl
+namespace DataServices.DAO.Impl
 {
     public class UserDAO : GenericDAO<User>, IUserDAO
     {

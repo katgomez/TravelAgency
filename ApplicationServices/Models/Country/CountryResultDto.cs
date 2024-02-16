@@ -1,4 +1,4 @@
-﻿namespace ApplicationServices.Model.Country
+﻿namespace ApplicationServices.Models.Country
 {
     public class CountryResultDto
     {

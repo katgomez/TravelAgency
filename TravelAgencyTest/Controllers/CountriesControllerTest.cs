@@ -1,6 +1,7 @@
 ﻿using ApplicationServices.Controllers;
-using ApplicationServices.Model.Country;
+using ApplicationServices.Models.Country;
 using AutoFixture;
+using DataServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,22 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using WS.DataServices;
 using WS.DataServices.Model;
-using WS.DataServices.Service;
 using WSClient.UserWS;
 
-namespace TravelAgencyTest.Controllers
+namespace ApplicationServicesTests.Controllers
 {
     public class CountriesControllerTest
     {
         private readonly CountriesController _controller;
-        private readonly UserServices _userService;
 
         private IConfiguration _configuration;
-        
 
-        public CountriesControllerTest() {
+
+        public CountriesControllerTest()
+        {
             _configuration = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build();
-            
+
 
             //var options = new DbContextOptionsBuilder<DataContext>().UseInMemoryDatabase(databaseName: $"temp-{Guid.NewGuid()}");
             _controller = new CountriesController(_configuration);

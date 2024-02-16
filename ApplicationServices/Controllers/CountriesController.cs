@@ -1,4 +1,4 @@
-﻿using ApplicationServices.Model.Country;
+﻿using ApplicationServices.Models.Country;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;

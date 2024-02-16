@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServices", "Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{DA463C1E-84BD-45EF-A9A6-03415157CE96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgencyTest", "TravelAgencyTest\TravelAgencyTest.csproj", "{30995E90-714D-404A-9CD9-E61A51948E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServicesTests", "TravelAgencyTest\ApplicationServicesTests.csproj", "{30995E90-714D-404A-9CD9-E61A51948E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServicesTests", "DataServicesTests\DataServicesTests.csproj", "{DD8CDBE3-C1CB-4D52-ADC5-E7E4AAB44B72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8CDBE3-C1CB-4D52-ADC5-E7E4AAB44B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8CDBE3-C1CB-4D52-ADC5-E7E4AAB44B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8CDBE3-C1CB-4D52-ADC5-E7E4AAB44B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8CDBE3-C1CB-4D52-ADC5-E7E4AAB44B72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,9 @@
-﻿using WS.DataServices.Model;
+﻿using DataServices;
+using DataServices.Model;
 
-namespace WS.DataServices.DAO.Impl;
+namespace DataServices.DAO.Impl;
 
-public class ReservationDAO: GenericDAO<Reservation>, IReservationDAO
+public class ReservationDAO : GenericDAO<Reservation>, IReservationDAO
 {
     public ReservationDAO(DataContext context) : base(context)
     {

@@ -1,8 +1,9 @@
-﻿using System.ServiceModel;
+﻿using DataServices;
+using DataServices.Model;
+using System.ServiceModel;
 using System.Xml.Linq;
-using WS.DataServices.Model;
 
-namespace WS.DataServices.Service
+namespace DataServices.Services
 {
     public class UserServices : IUserServices
     {
