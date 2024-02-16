@@ -14,7 +14,7 @@ namespace WSClient.ReservationWS
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Reservation", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Reservation", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class Reservation : object
     {
         
@@ -126,7 +126,7 @@ namespace WSClient.ReservationWS
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FlightReservation", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FlightReservation", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class FlightReservation : object
     {
         
@@ -267,22 +267,24 @@ namespace WSClient.ReservationWS
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/reservation/", ConfigurationName="WSClient.ReservationWS.IReservationServices")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/reservation/", ConfigurationName="WSClient.ReservationWS.IReservationServices")]
     public interface IReservationServices
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/GetReservations", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/GetReservationsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/GetReservations", ReplyAction="http://agencytravel/reservation/IReservationServices/GetReservationsResponse")]
         System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation[]> GetReservationsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/GetReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/GetReservationResponse")]
-        System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/GetReservationsByUserId", ReplyAction="http://agencytravel/reservation/IReservationServices/GetReservationsByUserIdRespo" +
+            "nse")]
+        System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation[]> GetReservationsByUserIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/CreateReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/CreateReservationResponse" +
-            "")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/GetReservationById", ReplyAction="http://agencytravel/reservation/IReservationServices/GetReservationByIdResponse")]
+        System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/CreateReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/CreateReservationResponse")]
         System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/reservation/IReservationServices/UpdateReservation", ReplyAction="http://ws.agencytravel/reservation/IReservationServices/UpdateReservationResponse" +
-            "")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/UpdateReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/UpdateReservationResponse")]
         System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation);
     }
     
@@ -341,9 +343,14 @@ namespace WSClient.ReservationWS
             return base.Channel.GetReservationsAsync();
         }
         
-        public System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationAsync(int id)
+        public System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation[]> GetReservationsByUserIdAsync(int id)
         {
-            return base.Channel.GetReservationAsync(id);
+            return base.Channel.GetReservationsByUserIdAsync(id);
+        }
+        
+        public System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationByIdAsync(int id)
+        {
+            return base.Channel.GetReservationByIdAsync(id);
         }
         
         public System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation)

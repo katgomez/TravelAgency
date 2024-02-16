@@ -14,7 +14,7 @@ namespace WSClient.UserWS
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/WS.DataServices.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class User : object
     {
         
@@ -25,8 +25,6 @@ namespace WSClient.UserWS
         private int IdField;
         
         private string LastNameField;
-        
-        private string UserNameField;
         
         private string passwordField;
         
@@ -83,19 +81,6 @@ namespace WSClient.UserWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserName
-        {
-            get
-            {
-                return this.UserNameField;
-            }
-            set
-            {
-                this.UserNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string password
         {
             get
@@ -110,20 +95,20 @@ namespace WSClient.UserWS
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.agencytravel/user/", ConfigurationName="WSClient.UserWS.IUserServices")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/user/", ConfigurationName="WSClient.UserWS.IUserServices")]
     public interface IUserServices
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/GetUsers", ReplyAction="http://ws.agencytravel/user/IUserServices/GetUsersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUsers", ReplyAction="http://agencytravel/user/IUserServices/GetUsersResponse")]
         System.Threading.Tasks.Task<WSClient.UserWS.User[]> GetUsersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/GetUser", ReplyAction="http://ws.agencytravel/user/IUserServices/GetUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUser", ReplyAction="http://agencytravel/user/IUserServices/GetUserResponse")]
         System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/CreateUser", ReplyAction="http://ws.agencytravel/user/IUserServices/CreateUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CreateUser", ReplyAction="http://agencytravel/user/IUserServices/CreateUserResponse")]
         System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws.agencytravel/user/IUserServices/UpdateUser", ReplyAction="http://ws.agencytravel/user/IUserServices/UpdateUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/UpdateUser", ReplyAction="http://agencytravel/user/IUserServices/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user);
     }
     
