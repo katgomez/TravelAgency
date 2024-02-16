@@ -45,7 +45,7 @@ namespace ApplicationServices.Controllers
         {
             var createdReservation = reservationServicesClient.CreateReservationAsync(reservation);
             if (createdReservation == null) return StatusCode(500, "Failed to create reservation");
-            return CreatedAtAction(nameof(Reservation), new { id = createdReservation.Id }, createdReservation);
+            return CreatedAtAction(nameof(createdReservation), new { id = createdReservation.Id }, createdReservation);
         }
 
         [HttpPut("{id}")]
