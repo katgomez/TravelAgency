@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using DataServices;
+using DataServices.DAO.Impl;
 using DataServices.Model;
 using DataServices.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace DataServicesTests.Services
 {
     public class UserServicesTests
     {
+        private readonly DAOFactory daoFactory;
         private readonly UserServices userServices;
         public UserServicesTests()
         {
@@ -18,15 +20,16 @@ namespace DataServicesTests.Services
             var fakeDataContext = new DataContext(options);
             fakeDataContext.Database.EnsureDeleted();
             AddUserData(fakeDataContext);
-            userServices = new UserServices();
+            daoFactory = new DAOFactory(fakeDataContext);
+            userServices = new UserServices(daoFactory);
         }
 
         private static void AddUserData(DataContext dataContextFake)
         {
             var fixture = new Fixture();
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-            var user = fixture.CreateMany<User>(15).ToList();
-            dataContextFake.Users.AddRange(user);
+            var users = fixture.CreateMany<User>(15).ToList();
+            dataContextFake.Users.AddRange(users);
             dataContextFake.SaveChanges();
         }
 

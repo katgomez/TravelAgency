@@ -5,9 +5,19 @@ namespace DataServices.Service
 {
     public class UserServices : IUserServices
     {
+        private readonly DAOFactory _daoFactory;
+
+        public UserServices()
+        {
+            _daoFactory = new DAOFactory();
+        }
+        public UserServices(DAOFactory daoFactory)
+        {
+            _daoFactory = daoFactory;
+        }
         public void CreateUser(User user)
         {
-            using (DAOFactory factory = new DAOFactory())
+            using (DAOFactory factory = _daoFactory)
             {
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Email == user.Email);
                 if (checkedUser != null)
@@ -20,7 +30,7 @@ namespace DataServices.Service
 
         public User GetUser(string? email)
         {
-            using (DAOFactory factory = new DAOFactory())
+            using (DAOFactory factory = _daoFactory)
             {
                 User[] users = factory.UserDao.All().ToArray();
                 return users.First(p => p.Email == email);
@@ -29,7 +39,7 @@ namespace DataServices.Service
 
         public User[] GetUsers()
         {
-            using (DAOFactory factory = new DAOFactory())
+            using (DAOFactory factory = _daoFactory)
             {
                 return factory.UserDao.All().ToArray();
             }
@@ -38,7 +48,7 @@ namespace DataServices.Service
 
         public void UpdateUser(User user)
         {
-            using (DAOFactory factory = new DAOFactory())
+            using (DAOFactory factory = _daoFactory)
             {
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Email == user.Email);
                 if (checkedUser == null)
@@ -50,7 +60,7 @@ namespace DataServices.Service
 
         public void DeleteUser(int id)
         {
-            using (DAOFactory factory = new DAOFactory())
+            using (DAOFactory factory = _daoFactory)
             {
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Id == id);
                 if (checkedUser == null)

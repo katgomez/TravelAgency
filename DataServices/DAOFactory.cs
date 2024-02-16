@@ -12,6 +12,11 @@ namespace DataServices
             _context = new DataContext();
         }
 
+        public DAOFactory(DataContext fakeDataContext)
+        {
+            _context = fakeDataContext;
+        }
+
         public IUserDAO UserDao
         {
             get { return new UserDAO(_context); }
