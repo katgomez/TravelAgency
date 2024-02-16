@@ -24,7 +24,7 @@ namespace WS.DataServices.Service
             using (DAOFactory factory = new DAOFactory())
             {
                 User[] users = factory.UserDao.All().ToArray();
-                return users.First(p => p.Email == email || p.UserName == username);
+                return users.First(p => p.Email == email);
             }
         }
 

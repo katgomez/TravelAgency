@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Policy;
 
 namespace WS.DataServices.Model
 {
@@ -6,8 +8,11 @@ namespace WS.DataServices.Model
     {
         [Key]
         public int Id { get; set; }
-        public string UserName { get; set; }
+
+        [Required]
         public string Email { get; set; }
+
+        [Required]
         public string password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -13,7 +13,15 @@ public class ReservationServices: IReservationServices
         }
     }
 
-    public Reservation GetReservation(int id)
+    public Reservation[] GetReservationsByUserId(int id)
+    {
+        using (DAOFactory factory = new DAOFactory())
+        {
+            return factory.ReservationDao.All().Where(reservation => reservation.UserId == id).ToArray();
+        }
+    }
+
+    public Reservation GetReservationById(int id)
     {
         using (DAOFactory factory = new DAOFactory())
         {
@@ -43,4 +51,5 @@ public class ReservationServices: IReservationServices
             factory.ReservationDao.Update(reservation);
         }
     }
+
 }
