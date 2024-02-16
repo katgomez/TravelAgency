@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WS.DataServices;
-using WS.DataServices.Model;
-using WS.DataServices.Service;
+using DataServices;
+using DataServices.Model;
+using DataServices.Service;
 using WSClient.UserWS;
 
 namespace TravelAgencyTest.Controllers

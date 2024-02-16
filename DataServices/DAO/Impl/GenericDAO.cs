@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WS.DataServices.DAO.Impl
+namespace DataServices.DAO.Impl
 {
-    public class GenericDAO<T> where T: class
+    public class GenericDAO<T> where T : class
     {
         private DataContext Context { get; set; }
 
@@ -19,7 +19,7 @@ namespace WS.DataServices.DAO.Impl
         public virtual bool Add(T t)
         {
             DbSet.Add(t);
-            return Context.SaveChanges() != 0;            
+            return Context.SaveChanges() != 0;
         }
 
         public virtual bool Remove(T t)
@@ -37,7 +37,7 @@ namespace WS.DataServices.DAO.Impl
 
         public virtual T Find(int id)
         {
-            return DbSet.Find(id);            
+            return DbSet.Find(id);
         }
 
         public virtual IEnumerable<T> All()

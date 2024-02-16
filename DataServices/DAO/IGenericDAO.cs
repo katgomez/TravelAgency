@@ -1,6 +1,6 @@
-﻿namespace WS.DataServices.DAO
+﻿namespace DataServices.DAO
 {
-    public interface IGenericDAO<T> where T:class
+    public interface IGenericDAO<T> where T : class
     {
         bool Add(T t);
         bool Remove(T t);

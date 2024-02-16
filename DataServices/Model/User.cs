@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Policy;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WS.DataServices.Model
+namespace DataServices.Model
 {
     public class User
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WS.DataServices;
+using DataServices;
 
 #nullable disable
 
@@ -22,7 +22,7 @@ namespace DataServices.Migrations
                 .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("WS.DataServices.Model.FlightReservation", b =>
+            modelBuilder.Entity("DataServices.Model.FlightReservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,7 +64,7 @@ namespace DataServices.Migrations
                     b.ToTable("FlighReservations");
                 });
 
-            modelBuilder.Entity("WS.DataServices.Model.Reservation", b =>
+            modelBuilder.Entity("DataServices.Model.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace DataServices.Migrations
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("WS.DataServices.Model.User", b =>
+            modelBuilder.Entity("DataServices.Model.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,16 +122,16 @@ namespace DataServices.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WS.DataServices.Model.FlightReservation", b =>
+            modelBuilder.Entity("DataServices.Model.FlightReservation", b =>
                 {
-                    b.HasOne("WS.DataServices.Model.Reservation", null)
+                    b.HasOne("DataServices.Model.Reservation", null)
                         .WithOne("FlightReservation")
-                        .HasForeignKey("WS.DataServices.Model.FlightReservation", "ReservationID")
+                        .HasForeignKey("DataServices.Model.FlightReservation", "ReservationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WS.DataServices.Model.Reservation", b =>
+            modelBuilder.Entity("DataServices.Model.Reservation", b =>
                 {
                     b.Navigation("FlightReservation")
                         .IsRequired();

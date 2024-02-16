@@ -1,8 +1,8 @@
-﻿using WS.DataServices.Model;
+﻿using DataServices.Model;
 
-namespace WS.DataServices.DAO.Impl;
+namespace DataServices.DAO.Impl;
 
-public class FlightReservationDao: GenericDAO<FlightReservation>, IFlightReservationDao
+public class FlightReservationDao : GenericDAO<FlightReservation>, IFlightReservationDao
 {
     public FlightReservationDao(DataContext context) : base(context)
     {

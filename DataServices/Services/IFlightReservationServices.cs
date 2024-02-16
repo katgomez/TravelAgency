@@ -1,9 +1,9 @@
 ﻿using System.ServiceModel;
-using WS.DataServices.Model;
+using DataServices.Model;
 
-namespace WS.DataServices.Service;
+namespace DataServices.Service;
 
-[ServiceContract(Namespace = "http://ws.agencytravel/flight/")]
+[ServiceContract(Namespace = "http://agencytravel/flight/")]
 
 public interface IFlightReservationServices
 {

@@ -1,9 +1,9 @@
 ﻿using System.ServiceModel;
-using WS.DataServices.Model;
+using DataServices.Model;
 
-namespace WS.DataServices.Service;
+namespace DataServices.Service;
 
-public class ReservationServices: IReservationServices
+public class ReservationServices : IReservationServices
 {
     public Reservation[] GetReservations()
     {
@@ -35,7 +35,7 @@ public class ReservationServices: IReservationServices
         using (DAOFactory factory = new DAOFactory())
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == reservation.Id);
-            if (checkedReservation != null) 
+            if (checkedReservation != null)
                 throw new FaultException(new FaultReason("User already exists!!!"), new FaultCode("400"), "");
             factory.ReservationDao.Add(reservation);
         }
