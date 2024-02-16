@@ -1,8 +1,8 @@
-﻿using DataServices.Model;
+﻿using WS.DataServices.Model;
 
-namespace DataServices.DAO;
+namespace WS.DataServices.DAO;
 
-public interface IFlightReservationDao : IGenericDAO<FlightReservation>
+public interface IFlightReservationDao: IGenericDAO<FlightReservation>
 {
-
+    
 }

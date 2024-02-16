@@ -1,4 +1,4 @@
-namespace ApplicationServicesTests
+namespace TravelAgencyTest
 {
     public class UnitTest1
     {

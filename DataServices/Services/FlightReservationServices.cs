@@ -1,10 +1,9 @@
-﻿using DataServices;
-using DataServices.Model;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using WS.DataServices.Model;
 
-namespace DataServices.Services;
+namespace WS.DataServices.Service;
 
-public class FlightReservationServices : IFlightReservationServices
+public class FlightReservationServices: IFlightReservationServices
 {
     public FlightReservation[] GetFlights()
     {

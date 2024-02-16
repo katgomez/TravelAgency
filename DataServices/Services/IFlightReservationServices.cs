@@ -1,7 +1,7 @@
-﻿using DataServices.Model;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using WS.DataServices.Model;
 
-namespace DataServices.Services;
+namespace WS.DataServices.Service;
 
 [ServiceContract(Namespace = "http://ws.agencytravel/flight/")]
 

@@ -1,6 +1,6 @@
-﻿using DataServices.Model;
+﻿using WS.DataServices.Model;
 
-namespace DataServices.DAO
+namespace WS.DataServices.DAO
 {
     public interface IUserDAO : IGenericDAO<User>
     {

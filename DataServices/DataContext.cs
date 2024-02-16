@@ -1,10 +1,11 @@
-﻿using DataServices.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using WS.DataServices.Model;
 
-namespace DataServices
+namespace WS.DataServices
 {
     public class DataContext : DbContext
     {
+     
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
