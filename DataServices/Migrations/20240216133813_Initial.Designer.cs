@@ -11,7 +11,7 @@ using WS.DataServices;
 namespace DataServices.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240216111323_Initial")]
+    [Migration("20240216133813_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

@@ -1,7 +1,7 @@
 Arrancar en docker
 
 docker build -t travel_agency_mysql .
-docker run -d -p 3306:3306 travel_agency_mysql
+docker run -d -p 3306:3306 -v mysql_data:/var/lib/mysql travel_agency_mysql
 
 
 ---------------------
