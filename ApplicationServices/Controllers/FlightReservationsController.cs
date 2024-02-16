@@ -24,7 +24,7 @@ namespace ApplicationServices.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Reservation>> GetFlightReservation(int reservationId)
         {
-            return Ok(reservationServicesClient.GetReservationAsync(reservationId));
+            return Ok(reservationServicesClient.GetReservationByIdAsync(reservationId));
         }
 
     }
