@@ -4,6 +4,7 @@ using DataServices.Model;
 using DataServices.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace DataServicesTests.Services
 {
@@ -33,6 +34,8 @@ namespace DataServicesTests.Services
         public void GetUser_ResultOkObject()
         {
             var actionResult = userServices.GetUsers();
+            Debug.WriteLine($"Result: {actionResult}");
+            Console.WriteLine($"Result: {actionResult}");
             Assert.NotNull(actionResult);
             Assert.Equal(15d, actionResult.Count(), 0);
         }
