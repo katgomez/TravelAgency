@@ -18,7 +18,7 @@ namespace DataServices.Service
 
         }
 
-        public User GetUser(string? email, string? username)
+        public User GetUser(string? email)
         {
             using (DAOFactory factory = new DAOFactory())
             {
@@ -43,9 +43,23 @@ namespace DataServices.Service
                 User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Email == user.Email);
                 if (checkedUser == null)
                     throw new FaultException(new FaultReason(
-                    "Product not found!!!"), new FaultCode("404"), "");
+                    "User not found!!!"), new FaultCode("404"), "");
                 factory.UserDao.Update(user);
             }
         }
+
+        public void DeleteUser(int id)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                User checkedUser = factory.UserDao.All().FirstOrDefault(p => p.Id == id);
+                if (checkedUser == null)
+                    throw new FaultException(new FaultReason(
+                    "User not found!!!"), new FaultCode("404"), "");
+                factory.UserDao.Remove(checkedUser);
+            }
+        }
+
+
     }
 }

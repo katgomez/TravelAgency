@@ -103,13 +103,16 @@ namespace WSClient.UserWS
         System.Threading.Tasks.Task<WSClient.UserWS.User[]> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUser", ReplyAction="http://agencytravel/user/IUserServices/GetUserResponse")]
-        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email, string username);
+        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CreateUser", ReplyAction="http://agencytravel/user/IUserServices/CreateUserResponse")]
         System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/UpdateUser", ReplyAction="http://agencytravel/user/IUserServices/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/DeleteUser", ReplyAction="http://agencytravel/user/IUserServices/DeleteUserResponse")]
+        System.Threading.Tasks.Task DeleteUserAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -167,9 +170,9 @@ namespace WSClient.UserWS
             return base.Channel.GetUsersAsync();
         }
         
-        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email, string username)
+        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email)
         {
-            return base.Channel.GetUserAsync(email, username);
+            return base.Channel.GetUserAsync(email);
         }
         
         public System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user)
@@ -180,6 +183,11 @@ namespace WSClient.UserWS
         public System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user)
         {
             return base.Channel.UpdateUserAsync(user);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserAsync(int userId)
+        {
+            return base.Channel.DeleteUserAsync(userId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

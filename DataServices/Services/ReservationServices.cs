@@ -36,7 +36,7 @@ public class ReservationServices : IReservationServices
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == reservation.Id);
             if (checkedReservation != null)
-                throw new FaultException(new FaultReason("User already exists!!!"), new FaultCode("400"), "");
+                throw new FaultException(new FaultReason("Reservation already exists!!!"), new FaultCode("400"), "");
             factory.ReservationDao.Add(reservation);
         }
     }
@@ -47,8 +47,19 @@ public class ReservationServices : IReservationServices
         {
             Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == reservation.Id);
             if (checkedReservation == null)
-                throw new FaultException(new FaultReason("Product not found!!!"), new FaultCode("404"), "");
+                throw new FaultException(new FaultReason("Reservation not found!!!"), new FaultCode("404"), "");
             factory.ReservationDao.Update(reservation);
+        }
+    }
+
+    public void DeleteReservation(int id)
+    {
+        using (DAOFactory factory = new DAOFactory())
+        {
+            Reservation checkedReservation = factory.ReservationDao.All().FirstOrDefault(p => p.Id == id);
+            if (checkedReservation == null)
+                throw new FaultException(new FaultReason("Reservation not found!!!"), new FaultCode("404"), "");
+            factory.ReservationDao.Remove(checkedReservation);
         }
     }
 

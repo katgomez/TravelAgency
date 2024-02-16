@@ -286,6 +286,9 @@ namespace WSClient.ReservationWS
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/UpdateReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/UpdateReservationResponse")]
         System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/DeleteReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/DeleteReservationResponse")]
+        System.Threading.Tasks.Task DeleteReservationAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -361,6 +364,11 @@ namespace WSClient.ReservationWS
         public System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation)
         {
             return base.Channel.UpdateReservationAsync(reservation);
+        }
+        
+        public System.Threading.Tasks.Task DeleteReservationAsync(int id)
+        {
+            return base.Channel.DeleteReservationAsync(id);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

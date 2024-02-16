@@ -22,5 +22,7 @@ public interface IReservationServices
 
     [OperationContract]
     public void UpdateReservation(Reservation reservation);
+    [OperationContract]
+    public void DeleteReservation(int id);
 
 }
