@@ -1,5 +1,6 @@
 ﻿using ApplicationServices.Model.Country;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
@@ -16,7 +17,7 @@ namespace ApplicationServices.Controllers
             this._configuration = configuration;
         }
         [HttpGet]
-        public CountryResultDto GetCountries()
+        public async Task<ActionResult<CountryResultDto>> GetCountries()
         {
 
             var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:CountriesEndPoint"));
@@ -24,7 +25,7 @@ namespace ApplicationServices.Controllers
             var request = new RestRequest("",Method.Get);
 
             CountryResultDto dto =  client.ExecuteAsync<CountryResultDto>(request).Result.Data;
-            return dto;
+            return Ok(dto);
         }
     
     }

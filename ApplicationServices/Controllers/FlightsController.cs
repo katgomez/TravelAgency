@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApplicationServices.Model.Country;
+using ApplicationServices.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 namespace ApplicationServices.Controllers
 {
@@ -11,6 +14,14 @@ namespace ApplicationServices.Controllers
         public FlightsController(IConfiguration configuration)
         {
             this._configuration = configuration;
+        }
+
+        [HttpGet]
+        public Flight GetFlight()
+        {
+
+            
+            return new Flight();
         }
     }
 }
