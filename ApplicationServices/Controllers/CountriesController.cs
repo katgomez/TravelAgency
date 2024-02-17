@@ -25,6 +25,7 @@ namespace ApplicationServices.Controllers
             var request = new RestRequest("",Method.Get);
 
             CountryResultDto dto =  client.ExecuteAsync<CountryResultDto>(request).Result.Data;
+            dto.countries = dto.countries.OrderBy(c => c.name).ToList();
             return Ok(dto);
         }
     
