@@ -49,3 +49,34 @@ bld/
 #more
 .idea
 *.db
+
+# Carpeta de dependencias generada por npm
+/node_modules
+
+# Archivos generados por el CLI de Angular
+/dist
+/tmp
+/out-tsc
+
+# Archivos de configuración generados por el CLI de Angular
+/e2e/*.log
+/e2e/*.png
+
+# Archivos de registro generados por el CLI de Angular
+/logs
+*.log
+
+# Carpeta de respaldos generados por IDEs
+.idea
+*.iml
+
+# Archivos de configuración específicos de usuario
+.angular-config.json
+.vscode
+
+# Dependencias específicas de entorno de desarrollo
+*.js.map
+*.tsbuildinfo
+
+# Dependencias específicas de entorno de producción
+*.js

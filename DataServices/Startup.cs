@@ -14,6 +14,13 @@ namespace DataServices
             services.TryAddSingleton<IReservationServices, ReservationServices>();
             services.TryAddSingleton<IFlightReservationServices, FlightReservationServices>();
             services.AddMvc(x => x.EnableEndpointRouting = false);
+            services.AddCors(options => {
+            options.AddDefaultPolicy(builder =>{
+                builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
             services.AddSoapCore();
             services.AddDbContext<DataContext>();
         }
