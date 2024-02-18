@@ -1,12 +1,11 @@
 ﻿using AutoFixture;
 using DataServices;
-using DataServices.DAO;
-using DataServices.DAO.Impl;
 using DataServices.Errors;
 using DataServices.Model;
 using DataServices.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.ServiceModel;
 
@@ -14,17 +13,17 @@ namespace DataServicesTests.Services
 {
     public class UserServicesTests
     {
-        private readonly DAOFactory daoFactory;
+        private readonly DataContext fakeDataContext;
         private readonly UserServices userServices;
+
         public UserServicesTests()
         {
             var options = new DbContextOptionsBuilder<DataContext>().UseInMemoryDatabase(
                 databaseName: $"temp-{Guid.NewGuid()}").Options;
-            var fakeDataContext = new DataContext(options);
+            fakeDataContext = new DataContext(options);
             fakeDataContext.Database.EnsureDeleted();
             AddUserData(fakeDataContext);
-            daoFactory = new DAOFactory(fakeDataContext);
-            userServices = new UserServices(daoFactory);
+            userServices = new UserServices(fakeDataContext);
         }
 
         private static void AddUserData(DataContext dataContextFake)
@@ -92,38 +91,43 @@ namespace DataServicesTests.Services
         [Fact]
         public void CreateUser_UserAlreadyExists_ThrowsFaultException()
         {
-            User existingUser = new User
-            {
-                Email = "test@example.com",
-                FirstName = "Existing",
-                LastName = "User",
-                Password = "password"
-            };
-            var userFirstId = userServices.CreateUser(existingUser);
+            DataContext dataContext = new DataContext();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            var user = fixture.Create<User>();
+            dataContext.Users.AddRange(user);
+            dataContext.SaveChanges();
+            int userId = user.Id;
+            UserServices userServices = new UserServices(dataContext);
             User newUser = new User
             {
-                Email = "test@example.com",
-                FirstName = "New",
-                LastName = "User",
-                Password = "password"
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Password = user.Password
             }; 
             Assert.Throws<FaultException>(() => userServices.CreateUser(newUser));
         }
         [Fact]
         public void UpdateUser_UserExists_UpdateSuccessful()
         {
-            var existingUserId = 1; 
-            var updatedUser = new User { Id = existingUserId, FirstName = "Updated", LastName = "User" };
+            DataContext dataContext = new DataContext();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            var user = fixture.Create<User>();
+            dataContext.Users.AddRange(user);
+            dataContext.SaveChanges();
+            UserServices userServices = new UserServices(dataContext);
+
+            User updatedUser = new User { Id = user.Id, FirstName = "Updated", LastName = "User" };
 
             userServices.UpdateUser(updatedUser);
 
-            using (var _daoFactory = daoFactory)
-            {
-                var userInDatabase = _daoFactory.UserDao.All().FirstOrDefault(u => u.Id == existingUserId);
-                Assert.NotNull(userInDatabase);
-                Assert.Equal(updatedUser.FirstName, userInDatabase.FirstName);
-                Assert.Equal(updatedUser.LastName, userInDatabase.LastName);
-            }
+            var userInDatabase = dataContext.Users.FirstOrDefault(u => u.Id == user.Id);
+            Assert.NotNull(userInDatabase);
+            Assert.Equal(updatedUser.FirstName, userInDatabase.FirstName);
+            Assert.Equal(updatedUser.LastName, userInDatabase.LastName);
+            
         }
 
         [Fact]
@@ -138,13 +142,17 @@ namespace DataServicesTests.Services
         [Fact]
         public void DeleteUser_UserExists_DeletesSuccessfully()
         {
-            var existingUserId = 1;
-            userServices.DeleteUser(existingUserId);
-            using (var context = daoFactory)
-            {
-                var deletedUser = context.UserDao.All().FirstOrDefault(u => u.Id == existingUserId);
-                Assert.Null(deletedUser); 
-            }
+            DataContext dataContext = new DataContext();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            var user = fixture.Create<User>();
+            dataContext.Users.AddRange(user);
+            dataContext.SaveChanges();
+            UserServices userServices = new UserServices(dataContext);
+            userServices.DeleteUser(user.Id);
+            var deletedUser = fakeDataContext.Users.FirstOrDefault(u => u.Id == user.Id);
+            Assert.Null(deletedUser); 
+            
         }
 
         [Fact]
