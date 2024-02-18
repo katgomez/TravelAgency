@@ -18,7 +18,7 @@ namespace WSClient.ReservationWS
     public partial class Reservation : object
     {
         
-        private WSClient.ReservationWS.FlightReservation FlightReservationField;
+        private WSClient.ReservationWS.FlightReservation[] FlightReservationsField;
         
         private int IdField;
         
@@ -33,15 +33,15 @@ namespace WSClient.ReservationWS
         private int UserIdField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WSClient.ReservationWS.FlightReservation FlightReservation
+        public WSClient.ReservationWS.FlightReservation[] FlightReservations
         {
             get
             {
-                return this.FlightReservationField;
+                return this.FlightReservationsField;
             }
             set
             {
-                this.FlightReservationField = value;
+                this.FlightReservationsField = value;
             }
         }
         

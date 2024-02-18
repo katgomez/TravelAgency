@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WSClient.ReservationWS;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -37,7 +38,7 @@ namespace ApplicationServices.Controllers
         {
             var createdUser = userServicesClient.CreateUserAsync(user);
             if (createdUser == null) return StatusCode(500, "Failed to create reservation");
-            return CreatedAtAction(nameof(createdUser), new { id = user.Id }, createdUser);
+            return CreatedAtAction(Reservation, new { id = user.Id }, createdUser);
         }
 
         [HttpPut("{id}")]

@@ -26,7 +26,7 @@ namespace WSClient.UserWS
         
         private string LastNameField;
         
-        private string passwordField;
+        private string PasswordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email
@@ -81,15 +81,15 @@ namespace WSClient.UserWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string password
+        public string Password
         {
             get
             {
-                return this.passwordField;
+                return this.PasswordField;
             }
             set
             {
-                this.passwordField = value;
+                this.PasswordField = value;
             }
         }
     }
@@ -102,11 +102,14 @@ namespace WSClient.UserWS
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUsers", ReplyAction="http://agencytravel/user/IUserServices/GetUsersResponse")]
         System.Threading.Tasks.Task<WSClient.UserWS.User[]> GetUsersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUser", ReplyAction="http://agencytravel/user/IUserServices/GetUserResponse")]
-        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email);
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUserByEmail", ReplyAction="http://agencytravel/user/IUserServices/GetUserByEmailResponse")]
+        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserByEmailAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/GetUserById", ReplyAction="http://agencytravel/user/IUserServices/GetUserByIdResponse")]
+        System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CreateUser", ReplyAction="http://agencytravel/user/IUserServices/CreateUserResponse")]
-        System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user);
+        System.Threading.Tasks.Task<int> CreateUserAsync(WSClient.UserWS.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/UpdateUser", ReplyAction="http://agencytravel/user/IUserServices/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(WSClient.UserWS.User user);
@@ -170,12 +173,17 @@ namespace WSClient.UserWS
             return base.Channel.GetUsersAsync();
         }
         
-        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserAsync(string email)
+        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserByEmailAsync(string email)
         {
-            return base.Channel.GetUserAsync(email);
+            return base.Channel.GetUserByEmailAsync(email);
         }
         
-        public System.Threading.Tasks.Task CreateUserAsync(WSClient.UserWS.User user)
+        public System.Threading.Tasks.Task<WSClient.UserWS.User> GetUserByIdAsync(int id)
+        {
+            return base.Channel.GetUserByIdAsync(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> CreateUserAsync(WSClient.UserWS.User user)
         {
             return base.Channel.CreateUserAsync(user);
         }
