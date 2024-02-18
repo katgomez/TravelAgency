@@ -64,7 +64,7 @@
           <div class="col-md-1">
             <div class="form-group">
               <label for="passengers">Passengers</label>
-              <input type="number" class="form-control" id="passengers" min="1" value="1" formControlName="passengers">
+              <input type="number" class="form-control" id="passengers" min="1" formControlName="passengers">
             </div>
           </div>
           <div class="form-group">
@@ -82,31 +82,62 @@
     </div>
   </div>
 
-  <div class="container">
+  <div *ngFor="let flight of flights?.flights">
+    <h3>Vuelo ID: {{ flight.id }}</h3>
+    <h4>Itinerarios de salida:</h4>
     <table class="table">
       <thead>
         <tr>
-          <th>Origen</th>
-          <th>Destino</th>
-          <th>Fecha de salida</th>
-          <th>Fecha de regreso</th>
-          <th>Precio</th>
-          <th>Seleccionar</th>
+          <th>Salida</th>
+          <th>Llegada</th>
+          <th>Carrier Code</th>
+          <th>Número de vuelo</th>
+          <th>Duración</th>
+          <th>Número de escalas</th>
+          <th>Seleccionar itinerario</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let flight of flights">
-          <td>{{ flight.origin }}</td>
-          <td>{{ flight.destination }}</td>
-          <td>{{ flight.departureDate | date }}</td>
-          <td>{{ flight.returnDate | date }}</td>
-          <td>{{ flight.price }}</td>
-          <td>
-            <button class="btn btn-primary" (click)="selectFlight(flight)">Seleccionar</button>
-          </td>
+        <tr *ngFor="let itinerary of flight.departureDayItineraries">
+          <td>{{ itinerary.itinerary[0].departure.iataCode }}</td>
+          <td>{{ itinerary.itinerary[0].arrival.iataCode }}</td>
+          <td>{{ itinerary.itinerary[0].carrierCode }}</td>
+          <td>{{ itinerary.itinerary[0].number }}</td>
+          <td>{{ itinerary.itinerary[0].duration }}</td>
+          <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
+          <td><button (click)="selectFlight(flight.id, itinerary.itinerary[0])">Seleccionar</button></td>
         </tr>
       </tbody>
     </table>
+  
+    <h4>Itinerarios de regreso:</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Salida</th>
+          <th>Llegada</th>
+          <th>Carrier Code</th>
+          <th>Número de vuelo</th>
+          <th>Duración</th>
+          <th>Número de escalas</th>
+          <th>Seleccionar itinerario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let itinerary of flight.returnDayItineraries">
+          <td>{{ itinerary.itinerary[0].departure.iataCode }}</td>
+          <td>{{ itinerary.itinerary[0].arrival.iataCode }}</td>
+          <td>{{ itinerary.itinerary[0].carrierCode }}</td>
+          <td>{{ itinerary.itinerary[0].number }}</td>
+          <td>{{ itinerary.itinerary[0].duration }}</td>
+          <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
+          <td><button (click)="selectFlight(flight.id, itinerary.itinerary[0])">Seleccionar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    
   </div>
+  
   
 </router-outlet>
