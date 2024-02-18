@@ -13,17 +13,9 @@ import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto
 })
 export class FlightsService {
 
-  private apiUrl = environment.airportsEndPoint;
+  private apiUrl = environment.flightsSearchEndPoint;
 
   constructor(private http: HttpClient) { }
-
-  getAirports(countryCode:string, city:string): Observable<AirportResultDto> {
-    let params = new HttpParams();
-    params = params.append('countryCode', countryCode);
-    params = params.append('city', city);
-
-    return this.http.get<AirportResultDto>(this.apiUrl, { params });
-  }
 
   searchFlights(originCode:string, destinationCode:string, departureDate:string, returnDate:string, adults:number, fare:string): Observable<FlightSearchResultDto> {
     let params = new HttpParams();

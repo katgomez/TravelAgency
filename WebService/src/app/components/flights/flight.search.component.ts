@@ -9,6 +9,7 @@ import { FlightResultDto } from "../../model/flights/flight.result.dto";
 import { FareService } from "../../services/fare.service";
 import { FareResultDto } from "../../model/fares/fare.result.dto";
 import { FareDto } from "../../model/fares/fare.dto";
+import { AirportService } from "../../services/airport.service";
 
 @Component({
   selector: 'flight-search',
@@ -18,7 +19,7 @@ import { FareDto } from "../../model/fares/fare.dto";
 export class FlightsSerarchComponent {
 
   constructor(private countryService: CountryService, private flightService: FlightsService, private fareService: FareService,
-     private formBuilder: FormBuilder) {
+     private airportService: AirportService,private formBuilder: FormBuilder) {
 
     this.flightsSearchForm = this.formBuilder.group({
       countryOrigin: [],
@@ -108,7 +109,7 @@ export class FlightsSerarchComponent {
       origin: []
     });
     if (this.countryOriginSelected != null && this.origintCityText != null) {
-      this.flightService.getAirports(this.countryOriginSelected, this.origintCityText).subscribe(data => {
+      this.airportService.getAirports(this.countryOriginSelected, this.origintCityText).subscribe(data => {
         this.originResults = data.airports;
       });
 
@@ -120,7 +121,7 @@ export class FlightsSerarchComponent {
       destination: []
     });
     if (this.countryDestinationSelected != null && this.destinationCityText != null) {
-      this.flightService.getAirports(this.countryDestinationSelected, this.destinationCityText).subscribe(data => {
+      this.airportService.getAirports(this.countryDestinationSelected, this.destinationCityText).subscribe(data => {
         console.log(data);
         this.destinationResults = data.airports;
       });
