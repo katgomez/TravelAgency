@@ -1,5 +1,6 @@
 ﻿using ApplicationServices.Model.Country;
 using ApplicationServices.Models;
+using ApplicationServices.Models.Fares;
 using ApplicationServices.Models.Flights;
 using ApplicationServices.Models.Flights.search;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net.Mime;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ApplicationServices.Controllers
 {
@@ -39,7 +41,26 @@ namespace ApplicationServices.Controllers
             request.AddParameter("adults", adults, ParameterType.QueryString);
             request.AddParameter("max", 5, ParameterType.QueryString);
 
+            FareType fare;
+
+            if (!Enum.TryParse(fareType, out fare))
+            {
+                return BadRequest();
+            }
+            
             FlightSearchResultDto result = JsonConvert.DeserializeObject <FlightSearchResultDto>(client.ExecuteAsync<FlightSearchResultDto>(request).Result.Content);
+
+            if(result == null || result.numberResults == 0)
+            {
+                return NotFound();
+            }
+            //Se calcula la tarifa seleccionada
+            foreach(FlightResultDto resultDto in result.flights)
+            {
+                resultDto.priceWithFare = FareTypeExtensions.PriceWithFare(fare,resultDto.price);
+            }
+
+
 
             return Ok(result);
         }

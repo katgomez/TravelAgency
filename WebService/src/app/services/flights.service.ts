@@ -24,7 +24,7 @@ export class FlightsService {
     params = params.append('departureDate', departureDate);
     params = params.append('returnDate', returnDate);
     params = params.append('adults', adults);
-    params = params.append('fareType', 'ECONOMY');
+    params = params.append('fareType', fare);
 
     return this.http.get<FlightSearchResultDto>(this.apiUrl, { params });
   }

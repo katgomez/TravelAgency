@@ -26,9 +26,9 @@
         {
             return fareType switch
             {
-                FareType.ECONOMY => Math.Round((price + (price * 0.5)), 2),
-                FareType.FIRST_CLASS => Math.Round((price + (price * 0.10)), 2),
-                FareType.BUSINESS => Math.Round((price + (price * 0.20)), 2),
+                FareType.ECONOMY => Math.Round((price + (price * 0.1)), 2),
+                FareType.FIRST_CLASS => Math.Round((price + (price * 0.6)), 2),
+                FareType.BUSINESS => Math.Round((price + (price * 0.2)), 2),
                 _ => throw new ArgumentException("Invalid fare type"),
             };
         }
