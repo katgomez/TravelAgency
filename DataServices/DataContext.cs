@@ -8,7 +8,13 @@ namespace DataServices
         public DataContext()
         {
         }
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        public DataContext(DbContextOptions<DataContext> options)
+            : base(options)
+        {
+        }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<FlightReservation> FlighReservations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,8 +25,5 @@ namespace DataServices
                 optionsBuilder.UseMySql(connection, ServerVersion.AutoDetect(connection));
             }
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<FlightReservation> FlighReservations { get; set; }
     }
 }
