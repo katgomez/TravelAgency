@@ -7,14 +7,9 @@ namespace DataServices
     {
         private DataContext _context;
 
-        public DAOFactory()
+        public DAOFactory(DataContext dataContext)
         {
-            _context = new DataContext();
-        }
-
-        public DAOFactory(DataContext fakeDataContext)
-        {
-            _context = fakeDataContext;
+            _context = dataContext;
         }
 
         public IUserDAO UserDao
