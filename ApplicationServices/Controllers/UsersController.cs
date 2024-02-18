@@ -27,7 +27,7 @@ namespace ApplicationServices.Controllers
         [HttpGet("{userEmail}")]
         public ActionResult<IEnumerable<User>> GetUser(string userEmail)
         {
-            var user = userServicesClient.GetUserAsync(userEmail);
+            var user = userServicesClient.GetUserByEmailAsync(userEmail);
             if (user == null) return NotFound();
             return Ok(user);
         }
@@ -38,7 +38,7 @@ namespace ApplicationServices.Controllers
         {
             var createdUser = userServicesClient.CreateUserAsync(user);
             if (createdUser == null) return StatusCode(500, "Failed to create reservation");
-            return CreatedAtAction(Reservation, new { id = user.Id }, createdUser);
+            return CreatedAtAction(nameof(createdUser), new { id = user.Id }, createdUser);
         }
 
         [HttpPut("{id}")]
