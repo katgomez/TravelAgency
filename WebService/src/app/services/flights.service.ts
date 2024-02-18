@@ -13,7 +13,7 @@ import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto
 })
 export class FlightsService {
 
-  private apiUrl = environment.flightsSearchEndPoint;
+  private apiUrl = environment.airportsEndPoint;
 
   constructor(private http: HttpClient) { }
 
@@ -22,17 +22,17 @@ export class FlightsService {
     params = params.append('countryCode', countryCode);
     params = params.append('city', city);
 
-    return this.http.get<AirportResultDto>(this.apiUrl + "/airports", { params });
+    return this.http.get<AirportResultDto>(this.apiUrl, { params });
   }
 
-  searchFlights(originCode:string, destinationCode:string, departureDate:string, returnDate:string, adults:number): Observable<FlightSearchResultDto> {
+  searchFlights(originCode:string, destinationCode:string, departureDate:string, returnDate:string, adults:number, fare:string): Observable<FlightSearchResultDto> {
     let params = new HttpParams();
     params = params.append('originCode', originCode);
     params = params.append('destinationCode', destinationCode);
     params = params.append('departureDate', departureDate);
     params = params.append('returnDate', returnDate);
     params = params.append('adults', adults);
-    params = params.append('fareType', 'ECONOMIC');
+    params = params.append('fareType', 'ECONOMY');
 
     return this.http.get<FlightSearchResultDto>(this.apiUrl, { params });
   }

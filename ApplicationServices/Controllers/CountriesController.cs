@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
+using System.Net.Mime;
 
 namespace ApplicationServices.Controllers
 {
@@ -17,6 +18,7 @@ namespace ApplicationServices.Controllers
             this._configuration = configuration;
         }
         [HttpGet]
+        [Produces(MediaTypeNames.Application.Json)]
         public async Task<ActionResult<CountryResultDto>> GetCountries()
         {
 
