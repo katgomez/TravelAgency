@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DataServices.Model;
+using ApplicationServices.Model;
 
-namespace DataServices
+namespace ApplicationServices.Data
 {
     public class DataContext : DbContext
     {
@@ -15,12 +15,11 @@ namespace DataServices
             if (!optionsBuilder.IsConfigured)
             {
                 IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                var connection = config.GetValue<string>("ConnectionStrings:AgencyTravelMysql");
-                optionsBuilder.UseMySql(connection, ServerVersion.AutoDetect(connection));
+                var connection = config.GetValue<string>("ConnectionStrings:AgencyTravelApplication");
+                optionsBuilder.UseSqlite(connection);
             }
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<FlightReservation> FlighReservations { get; set; }
+        public DbSet<FlightReservationSearch> Users { get; set; }
+
     }
 }

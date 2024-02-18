@@ -14,5 +14,6 @@ namespace ApplicationServices.Model
         public string DepartureAirport { get; set; }
         public DateTime DepartureDate { get; set; }
         public decimal Price { get; set; }
+        public decimal PriceWhitFare { get; set; }
     }
 }

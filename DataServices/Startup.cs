@@ -30,7 +30,7 @@ namespace DataServices
             {
                 app.UseDeveloperExceptionPage();
             }
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var context = new DataContext();
                 //context.Database.EnsureDeleted(); //Delete ddbb always
