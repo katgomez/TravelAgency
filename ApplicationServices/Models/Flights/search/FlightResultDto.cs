@@ -5,7 +5,7 @@
         public string id {  get; set; }
 
         public List<FlightItineraryDto> departureDayItineraries { get; set; }
-        public List<FlightItineraryDto> returnDayItineraries { get; set; }
+        public List<FlightItineraryDto>? returnDayItineraries { get; set; }
 
         public double price { get; set; }
         public string currency { get; set; }

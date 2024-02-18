@@ -22,7 +22,9 @@ export class FlightsService {
     params = params.append('originCode', originCode);
     params = params.append('destinationCode', destinationCode);
     params = params.append('departureDate', departureDate);
-    params = params.append('returnDate', returnDate);
+    if(returnDate!=null){
+      params = params.append('returnDate', returnDate);
+    }
     params = params.append('adults', adults);
     params = params.append('fareType', fare);
 

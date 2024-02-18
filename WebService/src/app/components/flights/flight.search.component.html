@@ -122,7 +122,7 @@
           </tr>
         </tbody>
       </table>
-
+      <ng-container *ngIf="flight.returnDayItineraries && flight.returnDayItineraries.length >0 && flight.returnDayItineraries[0].itinerary.length >0">
       <h4>Itinerarios de regreso:</h4>
       <table class="table">
         <thead>
@@ -136,16 +136,23 @@
           </tr>
         </thead>
         <tbody>
+          
           <tr *ngFor="let itinerary of flight.returnDayItineraries">
+            <ng-container *ngIf="itinerary.itinerary && itinerary.itinerary.length">
             <td>{{ itinerary.itinerary[0].departure.iataCode }}</td>
             <td>{{ itinerary.itinerary[0].arrival.iataCode }}</td>
             <td>{{ itinerary.itinerary[0].carrierCode }}</td>
             <td>{{ itinerary.itinerary[0].number }}</td>
             <td>{{ itinerary.itinerary[0].departure.at }}</td>
             <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
+            </ng-container>
           </tr>
+         
+          
         </tbody>
       </table>
+    </ng-container>
+
       <p>Precio total: {{ flight.priceWithFare }} EUR</p>
       <button (click)="buyFlight(flight)">Buy now</button>
 

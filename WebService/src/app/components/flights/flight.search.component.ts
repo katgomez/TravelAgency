@@ -142,7 +142,7 @@ export class FlightsSerarchComponent {
     const fare = this.flightsSearchForm.value.fare;
     const passengers: number = this.flightsSearchForm.value.passengers;
     console.log(this.flightsSearchForm.value);
-    if (origen != null && destination != null && departureDate != null && returnDate != null 
+    if (origen != null && destination != null && departureDate != null 
       && passengers != null&& fare !=null) {
       console.log("Buscando vuelos");
       this.flightService.searchFlights(origen, destination, departureDate, returnDate, passengers, fare.name).subscribe(data => {
