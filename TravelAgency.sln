@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServicesTests", "DataSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{20A56722-01F5-4284-B772-041D9EF7714E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatisticsConsole", "StatisticsConsole\StatisticsConsole.csproj", "{BC1E94C2-666A-41E0-B773-021F770EC326}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{20A56722-01F5-4284-B772-041D9EF7714E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A56722-01F5-4284-B772-041D9EF7714E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A56722-01F5-4284-B772-041D9EF7714E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1E94C2-666A-41E0-B773-021F770EC326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1E94C2-666A-41E0-B773-021F770EC326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1E94C2-666A-41E0-B773-021F770EC326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1E94C2-666A-41E0-B773-021F770EC326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

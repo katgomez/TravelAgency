@@ -38,6 +38,6 @@ export class FlightsService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode}, httpOptions);
+    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode},httpOptions);
   }
 }

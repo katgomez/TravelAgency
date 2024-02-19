@@ -13,7 +13,7 @@
               <div class="form-group">
                 <label for="country">Country:</label>
                 <ng-select id="countryOrigin" name="countryOringin" class="form-control custom-select"
-                  [items]="countries" bindValue="code" bindLabel="name" [searchable]="true"
+                  [items]="countries" bindValue="code" bindLabel="name" [searchable]="true" 
                   formControlName="countryOrigin" />
               </div>
             </div>
@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label for="origin">Airport:</label>
                 <ng-select id="origin" class="form-control custom-select" [items]="originResults"
-                  bindLabel="detailedName" formControlName="origin" [clearable]="true" />
+                  bindLabel="detailedName" formControlName="origin" [clearable]="true"/>
               </div>
             </div>
           </div>

@@ -42,6 +42,18 @@ namespace ApplicationServices.Controllers
             if (reservations == null) return NotFound();
             return Ok(reservations);
         }
+        [HttpGet("statistics")]
+        public ActionResult<IEnumerable<FlightReservationSearch>> GetReservationsStatistics()
+        {
+            IEnumerable<FlightReservationSearch> reservations;
+
+
+            reservations = this.dao.All().ToList();
+
+            
+            if (reservations == null) return NotFound();
+            return Ok(reservations);
+        }
 
 
         [HttpGet("{reservationId}")]

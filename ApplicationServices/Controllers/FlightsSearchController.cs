@@ -73,6 +73,7 @@ namespace ApplicationServices.Controllers
                 
 
                 string uuid = Guid.NewGuid().ToString();
+                resultDto.flightCode = uuid;
                 foreach (FlightItineraryDto itinerary in resultDto.departureDayItineraries)
                 {
                     if(itinerary.itinerary.Count > 0)
