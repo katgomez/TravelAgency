@@ -18,6 +18,9 @@ export class UserSignupComponent {
     email: '',
     password: ''
   };
+  emailError = '';
+  passwordError = '';
+  errors= '';
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -29,6 +32,20 @@ export class UserSignupComponent {
   }
 
   signUp(data: UserDto): void {
+    this.emailError = '';
+    this.passwordError = '';
+
+    if (!this.isValidEmail(data.email)) {
+      this.emailError = 'Invalid email format';
+    }
+
+    if (!this.isValidPassword(data.password)) {
+      this.passwordError = 'Password must be at least 6 characters long';
+    }
+
+    if (this.emailError || this.passwordError) {
+      return; // Don't proceed with sign-up if there are validation errors
+    }
     this.userService.userSignUp(data)
       .pipe(
         tap(user => {
@@ -38,10 +55,20 @@ export class UserSignupComponent {
         catchError(error => {
           // Handle error
           console.error('Error creating user:', error);
+          this.errors = "This email already exits";
           return of(null); // Return observable with null value to continue the stream
         })
       )
       .subscribe();
     this.router.navigate(['/login']);
+  }
+
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  isValidPassword(password: string): boolean {
+    return password.length >= 6;
   }
 }

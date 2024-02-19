@@ -42,6 +42,7 @@ namespace DataServices.Service
                 throw new FaultException(new FaultReason("User not found!!!"), new FaultCode("404"), "");
             _dbContext.Entry(checkedUser).State = EntityState.Detached;
             _dbContext.Users.Attach(user);
+            _dbContext.SaveChangesAsync();
         }
 
         public void DeleteUser(int id)

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {catchError, of, tap} from "rxjs";
 import {UserDto} from "../../model/user/user.dto";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user.login',
@@ -10,25 +10,22 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   styleUrl: './user.login.component.css'
 })
 export class UserLoginComponent {
-  _userData!: UserDto;
-
-  get userData(): UserDto {
-    return this._userData;
-  }
-  set userData(value: UserDto) {
-    this._userData = value;
-  }
-  constructor(private userService: UserService) {}
+  userData = {
+    email: '',
+    password: ''
+  };
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
   }
 
-  login(data: UserDto) {
+  login(data: any) {
     this.userService.getUserByEmail(data.email)
       .pipe(
         tap(user => {
-          this._userData = user;
+          this.userData = user;
           console.log('User found:', user);
+          this.router.navigate(['/reservations'])
         }),
         catchError(error => {
           console.error('Error finding user:', error);
