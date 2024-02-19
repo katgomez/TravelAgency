@@ -94,6 +94,43 @@ namespace WSClient.UserWS
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserCredentials", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Models.Users")]
+    public partial class UserCredentials : object
+    {
+        
+        private string PasswordField;
+        
+        private string UserEmailField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this.PasswordField;
+            }
+            set
+            {
+                this.PasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserEmail
+        {
+            get
+            {
+                return this.UserEmailField;
+            }
+            set
+            {
+                this.UserEmailField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/user/", ConfigurationName="WSClient.UserWS.IUserServices")]
     public interface IUserServices
@@ -116,6 +153,9 @@ namespace WSClient.UserWS
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/DeleteUser", ReplyAction="http://agencytravel/user/IUserServices/DeleteUserResponse")]
         System.Threading.Tasks.Task DeleteUserAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CheckCredentials", ReplyAction="http://agencytravel/user/IUserServices/CheckCredentialsResponse")]
+        System.Threading.Tasks.Task<bool> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -196,6 +236,11 @@ namespace WSClient.UserWS
         public System.Threading.Tasks.Task DeleteUserAsync(int userId)
         {
             return base.Channel.DeleteUserAsync(userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials)
+        {
+            return base.Channel.CheckCredentialsAsync(userCredentials);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

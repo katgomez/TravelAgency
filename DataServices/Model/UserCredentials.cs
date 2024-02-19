@@ -1,4 +1,4 @@
-﻿namespace ApplicationServices.Models.Users
+﻿namespace DataServices.Models.Users
 {
     public class UserCredentials
     {

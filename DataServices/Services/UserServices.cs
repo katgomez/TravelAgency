@@ -1,6 +1,7 @@
 ﻿using System.ServiceModel;
 using DataServices.Errors;
 using DataServices.Model;
+using DataServices.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataServices.Service
@@ -57,7 +58,7 @@ namespace DataServices.Service
 
         public User GetUserByEmail(string email)
         {
-            User user = _dbContext.Users.Where(p => p.Email == email).FirstOrDefault();
+            User user = _dbContext.Users.FirstOrDefault(p => p.Email == email);
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified email address.");
@@ -68,12 +69,21 @@ namespace DataServices.Service
 
         public User GetUserById(int id)
         {
-            User user = _dbContext.Users.Where(p => p.Id == id).FirstOrDefault();
+            User user = _dbContext.Users.FirstOrDefault(p => p.Id == id);
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified email address.");
             }
             return user;
+        }
+
+        public Boolean CheckCredentials(UserCredentials userCredentials)
+        {
+            if (userCredentials.UserEmail != null) { 
+                User checkedUser = GetUserByEmail(userCredentials.UserEmail);
+                return (checkedUser.Password == userCredentials.Password);
+            }
+            return false;
         }
     }
 }

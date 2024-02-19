@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using DataServices.Model;
+using DataServices.Models.Users;
 
 namespace DataServices.Service
 {
@@ -19,6 +20,7 @@ namespace DataServices.Service
         public void UpdateUser(User user);
         [OperationContract]
         public void DeleteUser(int userId);
-
+        [OperationContract]
+        public Boolean CheckCredentials(UserCredentials userCredentials);
     }
 }

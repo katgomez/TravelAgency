@@ -11,6 +11,11 @@
         "Name": "ApplicationServices\\ApplicationServices.csproj",
         "Action": "Start",
         "DebugTarget": "http"
+      },
+      {
+        "Name": "Security\\Security.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
       }
     ]
   }

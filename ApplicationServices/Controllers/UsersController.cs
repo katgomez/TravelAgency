@@ -1,6 +1,7 @@
 ﻿using ApplicationServices.Models.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 using WSClient.ReservationWS;
 using WSClient.UserWS;
 
@@ -40,15 +41,6 @@ namespace ApplicationServices.Controllers
             int createdUser = await userServicesClient.CreateUserAsync(user);
             if (createdUser == null) return StatusCode(500, "Failed to create user");
             return Ok(createdUser);
-        }
-
-        [HttpPost("check-credentials")]
-        public async Task<IActionResult> CheckCredentials([FromBody] UserCredentials credentials)
-        {
-            User user = await userServicesClient.GetUserByEmailAsync(credentials.UserEmail);
-            if (user == null) return BadRequest("User is not valid");
-            if (credentials.Password != user.Password) return BadRequest("Invalid email or password.");
-            return Ok("Credentials are correct.");
         }
 
         [HttpPut("{id}")]
