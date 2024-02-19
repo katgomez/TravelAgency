@@ -47,7 +47,6 @@ namespace ApplicationServices.Controllers
         {
             User user = await userServicesClient.GetUserByEmailAsync(credentials.UserEmail);
             if (user == null) return BadRequest("User is not valid");
-            if (credentials.Password != null) return BadRequest("Invalid password.");
             if (credentials.Password != user.Password) return BadRequest("Invalid email or password.");
             return Ok("Credentials are correct.");
         }

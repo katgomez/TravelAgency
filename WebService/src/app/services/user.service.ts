@@ -16,8 +16,8 @@ export class UserService {
     let params = new HttpParams();
     return this.http.post<UserDto>(this.apiUrl, user);
   }
-  getUserByEmail(userEmail: string): Observable<UserDto> {
-    return this.http.get<UserDto>(`${this.apiUrl}?email=${userEmail}`);
+  checkOutCredentials(userCredentials: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/check-credentials`, userCredentials);
   }
   getUserById(userId: number): Observable<UserDto> {
     return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);

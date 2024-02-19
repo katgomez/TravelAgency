@@ -14,20 +14,22 @@ export class UserLoginComponent {
     email: '',
     password: ''
   };
+  message = '';
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
   }
 
-  login(data: any) {
-    this.userService.getUserByEmail(data.email)
+  login(userData: any) {
+    this.userService.checkOutCredentials(userData)
       .pipe(
         tap(user => {
-          this.userData = user;
+          this.message = user;
           console.log('User found:', user);
           this.router.navigate(['/reservations'])
         }),
         catchError(error => {
+          this.message = error;
           console.error('Error finding user:', error);
           return of(null); // Return observable with null value to continue the stream
         })

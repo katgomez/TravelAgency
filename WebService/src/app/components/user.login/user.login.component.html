@@ -3,6 +3,7 @@
     <div class="card auth">
       <div class="card-body auth-card">
         <form (submit)="login(userData)">
+          <div *ngIf="message" class="error-message">{{ message }}</div>
           <div class="form-group">
             <label for="email">Email : </label>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="userData.email">
