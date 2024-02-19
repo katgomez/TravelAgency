@@ -7,6 +7,7 @@ export class SegmentDto {
     public carrierCode: string,
     public number: string,
     public duration: number,
+    public durationMinutes: number,
     public id: string,
     public numberOfStops: number,
     public blacklistedInEU: boolean
