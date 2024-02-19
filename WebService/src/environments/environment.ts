@@ -6,4 +6,5 @@ export const environment = {
     airportsEndPoint: 'http://localhost:9080/api/airports',
     faresEndPoint: 'http://localhost:9080/api/fares',
     userEndPoint: 'http://localhost:9080/api/users',
+    authEndPoint: 'http://localhost:9080/api/auth'
   };

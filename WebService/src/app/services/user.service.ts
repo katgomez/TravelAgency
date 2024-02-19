@@ -9,6 +9,8 @@ import {UserDto} from "../model/user/user.dto";
 })
 export class UserService {
   private apiUrl = environment.userEndPoint;
+  private authUrl = environment.authEndPoint;
+
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +19,7 @@ export class UserService {
     return this.http.post<UserDto>(this.apiUrl, user);
   }
   checkOutCredentials(userCredentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/check-credentials`, userCredentials);
+    return this.http.post<boolean>(`${this.authUrl}`, userCredentials);
   }
   getUserById(userId: number): Observable<UserDto> {
     return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);
