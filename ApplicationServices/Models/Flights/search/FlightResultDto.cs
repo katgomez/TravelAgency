@@ -4,6 +4,8 @@
     {
         public string id {  get; set; }
 
+        public string flightCode { get; set; }
+
         public List<FlightItineraryDto> departureDayItineraries { get; set; }
         public List<FlightItineraryDto>? returnDayItineraries { get; set; }
 

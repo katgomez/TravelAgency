@@ -19,7 +19,7 @@ namespace ApplicationServices.Data
                 optionsBuilder.UseSqlite(connection);
             }
         }
-        public DbSet<FlightReservationSearch> Users { get; set; }
+        public DbSet<FlightReservationSearch> FlightReservationSearches { get; set; }
 
     }
 }

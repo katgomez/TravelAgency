@@ -108,7 +108,7 @@
             <th>Número de vuelo</th>
             <th>Hora</th>
             <th>Número de escalas</th>
-            <th>Seleccionar itinerario</th>
+            <th>Duration</th>
           </tr>
         </thead>
         <tbody>
@@ -119,6 +119,7 @@
             <td>{{ itinerary.itinerary[0].number }}</td>
             <td>{{ itinerary.itinerary[0].departure.at }}</td>
             <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
+            <td>{{ itinerary.itinerary[0].duration }}</td>
           </tr>
         </tbody>
       </table>
@@ -127,12 +128,13 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Salida</th>
-            <th>Llegada</th>
+            <th>Departure</th>
+            <th>Arrival</th>
             <th>Carrier Code</th>
             <th>Número de vuelo</th>
-            <th>Hora</th>
+            <th>Time</th>
             <th>Número de escalas</th>
+            <th>Duration</th>
           </tr>
         </thead>
         <tbody>
@@ -145,6 +147,7 @@
             <td>{{ itinerary.itinerary[0].number }}</td>
             <td>{{ itinerary.itinerary[0].departure.at }}</td>
             <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
+            <td>{{ itinerary.itinerary[0].duration }} Minutes</td>
             </ng-container>
           </tr>
          
@@ -154,7 +157,7 @@
     </ng-container>
 
       <p>Precio total: {{ flight.priceWithFare }} EUR</p>
-      <button (click)="buyFlight(flight)">Buy now</button>
+      <button (click)="buyFlight(flight.flightCode)">Buy now</button>
 
 
 

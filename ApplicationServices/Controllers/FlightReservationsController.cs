@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApplicationServices.DAO;
+using ApplicationServices.DAO.Impl;
+using ApplicationServices.Data;
+using ApplicationServices.Model;
+using Microsoft.AspNetCore.Mvc;
 using WSClient.ReservationWS;
 
 namespace ApplicationServices.Controllers
@@ -8,9 +12,15 @@ namespace ApplicationServices.Controllers
     public class FlightReservationsController : ControllerBase
     {
         private IConfiguration _configuration;
+        private readonly DataContext _context;
+        private readonly IFlightReservationSearchDao dao;
+
         private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();
-        public FlightReservationsController(IConfiguration configuration)
+        public FlightReservationsController(IConfiguration configuration, DataContext context)
         {
+            this._context = context;
+            DAOFactory factory = new DAOFactory(this._context);
+            this.dao = factory.FlightReservationSearchDao;
             this._configuration = configuration;
         }
 
@@ -41,11 +51,15 @@ namespace ApplicationServices.Controllers
 
 
         [HttpPost]
-        public ActionResult CreateReservation([FromBody] Reservation reservation)
+        public ActionResult CreateReservation([FromBody] String fligthSearchCode)
         {
-            var createdReservation = reservationServicesClient.CreateReservationAsync(reservation);
-            if (createdReservation == null) return StatusCode(500, "Failed to create reservation");
-            return CreatedAtAction(nameof(createdReservation), new { id = createdReservation.Id }, createdReservation);
+            IEnumerable<FlightReservationSearch> search = (IEnumerable<FlightReservationSearch>) this.dao.FindByItineraryCode(fligthSearchCode);
+           
+            foreach(var flightReservationSearch in search)
+            {
+                
+            }
+            return Ok();
         }
 
         [HttpPut("{id}")]

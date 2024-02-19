@@ -13,7 +13,8 @@ import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto
 })
 export class FlightsService {
 
-  private apiUrl = environment.flightsSearchEndPoint;
+  private searchUrl = environment.flightsSearchEndPoint;
+  private reservationUrl = environment.flightsReservationEndPoint;
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +29,12 @@ export class FlightsService {
     params = params.append('adults', adults);
     params = params.append('fareType', fare);
 
-    return this.http.get<FlightSearchResultDto>(this.apiUrl, { params });
+    return this.http.get<FlightSearchResultDto>(this.searchUrl, { params });
+  }
+
+  makeReservation(flightCode:string): Observable<any> {
+    const body = {fligthSearchCode : flightCode};
+
+    return this.http.post<FlightSearchResultDto>(this.reservationUrl, body);
   }
 }

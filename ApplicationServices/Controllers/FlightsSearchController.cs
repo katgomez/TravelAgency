@@ -1,4 +1,5 @@
-﻿using ApplicationServices.Model;
+﻿using ApplicationServices.Data;
+using ApplicationServices.Model;
 using ApplicationServices.Model.Country;
 using ApplicationServices.Models;
 using ApplicationServices.Models.Fares;
@@ -18,10 +19,13 @@ namespace ApplicationServices.Controllers
     [ApiController]
     public class FlightsSearchController : ControllerBase
     {
+
+        private readonly DataContext _context;
         private IConfiguration _configuration;
 
-        public FlightsSearchController(IConfiguration configuration)
+        public FlightsSearchController(IConfiguration configuration, DataContext dbContext)
         {
+            this._context = dbContext;
             this._configuration = configuration;
         }
 
@@ -66,8 +70,37 @@ namespace ApplicationServices.Controllers
             {
                 resultDto.priceWithFare = FareTypeExtensions.PriceWithFare(fare,resultDto.price);
 
-                FlightReservationSearch reservationTemp = new FlightReservationSearch();
-                //reservationTemp.Airline = resultDto.
+                
+
+                string uuid = Guid.NewGuid().ToString();
+                resultDto.flightCode = uuid;
+                foreach (FlightItineraryDto itinerary in resultDto.departureDayItineraries)
+                {
+                    if(itinerary.itinerary.Count > 0)
+                    {
+                        
+
+                        SegmentDto segmento = itinerary.itinerary[0];
+
+                        TimeSpan duration = segmento.departure.at - segmento.arrival.at;
+
+                        FlightReservationSearch reservationTemp = new FlightReservationSearch();
+                        reservationTemp.CodeOfItinerary = uuid;
+                        reservationTemp.DepartureAirport = segmento.departure.iataCode;
+                        reservationTemp.DepartureDate = segmento.departure.at;
+                        reservationTemp.ArrivalAirport = segmento.arrival.iataCode;
+                        reservationTemp.ArrivalDate = segmento.arrival.at;
+                        reservationTemp.Price = resultDto.price;
+                        reservationTemp.PriceWithFare = resultDto.priceWithFare;
+                        reservationTemp.Duration = duration.TotalMinutes;
+                        reservationTemp.Airline = segmento.carrierCode;
+
+                        _context.FlightReservationSearches.Add(reservationTemp);
+                        await _context.SaveChangesAsync();
+
+                    }
+                }
+                
             }
 
 
