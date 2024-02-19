@@ -38,7 +38,7 @@ namespace ApplicationServices.Controllers
         {
             int createdUser = await userServicesClient.CreateUserAsync(user);
             if (createdUser == null) return StatusCode(500, "Failed to create user");
-            return CreatedAtAction(nameof(createdUser), new { id = createdUser }, user);
+            return Ok(createdUser);
         }
 
         [HttpPut("{id}")]

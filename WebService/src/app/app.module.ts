@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { FlightsSerarchComponent } from './components/flights/flight.search.component';
 import { UserSignupComponent } from './components/user.signup/user.signup.component';
 import { UserLoginComponent } from './components/user.login/user.login.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FlightsSerarchComponent,
     UserSignupComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

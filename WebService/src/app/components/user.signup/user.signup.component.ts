@@ -3,6 +3,7 @@ import { UserDto} from "../../model/user/user.dto";
 import {UserService} from "../../services/user.service";
 import {catchError, of, tap} from "rxjs";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user.signup',
@@ -17,7 +18,7 @@ export class UserSignupComponent {
     email: '',
     password: ''
   };
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -41,5 +42,6 @@ export class UserSignupComponent {
         })
       )
       .subscribe();
+    this.router.navigate(['/login']);
   }
 }
