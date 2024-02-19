@@ -22,12 +22,12 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "WS Unit09",
-        Description = "Web Services - MIW",
+        Title = "Travel Agency ",
+        Description = "Application Services",
         Contact = new OpenApiContact
         {
-            Name = "Miguel Garcia Rodriguez",
-            Url = new Uri("https://reflection.uniovi.es/miguel")
+            Name = "Katherine - Daniel Orviz",
+            Url = new Uri("https://uniovi.es")
         }
     });
    
