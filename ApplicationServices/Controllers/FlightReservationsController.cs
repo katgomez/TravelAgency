@@ -52,10 +52,10 @@ namespace ApplicationServices.Controllers
 
 
         [HttpPost]
-        //[Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult CreateReservation( String searchCode)
+        [Consumes(MediaTypeNames.Application.Json)]
+        public ActionResult CreateReservation( [FromBody]CreateFlightResevationDto reservation)
         {
-            IEnumerable<FlightReservationSearch> search = (IEnumerable<FlightReservationSearch>) this.dao.FindByItineraryCode(searchCode);
+            IEnumerable<FlightReservationSearch> search =  this.dao.FindByItineraryCode(reservation.flightSearchCode).Result;
            
             foreach(var flightReservationSearch in search)
             {
