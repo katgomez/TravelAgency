@@ -7,7 +7,7 @@ import {UserLoginComponent} from "./components/user.login/user.login.component";
 const routes: Routes = [
   { path: '', component: FlightsSerarchComponent },
   { path: 'sign-up', component: UserSignupComponent },
-  { path: 'log-in', component: UserLoginComponent }
+  { path: 'login', component: UserLoginComponent }
 ];
 
 @NgModule({
