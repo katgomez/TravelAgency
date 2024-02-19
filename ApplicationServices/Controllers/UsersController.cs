@@ -1,8 +1,4 @@
-﻿using ApplicationServices.Models.Users;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RestSharp;
-using WSClient.ReservationWS;
+﻿using Microsoft.AspNetCore.Mvc;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
