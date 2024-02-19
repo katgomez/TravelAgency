@@ -73,7 +73,6 @@ namespace ApplicationServices.Controllers
                 
 
                 string uuid = Guid.NewGuid().ToString();
-                resultDto.flightCode = uuid;
                 foreach (FlightItineraryDto itinerary in resultDto.departureDayItineraries)
                 {
                     if(itinerary.itinerary.Count > 0)
@@ -82,8 +81,7 @@ namespace ApplicationServices.Controllers
 
                         SegmentDto segmento = itinerary.itinerary[0];
 
-                        TimeSpan duration = segmento.departure.at - segmento.arrival.at;
-
+                        
                         FlightReservationSearch reservationTemp = new FlightReservationSearch();
                         reservationTemp.CodeOfItinerary = uuid;
                         reservationTemp.DepartureAirport = segmento.departure.iataCode;
@@ -92,7 +90,7 @@ namespace ApplicationServices.Controllers
                         reservationTemp.ArrivalDate = segmento.arrival.at;
                         reservationTemp.Price = resultDto.price;
                         reservationTemp.PriceWithFare = resultDto.priceWithFare;
-                        reservationTemp.Duration = duration.TotalMinutes;
+                        reservationTemp.Duration = segmento.durationMinutes;
                         reservationTemp.Airline = segmento.carrierCode;
                         reservationTemp.FlightId = resultDto.id;
                         _context.FlightReservationSearches.Add(reservationTemp);

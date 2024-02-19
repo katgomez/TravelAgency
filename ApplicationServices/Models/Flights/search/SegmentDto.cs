@@ -8,7 +8,7 @@
         public string carrierCode { get; set; }
         public string number { get; set; }
         public string duration { get; set; }
-
+        public double durationMinutes { get; set; }
         public int numberOfStops { get; set; }
         public bool blacklistedInE { get; set; }
     }
