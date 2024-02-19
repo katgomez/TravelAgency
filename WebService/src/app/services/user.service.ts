@@ -8,7 +8,7 @@ import {UserDto} from "../model/user/user.dto";
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = environment.flightsSearchEndPoint;
+  private apiUrl = environment.userEndPoint;
 
   constructor(private http: HttpClient) { }
 

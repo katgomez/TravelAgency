@@ -10,15 +10,13 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   styleUrl: './user.signup.component.css'
 })
 export class UserSignupComponent {
-  // @ts-ignore
-  _userData: UserDto;
-  get userData(): UserDto {
-    return this._userData;
-  }
-
-  set userData(value: UserDto) {
-    this._userData = value;
-  }
+  userData: UserDto = {
+    id: 0,
+    lastName: '',
+    firstName: '',
+    email: '',
+    password: ''
+  };
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -26,7 +24,7 @@ export class UserSignupComponent {
 
   getUser(userId: number): void {
     this.userService.getUserById(userId)
-      .subscribe(user => this._userData = user);
+      .subscribe(user => this.userData = user);
   }
 
   signUp(data: UserDto): void {

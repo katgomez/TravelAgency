@@ -37,7 +37,7 @@ namespace ApplicationServices.Controllers
         public ActionResult CreateUser([FromBody] User user)
         {
             var createdUser = userServicesClient.CreateUserAsync(user);
-            if (createdUser == null) return StatusCode(500, "Failed to create reservation");
+            if (createdUser == null) return StatusCode(500, "Failed to create user");
             return CreatedAtAction(nameof(createdUser), new { id = user.Id }, createdUser);
         }
 
