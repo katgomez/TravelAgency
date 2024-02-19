@@ -16,7 +16,7 @@ namespace DataServices.Service
         {
             _dbContext = dbContext;
         }
-        public int CreateUser(User user)
+        public async Task<int> CreateUser(User user)
         {
             if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.Password))
             {
@@ -25,7 +25,8 @@ namespace DataServices.Service
             User checkedUser = _dbContext.Users.FirstOrDefault(p => p.Email.ToLower().Equals(user.Email.ToLower()));
             if (checkedUser != null)
                 throw new FaultException(new FaultReason("User already exists!!!"), new FaultCode("400"), "");
-            _dbContext.Users.AddAsync(user);
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
             return user.Id;
         }
 

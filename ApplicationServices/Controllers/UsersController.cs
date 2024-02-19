@@ -34,11 +34,11 @@ namespace ApplicationServices.Controllers
 
 
         [HttpPost]
-        public ActionResult CreateUser([FromBody] User user)
+        public async Task<ActionResult> CreateUser([FromBody] User user)
         {
-            var createdUser = userServicesClient.CreateUserAsync(user);
+            int createdUser = await userServicesClient.CreateUserAsync(user);
             if (createdUser == null) return StatusCode(500, "Failed to create user");
-            return CreatedAtAction(nameof(createdUser), new { id = user.Id }, createdUser);
+            return CreatedAtAction(nameof(createdUser), new { id = createdUser }, user);
         }
 
         [HttpPut("{id}")]

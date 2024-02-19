@@ -14,7 +14,7 @@ namespace DataServices.Service
         [OperationContract]
         public User GetUserById(int id);
         [OperationContract]
-        public int CreateUser(User user);
+        public Task<int> CreateUser(User user);
         [OperationContract]
         public void UpdateUser(User user);
         [OperationContract]

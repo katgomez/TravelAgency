@@ -63,7 +63,7 @@ namespace DataServicesTests.Services
         }
 
         [Fact]
-        public void CreateUser_ValidUser_ReturnsUserId()
+        public async void CreateUser_ValidUser_ReturnsUserId()
         {
             User user = new User
             {
@@ -72,24 +72,24 @@ namespace DataServicesTests.Services
                 Email = "Newdummy@dummy.com",
                 Password = "newdummy"
             };
-            int userId = userServices.CreateUser(user);
+            int userId = await userServices.CreateUser(user);
             Assert.NotEqual(-1, userId); 
         }
 
         [Fact]
-        public void CreateUser_InvalidUser_ReturnsFailure()
+        public async void CreateUser_InvalidUser_ReturnsFailure()
         {
             User user = new User
             {
                 FirstName = "dummy",
                 Email = "Newdummy@dummy.com",
             };
-            var userId = userServices.CreateUser(user);
+            var userId = await userServices.CreateUser(user);
             Assert.Equal(-1, userId);
         }
 
         [Fact]
-        public void CreateUser_UserAlreadyExists_ThrowsFaultException()
+        public async Task CreateUser_UserAlreadyExists_ThrowsFaultException()
         {
             DataContext dataContext = new DataContext();
             var fixture = new Fixture();
@@ -105,8 +105,8 @@ namespace DataServicesTests.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Password = user.Password
-            }; 
-            Assert.Throws<FaultException>(() => userServices.CreateUser(newUser));
+            };
+            await Assert.ThrowsAsync<FaultException>(async () => await userServices.CreateUser(newUser));
         }
         [Fact]
         public void UpdateUser_UserExists_UpdateSuccessful()
