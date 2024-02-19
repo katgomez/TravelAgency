@@ -48,7 +48,7 @@ bld/
 
 #more
 .idea
-*.db
+#*.db
 
 # Carpeta de dependencias generada por npm
 /node_modules
