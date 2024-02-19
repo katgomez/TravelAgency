@@ -1,5 +1,7 @@
 <router-outlet>
-
+  <div class="text-center login">
+    Already have an account ? <a routerLink="/login">Login</a> hera.
+  </div>
   <div class="container">
     <h1>Travel Agency MIW</h1>
     <h2>Buscador de Vuelos</h2>
@@ -60,7 +62,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="col-md-1">
               <div class="form-group">
@@ -136,7 +138,7 @@
           </tr>
         </thead>
         <tbody>
-          
+
           <tr *ngFor="let itinerary of flight.returnDayItineraries">
             <ng-container *ngIf="itinerary.itinerary && itinerary.itinerary.length">
             <td>{{ itinerary.itinerary[0].departure.iataCode }}</td>
@@ -147,8 +149,8 @@
             <td>{{ itinerary.itinerary[0].numberOfStops }}</td>
             </ng-container>
           </tr>
-         
-          
+
+
         </tbody>
       </table>
     </ng-container>

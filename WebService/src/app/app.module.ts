@@ -7,11 +7,15 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlightsSerarchComponent } from './components/flights/flight.search.component';
+import { UserSignupComponent } from './components/user.signup/user.signup.component';
+import { UserLoginComponent } from './components/user.login/user.login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlightsSerarchComponent
+    FlightsSerarchComponent,
+    UserSignupComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
