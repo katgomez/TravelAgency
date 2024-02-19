@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CountryResultDto } from '../model/countries/CountryResultDto';
@@ -33,8 +33,11 @@ export class FlightsService {
   }
 
   makeReservation(flightCode:string): Observable<any> {
-    const body = {fligthSearchCode : flightCode};
-
-    return this.http.post<FlightSearchResultDto>(this.reservationUrl, body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {fligthSearchCode:flightCode}, httpOptions);
   }
 }

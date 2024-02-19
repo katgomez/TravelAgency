@@ -1,8 +1,9 @@
 ﻿using ApplicationServices.DAO;
-using ApplicationServices.DAO.Impl;
 using ApplicationServices.Data;
 using ApplicationServices.Model;
+using ApplicationServices.Models.Flights;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using WSClient.ReservationWS;
 
 namespace ApplicationServices.Controllers
@@ -51,9 +52,10 @@ namespace ApplicationServices.Controllers
 
 
         [HttpPost]
-        public ActionResult CreateReservation([FromBody] String fligthSearchCode)
+        //[Consumes(MediaTypeNames.Application.Json)]
+        public ActionResult CreateReservation( String searchCode)
         {
-            IEnumerable<FlightReservationSearch> search = (IEnumerable<FlightReservationSearch>) this.dao.FindByItineraryCode(fligthSearchCode);
+            IEnumerable<FlightReservationSearch> search = (IEnumerable<FlightReservationSearch>) this.dao.FindByItineraryCode(searchCode);
            
             foreach(var flightReservationSearch in search)
             {
