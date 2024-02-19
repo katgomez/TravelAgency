@@ -3,6 +3,7 @@ using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Models.Flights;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net.Mime;
 using WSClient.ReservationWS;
 
@@ -26,21 +27,22 @@ namespace ApplicationServices.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Reservation>> GetFlightReservations()
+        public ActionResult<IEnumerable<Reservation>> GetFlightReservations([FromQuery] int? userId)
         {
-            var reservations = reservationServicesClient.GetReservationsAsync();
+            IEnumerable<Reservation> reservations;
+            if (userId != null)
+            {
+                reservations = reservationServicesClient.GetReservationsByUserIdAsync((int)userId).Result;
+            }
+            else
+            {
+                reservations = reservationServicesClient.GetReservationsAsync().Result;
+
+            }
             if (reservations == null) return NotFound();
             return Ok(reservations);
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Reservation>> GetReservationsByUserId([FromQuery] int userId)
-        {
-
-            var reservations = reservationServicesClient.GetReservationsByUserIdAsync(userId);
-            if (reservations == null) return NotFound();
-            return Ok(reservations);
-        }
 
         [HttpGet("{reservationId}")]
         public ActionResult<IEnumerable<Reservation>> GetFlightReservation(int reservationId)

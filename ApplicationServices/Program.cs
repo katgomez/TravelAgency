@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(builder => {
         builder.AllowAnyOrigin()
@@ -16,6 +15,7 @@ builder.Services.AddCors(options => {
                 .AllowAnyHeader();
     });
 });
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
