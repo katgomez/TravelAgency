@@ -94,7 +94,7 @@ namespace ApplicationServices.Controllers
                         reservationTemp.Duration = segmento.durationMinutes;
                         reservationTemp.Airline = segmento.carrierCode;
                         reservationTemp.FlightId = resultDto.id;
-                        _context.FlightReservationSearches.Add(reservationTemp);
+                        _context.FlightReservationSearches.Add(reservationTemp);//
                         await _context.SaveChangesAsync();
 
                     }
