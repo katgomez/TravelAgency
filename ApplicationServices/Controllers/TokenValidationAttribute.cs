@@ -20,7 +20,7 @@ namespace ApplicationServices.Controllers
             try
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync($"api/Tokens/{token}");
+                var response = await client.GetAsync($"http://localhost:9060/api/tokens/{token.ToString().Replace("Bearer ", "")}");
                 if (!response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == HttpStatusCode.NotFound)
