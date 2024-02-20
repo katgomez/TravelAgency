@@ -44,23 +44,21 @@ export class UserSignupComponent {
     }
 
     if (this.emailError || this.passwordError) {
-      return; // Don't proceed with sign-up if there are validation errors
+      return;
     }
     this.userService.userSignUp(data)
       .pipe(
         tap(user => {
-          // Handle successful creation
           console.log('User created:', user);
+          this.router.navigate(['/login']);
         }),
         catchError(error => {
-          // Handle error
           console.error('Error creating user:', error);
           this.errors = "This email already exits";
-          return of(null); // Return observable with null value to continue the stream
+          return of(null);
         })
       )
       .subscribe();
-    this.router.navigate(['/login']);
   }
 
   isValidEmail(email: string): boolean {

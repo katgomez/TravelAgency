@@ -6,6 +6,8 @@ import { CountryResultDto } from '../model/countries/CountryResultDto';
 import { AirportDto } from '../model/airport/airport.dto';
 import { AirportResultDto } from '../model/airport/airport.result.dto';
 import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto';
+import {tap} from "rxjs/operators";
+import {UserService} from "./user.service";
 
 
 @Injectable({
@@ -16,7 +18,7 @@ export class FlightsService {
   private searchUrl = environment.flightsSearchEndPoint;
   private reservationUrl = environment.flightsReservationEndPoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   searchFlights(originCode:string, destinationCode:string, departureDate:string, returnDate:string, adults:number, fare:string): Observable<FlightSearchResultDto> {
     let params = new HttpParams();
@@ -39,5 +41,21 @@ export class FlightsService {
       })
     };
     return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode},httpOptions);
+  }
+
+  private createHeaders(): HttpHeaders {
+    const authToken = this.userService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    });
+  }
+  getReservationData() {
+    const headers = this.createHeaders();
+    return this.http.get<any>(`${this.reservationUrl}`, { headers }).pipe(
+      tap(response => {
+        // Handle response as needed
+      })
+    );
   }
 }
