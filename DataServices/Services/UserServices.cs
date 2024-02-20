@@ -33,7 +33,14 @@ namespace DataServices.Service
 
         public User[] GetUsers()
         {
-            return _dbContext.Users.ToArray();
+            return _dbContext.Users.Select(u => new User
+                    {
+                        Id = u.Id,
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
+                        Email = u.Email,
+                        Password = ""
+                    }).ToArray();
         }
 
         public void UpdateUser(User user)
@@ -58,7 +65,14 @@ namespace DataServices.Service
 
         public User GetUserByEmail(string email)
         {
-            User user = _dbContext.Users.FirstOrDefault(p => p.Email == email);
+            User user = _dbContext.Users.Where(p => p.Email == email).Select(u => new User
+                        {
+                            Id = u.Id,
+                            FirstName = u.FirstName,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Password = ""
+                        }).FirstOrDefault();
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified email address.");
@@ -69,7 +83,14 @@ namespace DataServices.Service
 
         public User GetUserById(int id)
         {
-            User user = _dbContext.Users.FirstOrDefault(p => p.Id == id);
+            User user = _dbContext.Users.Where(p => p.Id == id).Select(u => new User
+                            {
+                                Id = u.Id,
+                                FirstName = u.FirstName,
+                                LastName = u.LastName,
+                                Email = u.Email,
+                                Password = ""
+                            }).FirstOrDefault();
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified id.");
