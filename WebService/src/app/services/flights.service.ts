@@ -35,9 +35,11 @@ export class FlightsService {
     return this.http.get<FlightSearchResultDto>(this.searchUrl, { params });
   }
 
-  makeReservation(flightCode:string): Observable<any> {
+  makeReservation(flightCode:string): any {
     const headers = this.createHeaders();
-    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode},{ headers });
+    const userId = this.userService.getUserId();
+    if(userId) return this.http.post<FlightSearchResultDto>(`${this.reservationUrl}?userId=${userId}`, {flightSearchCode:flightCode},{ headers });
+    this.sendLogInMessage();
   }
 
   private createHeaders(): HttpHeaders {
@@ -50,5 +52,9 @@ export class FlightsService {
   getReservationData(userId: string) {
     const headers = this.createHeaders();
     return this.http.get<ReservationDto[]>(`${this.reservationUrl}?userId=${userId}`, { headers });
+  }
+
+  private sendLogInMessage() {
+
   }
 }

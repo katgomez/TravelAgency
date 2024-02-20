@@ -136,12 +136,7 @@ export class FlightsSerarchComponent {
 
   buyFlight(flightCode: string ) {
     this.flightService.makeReservation(flightCode).subscribe(
-      (response) => {
-        console.log('Solicitud POST exitosa', response);
-      },
-      (error) => {
-        console.error('Error en la solicitud POST', error);
-      }
+
     );
   }
 

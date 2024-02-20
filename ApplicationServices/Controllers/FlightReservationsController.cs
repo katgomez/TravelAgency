@@ -75,13 +75,13 @@ namespace ApplicationServices.Controllers
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult CreateReservation( [FromBody]CreateFlightResevationDto reservation)
+        public ActionResult CreateReservation([FromBody]CreateFlightResevationDto reservation, [FromQuery] int userId)
         {
             IEnumerable<FlightReservationSearch> search =  this.reservationSearchDao.FindByItineraryCode(reservation.flightSearchCode).Result;
-           
-            foreach(var flightReservationSearch in search)
+
+            foreach (var flightReservationSearch in search)
             {
-                
+                Console.WriteLine(flightReservationSearch);
             }
             return Ok();
         }

@@ -2,18 +2,23 @@
     z-index: 9999; /* Ajusta este valor según sea necesario */
   }
 
-  .ng-dropdown-panel {
-    top: auto; /* Reajusta la posición del menú desplegable */
-  }
+.ng-dropdown-panel {
+  top: auto; /* Reajusta la posición del menú desplegable */
+}
 
-  .custom-ng-select {
-    border: 1px solid #ccc; /* Agrega un borde gris */
-    background-color: #272222; /* Agrega un fondo gris */
-  }
+.custom-ng-select {
+  border: 1px solid #ccc; /* Agrega un borde gris */
+  background-color: #272222; /* Agrega un fondo gris */
+}
 
-  .ng-dropdown-panel-items {
-    background-color: #272222; /* Color de fondo para resaltar el desplegable */
-  }
-  button{
-    margin-top: 1rem;
-  }
+.ng-dropdown-panel-items {
+  background-color: #272222; /* Color de fondo para resaltar el desplegable */
+}
+button{
+  margin-top: 1rem;
+}
+
+h3{
+  margin: 15px
+}
+

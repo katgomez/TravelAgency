@@ -155,9 +155,12 @@
         </tbody>
       </table>
     </ng-container>
-
-      <p>Precio total: {{ flight.priceWithFare }} EUR</p>
-      <button (click)="buyFlight(flight.flightCode)">Buy now</button>
+      <div class="row">
+        <div class="col">
+        <p>Precio total: {{ flight.priceWithFare }} EUR</p>
+        <button (click)="buyFlight(flight.flightCode)">Buy now - Vuelo Id: {{ flight.id }}</button>
+        </div>
+      </div>
 
 
 
