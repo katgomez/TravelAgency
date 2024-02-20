@@ -23,13 +23,15 @@ export class UserLoginComponent {
   login(userData: any) {
     this.userService.checkOutCredentials(userData)
       .pipe(
-        tap(user => {
-          this.message = user;
-          console.log('User found:', user);
-          this.router.navigate(['/reservations'])
+        tap(valid => {
+          if (valid) {
+            this.router.navigate(['/reservations']);
+          } else {
+            this.message = 'Invalid email or password.';
+          }
         }),
         catchError(error => {
-          this.message = error;
+          this.message = `User is not valid`;
           console.error('Error finding user:', error);
           return of(null); // Return observable with null value to continue the stream
         })

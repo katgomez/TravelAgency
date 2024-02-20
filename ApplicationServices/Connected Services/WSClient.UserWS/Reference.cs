@@ -102,7 +102,7 @@ namespace WSClient.UserWS
         
         private string PasswordField;
         
-        private string UserEmailField;
+        private string emailField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password
@@ -118,15 +118,52 @@ namespace WSClient.UserWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserEmail
+        public string email
         {
             get
             {
-                return this.UserEmailField;
+                return this.emailField;
             }
             set
             {
-                this.UserEmailField = value;
+                this.emailField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CheckCredentialsResult", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
+    public partial class CheckCredentialsResult : object
+    {
+        
+        private bool IsValidUserField;
+        
+        private int UserIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsValidUser
+        {
+            get
+            {
+                return this.IsValidUserField;
+            }
+            set
+            {
+                this.IsValidUserField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId
+        {
+            get
+            {
+                return this.UserIdField;
+            }
+            set
+            {
+                this.UserIdField = value;
             }
         }
     }
@@ -155,7 +192,7 @@ namespace WSClient.UserWS
         System.Threading.Tasks.Task DeleteUserAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CheckCredentials", ReplyAction="http://agencytravel/user/IUserServices/CheckCredentialsResponse")]
-        System.Threading.Tasks.Task<bool> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials);
+        System.Threading.Tasks.Task<WSClient.UserWS.CheckCredentialsResult> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -238,7 +275,7 @@ namespace WSClient.UserWS
             return base.Channel.DeleteUserAsync(userId);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials)
+        public System.Threading.Tasks.Task<WSClient.UserWS.CheckCredentialsResult> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials)
         {
             return base.Channel.CheckCredentialsAsync(userCredentials);
         }

@@ -77,13 +77,22 @@ namespace DataServices.Service
             return user;
         }
 
-        public Boolean CheckCredentials(UserCredentials userCredentials)
+        public CheckCredentialsResult CheckCredentials(UserCredentials userCredentials)
         {
-            if (userCredentials.UserEmail != null) { 
-                User checkedUser = GetUserByEmail(userCredentials.UserEmail);
-                return (checkedUser.Password == userCredentials.Password);
+            if (userCredentials.email != null) { 
+                User checkedUser = GetUserByEmail(userCredentials.email);
+                return new CheckCredentialsResult
+                {
+                    IsValidUser = (checkedUser.Password == userCredentials.Password),
+                    UserId = checkedUser.Id
+                };
             }
-            return false;
+            return new CheckCredentialsResult
+            {
+                IsValidUser = false,
+                UserId = 0
+            };
         }
+
     }
 }

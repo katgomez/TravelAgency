@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using RestSharp;
 using WSClient.UserWS;
 
@@ -18,11 +19,11 @@ namespace ApplicationServices.Controllers
         [HttpPost]
         public async Task<IActionResult> CheckCredentials([FromBody] UserCredentials credentials)
         {
-            Boolean isValidUser = await userServicesClient.CheckCredentialsAsync(credentials);
-            if (!isValidUser) return BadRequest("User is not valid");
+            CheckCredentialsResult checkCredentialsResult = await userServicesClient.CheckCredentialsAsync(credentials);
+            if (!checkCredentialsResult.IsValidUser) return BadRequest("User is not valid");
             var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:SecurityEndPoint"));
             var request = new RestRequest("", Method.Post);
-            request.AddBody(credentials.UserEmail);
+            request.AddBody(credentials.email);
             var result = client.ExecuteAsync<dynamic>(request).Result.Data;
             return Ok();
         }

@@ -21,6 +21,6 @@ namespace DataServices.Service
         [OperationContract]
         public void DeleteUser(int userId);
         [OperationContract]
-        public Boolean CheckCredentials(UserCredentials userCredentials);
+        public CheckCredentialsResult CheckCredentials(UserCredentials userCredentials);
     }
 }
