@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
+using Newtonsoft.Json;
 using RestSharp;
+using System.Net.Http;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -21,11 +23,23 @@ namespace ApplicationServices.Controllers
         {
             CheckCredentialsResult checkCredentialsResult = await userServicesClient.CheckCredentialsAsync(credentials);
             if (!checkCredentialsResult.IsValidUser) return BadRequest("User is not valid");
-            var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:SecurityEndPoint"));
-            var request = new RestRequest("", Method.Post);
-            request.AddBody(credentials.email);
-            var result = client.ExecuteAsync<dynamic>(request).Result.Data;
+            var result = GenerateToken(credentials.email);
             return Ok();
+        }
+
+        private async Task<string> GenerateToken(string parameter)
+        {
+            HttpClient client = new HttpClient();
+            var requestData = new { UserName = parameter };
+            var jsonContent = JsonConvert.SerializeObject(requestData);
+            var stringContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+            var url = _configuration.GetValue<string>("ApplicationSettings:SecurityEndPoint");
+            HttpResponseMessage response = await client.PostAsync(url, stringContent);
+
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsStringAsync();
+            
+            return response.StatusCode.ToString();
         }
     }
 }
