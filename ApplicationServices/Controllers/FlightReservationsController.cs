@@ -1,6 +1,7 @@
 ﻿using ApplicationServices.DAO;
 using ApplicationServices.Data;
 using ApplicationServices.Model;
+using ApplicationServices.Models;
 using ApplicationServices.Models.Flights;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -43,16 +44,13 @@ namespace ApplicationServices.Controllers
             return Ok(reservations);
         }
         [HttpGet("statistics")]
-        public ActionResult<IEnumerable<FlightReservationSearch>> GetReservationsStatistics()
+        public ActionResult<AirportStatisticsInfo> GetReservationsStatistics()
         {
-            IEnumerable<FlightReservationSearch> reservations;
-
-
-            reservations = this.dao.All().ToList();
+            List<AirportStatisticsInfo> statistics = this.dao.GetReservationStatistics().Result;
 
             
-            if (reservations == null) return NotFound();
-            return Ok(reservations);
+            if (statistics == null) return NoContent();
+            return Ok(statistics);
         }
 
 

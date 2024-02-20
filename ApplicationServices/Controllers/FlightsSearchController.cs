@@ -29,6 +29,16 @@ namespace ApplicationServices.Controllers
             this._configuration = configuration;
         }
 
+        [HttpGet("statistics")]
+        public ActionResult<AirportStatisticsInfo> GetReservationsStatistics()
+        {
+            List<AirportStatisticsInfo> statistics = this.dao.GetReservationStatistics().Result;
+
+
+            if (statistics == null) return NoContent();
+            return Ok(statistics);
+        }
+
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<ActionResult<FlightSearchResultDto>> GetFlights([FromQuery] string originCode, [FromQuery] string destinationCode, 

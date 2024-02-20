@@ -1,12 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿
+using Microsoft.Extensions.Configuration;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
 
-        IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
+        IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        var connection = config.GetValue<string>("ConnectionStrings:AgencyTravelApplication");
 
         while (true)
         {
