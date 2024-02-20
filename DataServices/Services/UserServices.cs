@@ -2,6 +2,7 @@
 using DataServices.Errors;
 using DataServices.Model;
 using DataServices.Models.Users;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataServices.Service

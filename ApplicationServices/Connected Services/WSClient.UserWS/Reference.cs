@@ -13,7 +13,7 @@ namespace WSClient.UserWS
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class User : object
     {
@@ -95,7 +95,7 @@ namespace WSClient.UserWS
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserCredentials", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Models.Users")]
     public partial class UserCredentials : object
     {
@@ -132,7 +132,7 @@ namespace WSClient.UserWS
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CheckCredentialsResult", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class CheckCredentialsResult : object
     {
@@ -168,7 +168,7 @@ namespace WSClient.UserWS
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/user/", ConfigurationName="WSClient.UserWS.IUserServices")]
     public interface IUserServices
     {
@@ -191,17 +191,20 @@ namespace WSClient.UserWS
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/DeleteUser", ReplyAction="http://agencytravel/user/IUserServices/DeleteUserResponse")]
         System.Threading.Tasks.Task DeleteUserAsync(int userId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CountUsers", ReplyAction="http://agencytravel/user/IUserServices/CountUsersResponse")]
+        System.Threading.Tasks.Task<long> CountUsersAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/user/IUserServices/CheckCredentials", ReplyAction="http://agencytravel/user/IUserServices/CheckCredentialsResponse")]
         System.Threading.Tasks.Task<WSClient.UserWS.CheckCredentialsResult> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public interface IUserServicesChannel : WSClient.UserWS.IUserServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public partial class UserServicesClient : System.ServiceModel.ClientBase<WSClient.UserWS.IUserServices>, WSClient.UserWS.IUserServices
     {
         
@@ -273,6 +276,11 @@ namespace WSClient.UserWS
         public System.Threading.Tasks.Task DeleteUserAsync(int userId)
         {
             return base.Channel.DeleteUserAsync(userId);
+        }
+        
+        public System.Threading.Tasks.Task<long> CountUsersAsync()
+        {
+            return base.Channel.CountUsersAsync();
         }
         
         public System.Threading.Tasks.Task<WSClient.UserWS.CheckCredentialsResult> CheckCredentialsAsync(WSClient.UserWS.UserCredentials userCredentials)

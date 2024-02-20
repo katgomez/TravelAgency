@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -45,6 +46,19 @@ namespace ApplicationServices.Controllers
             return Ok(user);
         }
 
+        [HttpGet("statistics")]
+        public async Task<ActionResult<long>> GetUsersStatistics()
+        {
+            Task<long> response = userServicesClient.CountUsersAsync();
+            if (response.IsCompletedSuccessfully)
+            {
+                long statistics = response.Result;
+
+                return Ok(statistics);
+            }
+            return BadRequest();
+            
+        }
 
         [HttpPost]
         public async Task<ActionResult> CreateUser([FromBody] User user)
