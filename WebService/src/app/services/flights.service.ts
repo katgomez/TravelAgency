@@ -36,12 +36,8 @@ export class FlightsService {
   }
 
   makeReservation(flightCode:string): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode},httpOptions);
+    const headers = this.createHeaders();
+    return this.http.post<FlightSearchResultDto>(this.reservationUrl, {flightSearchCode:flightCode},{ headers });
   }
 
   private createHeaders(): HttpHeaders {
