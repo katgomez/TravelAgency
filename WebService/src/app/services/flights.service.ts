@@ -8,6 +8,7 @@ import { AirportResultDto } from '../model/airport/airport.result.dto';
 import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto';
 import {tap} from "rxjs/operators";
 import {UserService} from "./user.service";
+import {ReservationDto} from "../model/reservation/reservation.dto";
 
 
 @Injectable({
@@ -50,12 +51,8 @@ export class FlightsService {
       Authorization: `Bearer ${authToken}`
     });
   }
-  getReservationData() {
+  getReservationData(userId: string) {
     const headers = this.createHeaders();
-    return this.http.get<any>(`${this.reservationUrl}`, { headers }).pipe(
-      tap(response => {
-        // Handle response as needed
-      })
-    );
+    return this.http.get<ReservationDto[]>(`${this.reservationUrl}?userId=${userId}`, { headers });
   }
 }

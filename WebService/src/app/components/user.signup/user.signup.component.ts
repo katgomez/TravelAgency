@@ -25,12 +25,6 @@ export class UserSignupComponent {
 
   ngOnInit() {
   }
-
-  getUser(userId: number): void {
-    this.userService.getUserById(userId)
-      .subscribe(user => this.userData = user);
-  }
-
   signUp(data: UserDto): void {
     this.emailError = '';
     this.passwordError = '';

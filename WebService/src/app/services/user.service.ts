@@ -24,10 +24,6 @@ export class UserService {
     return this.http.post<boolean>(`${this.authUrl}`, userCredentials);
   }
 
-  getUserById(userId: number): Observable<UserDto> {
-    return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);
-  }
-
   getToken(): string | null {
     return sessionStorage.getItem("token");
   }

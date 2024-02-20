@@ -1,1 +1,24 @@
-<p>reservations works!</p>
+<h2>Your Reservations Made</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Number of Clients</th>
+    <th>Price</th>
+    <th>Reservation Date</th>
+    <th>Reservation Status</th>
+    <th>User ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <div *ngIf="flightReservations?.length==0">There are no reservations.</div>
+  <tbody>
+    <tr *ngFor="let reservation of flightReservations">
+      <td>{{ reservation.id }}</td>
+      <td>{{ reservation.numberOfClients }}</td>
+      <td>{{ reservation.price }}</td>
+      <td>{{ reservation.reservationDate }}</td>
+      <td>{{ reservation.reservationStatus }}</td>
+    </tr>
+  </tbody>
+</table>
