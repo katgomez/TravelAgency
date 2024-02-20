@@ -21,8 +21,6 @@ export class FlightsSerarchComponent {
   constructor(private countryService: CountryService, private flightService: FlightsService, private fareService: FareService,
      private airportService: AirportService,private formBuilder: FormBuilder) {
 
-    this.setMinDate();
-
     this.flightsSearchForm = this.formBuilder.group({
       countryOrigin: [],
       origin: [],
@@ -49,7 +47,7 @@ export class FlightsSerarchComponent {
       this.countryDestinationSelected = valor;
       this.flightsSearchForm.patchValue({
         destination: []
-
+        
       });
     });
     this.flightsSearchForm.get('destinationText')?.valueChanges.subscribe((valor) => {
@@ -78,7 +76,7 @@ export class FlightsSerarchComponent {
   destinationCityText?: string;
 
   flights?: FlightSearchResultDto;
-  minDate?: string;
+
   ngOnInit(): void {
     this.countryService.getCountries().subscribe(data => {
       this.countries = data.countries;
@@ -90,11 +88,7 @@ export class FlightsSerarchComponent {
     });
   }
 
-  setMinDate(): void {
-    const today = new Date();
-    // Format today's date as "YYYY-MM-DD"
-    this.minDate = today.toISOString().split('T')[0];
-  }
+
 
 
   filterCountries(event: any) {
@@ -155,7 +149,7 @@ export class FlightsSerarchComponent {
     const fare = this.flightsSearchForm.value.fare;
     const passengers: number = this.flightsSearchForm.value.passengers;
     console.log(this.flightsSearchForm.value);
-    if (origen != null && destination != null && departureDate != null
+    if (origen != null && destination != null && departureDate != null 
       && passengers != null&& fare !=null) {
       console.log("Buscando vuelos");
       this.flightService.searchFlights(origen, destination, departureDate, returnDate, passengers, fare.name).subscribe(data => {

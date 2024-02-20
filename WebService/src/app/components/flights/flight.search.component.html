@@ -11,18 +11,18 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label for="countryOrigin">Country:</label>
+                <label for="country">Country:</label>
                 <ng-select id="countryOrigin" name="countryOringin" class="form-control custom-select"
-                  [items]="countries" bindValue="code" bindLabel="name" [searchable]="true"
-                  formControlName="countryOrigin" placeholder="Select a country" />
+                  [items]="countries" bindValue="code" bindLabel="name" [searchable]="true" 
+                  formControlName="countryOrigin" />
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="form-group">
                 <label for="origin">Origin:</label>
-                <input type="text" name="originFilter" class="form-control" id="originCity"
-                  placeholder="Select a city" formControlName="originText">
+                <input type="text" name="originFilter" class="form-control" id="origin"
+                  placeholder="Escribe o selecciona una ciudad" formControlName="originText">
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button" (click)="searchOrigins()">Search Airport</button>
                 </div>
@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label for="origin">Airport:</label>
                 <ng-select id="origin" class="form-control custom-select" [items]="originResults"
-                  bindLabel="detailedName" formControlName="origin" [clearable]="true" placeholder="Select an airport" />
+                  bindLabel="detailedName" formControlName="origin" [clearable]="true"/>
               </div>
             </div>
           </div>
@@ -41,14 +41,14 @@
               <div class="form-group">
                 <label for="countryDestination">Destination country:</label>
                 <ng-select id="countryDestination" class="form-control custom-select" [items]="countries"
-                  bindValue="code" bindLabel="name" [searchable]="true" formControlName="countryDestination" placeholder="Select a country" />
+                  bindValue="code" bindLabel="name" [searchable]="true" formControlName="countryDestination" />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="destinationCity">Destination:</label>
-                <input type="text" name="destinationFilter" class="form-control" id="destinationCity"
-                  placeholder="Select a city" formControlName="destinationText">
+                <label for="destinationFilter">Destination:</label>
+                <input type="text" name="destinationFilter" class="form-control" id="destination"
+                  placeholder="Ciudad de destino" formControlName="destinationText">
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button" (click)="searchDestinations()">Search Airport</button>
                 </div>
@@ -58,7 +58,7 @@
               <div class="form-group">
                 <label for="destination">Airport:</label>
                 <ng-select id="destination" class="form-control custom-select" [items]="destinationResults"
-                  bindLabel="detailedName" [clearable]="true" formControlName="destination" placeholder="Select an airport" />
+                  bindLabel="detailedName" [clearable]="true" formControlName="destination" />
               </div>
             </div>
           </div>
@@ -72,21 +72,21 @@
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <label for="departure">Departure date:</label>
-                <input type="date" class="form-control" id="departure" formControlName="departureDate" [min]="minDate">
+                <label for="departure">Fecha de salida:</label>
+                <input type="date" class="form-control" id="departure" formControlName="departureDate">
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <label for="return">Return date:</label>
-                <input type="date" class="form-control" id="return" formControlName="returnDate" [min]="minDate">
+                <label for="return">Fecha de regreso:</label>
+                <input type="date" class="form-control" id="return" formControlName="returnDate">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for="fare">Fare:</label>
                 <ng-select id="fare" name="fare" class="form-control custom-select"
-                  [items]="fares"  bindLabel="name" [searchable]="true" formControlName="fare" placeholder="Please select a fare"
+                  [items]="fares"  bindLabel="name" [searchable]="true" formControlName="fare"
                   />
               </div>
             </div>
