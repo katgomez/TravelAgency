@@ -4,8 +4,10 @@ using ApplicationServices.Model;
 using ApplicationServices.Models.Flights;
 using ApplicationServices.Models.Statistics;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Mime;
+using WSClient.FlightReservation;
 using WSClient.ReservationWS;
 
 namespace ApplicationServices.Controllers
@@ -19,6 +21,7 @@ namespace ApplicationServices.Controllers
         private readonly IFlightReservationSearchDao reservationSearchDao;
 
         private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();
+        private FlightReservationServicesClient flightReservationServicesClient = new FlightReservationServicesClient();
         public FlightReservationsController(IConfiguration configuration, DataContext context)
         {
             this._context = context;
@@ -44,13 +47,13 @@ namespace ApplicationServices.Controllers
             return Ok(reservations);
         }
         [HttpGet("statistics")]
-        public ActionResult<AirportStatisticsInfo> GetReservationsStatistics()
+        public async Task<ActionResult<Models.Statistics.AirportStatisticsInfo>> GetReservationsStatistics()
         {
-            List<AirportStatisticsInfo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
-
+            var response = await flightReservationServicesClient.GetAirportReservationStatisticsAsync();
             
-            if (statistics == null) return NoContent();
-            return Ok(statistics);
+            
+            if (response == null) return NoContent();
+            return Ok(null);
         }
 
 

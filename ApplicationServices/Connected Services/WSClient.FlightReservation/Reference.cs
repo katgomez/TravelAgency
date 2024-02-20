@@ -13,7 +13,7 @@ namespace WSClient.FlightReservation
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FlightReservation", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class FlightReservation : object
     {
@@ -199,7 +199,44 @@ namespace WSClient.FlightReservation
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AirportStatisticsInfo", Namespace="http://schemas.datacontract.org/2004/07/ApplicationServices.Models.Statistics")]
+    public partial class AirportStatisticsInfo : object
+    {
+        
+        private string AirportCodeField;
+        
+        private long AirportCountField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AirportCode
+        {
+            get
+            {
+                return this.AirportCodeField;
+            }
+            set
+            {
+                this.AirportCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long AirportCount
+        {
+            get
+            {
+                return this.AirportCountField;
+            }
+            set
+            {
+                this.AirportCountField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/flight/", ConfigurationName="WSClient.FlightReservation.IFlightReservationServices")]
     public interface IFlightReservationServices
     {
@@ -215,15 +252,20 @@ namespace WSClient.FlightReservation
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/flight/IFlightReservationServices/UpdateFlight", ReplyAction="http://agencytravel/flight/IFlightReservationServices/UpdateFlightResponse")]
         System.Threading.Tasks.Task UpdateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/flight/IFlightReservationServices/GetAirportReservationStatis" +
+            "tics", ReplyAction="http://agencytravel/flight/IFlightReservationServices/GetAirportReservationStatis" +
+            "ticsResponse")]
+        System.Threading.Tasks.Task<WSClient.FlightReservation.AirportStatisticsInfo[]> GetAirportReservationStatisticsAsync();
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public interface IFlightReservationServicesChannel : WSClient.FlightReservation.IFlightReservationServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public partial class FlightReservationServicesClient : System.ServiceModel.ClientBase<WSClient.FlightReservation.IFlightReservationServices>, WSClient.FlightReservation.IFlightReservationServices
     {
         
@@ -285,6 +327,11 @@ namespace WSClient.FlightReservation
         public System.Threading.Tasks.Task UpdateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation)
         {
             return base.Channel.UpdateFlightAsync(flightReservation);
+        }
+        
+        public System.Threading.Tasks.Task<WSClient.FlightReservation.AirportStatisticsInfo[]> GetAirportReservationStatisticsAsync()
+        {
+            return base.Channel.GetAirportReservationStatisticsAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

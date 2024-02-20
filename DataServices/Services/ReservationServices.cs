@@ -27,6 +27,7 @@ public class ReservationServices : IReservationServices
         if (checkedReservation != null)
             throw new FaultException(new FaultReason("Reservation already exists!!!"), new FaultCode("400"), "");
         _dbContext.Reservations.Add(reservation);
+        _dbContext.SaveChanges();
     }
 
     public void UpdateReservation(Reservation reservation)
