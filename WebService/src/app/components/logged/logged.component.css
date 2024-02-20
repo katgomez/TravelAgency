@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-message {
+  flex: 1; /* Takes up remaining space */
+}
+
+.logout-button {
+  margin-left: 10px; /* Adjust spacing */
+}

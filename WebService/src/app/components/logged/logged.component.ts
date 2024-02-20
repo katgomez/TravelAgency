@@ -21,5 +21,8 @@ export class LoggedComponent implements OnInit {
     this.userService.getUserById(userId)
         .subscribe(user => this.userData = user);
   }
+  logout(): void {
+    this.userService.logout();
+  }
 
 }

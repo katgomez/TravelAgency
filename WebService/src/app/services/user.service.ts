@@ -36,7 +36,7 @@ export class UserService {
     return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);
   }
   logout() {
-    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
     sessionStorage.removeItem("token");
   }
 }
