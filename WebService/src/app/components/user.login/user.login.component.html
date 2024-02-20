@@ -11,9 +11,6 @@
           <div class="form-group">
             <label for="password">Password : </label>
             <input type="password" id="password" name="password" class="form-control" placeholder="********" [(ngModel)]="userData.password">
-            <div class="text-right forget-pass">
-              <a routerLink="/forget-password">Forget Password ?</a>
-            </div>
           </div>
           <div class="text-center">
             <button type="submit" [ngClass]="{'btn': true, 'blue-button': userData.email && userData.password, 'btn-disabled': !userData.email || !userData.password}" [disabled]="!userData.email || !userData.password">Login</button>
