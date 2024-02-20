@@ -14,7 +14,7 @@
                 <label for="countryOrigin">Country:</label>
                 <ng-select id="countryOrigin" name="countryOringin" class="form-control custom-select"
                   [items]="countries" bindValue="code" bindLabel="name" [searchable]="true"
-                  formControlName="countryOrigin" placeholder="Select a country" />
+                  formControlName="countryOrigin" />
               </div>
             </div>
 
@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label for="origin">Airport:</label>
                 <ng-select id="origin" class="form-control custom-select" [items]="originResults"
-                  bindLabel="detailedName" formControlName="origin" [clearable]="true" placeholder="Select an airport" />
+                  bindLabel="detailedName" formControlName="origin" [clearable]="true" />
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
               <div class="form-group">
                 <label for="countryDestination">Destination country:</label>
                 <ng-select id="countryDestination" class="form-control custom-select" [items]="countries"
-                  bindValue="code" bindLabel="name" [searchable]="true" formControlName="countryDestination" placeholder="Select a country" />
+                  bindValue="code" bindLabel="name" [searchable]="true" formControlName="countryDestination" />
               </div>
             </div>
             <div class="col-md-4">
@@ -58,7 +58,7 @@
               <div class="form-group">
                 <label for="destination">Airport:</label>
                 <ng-select id="destination" class="form-control custom-select" [items]="destinationResults"
-                  bindLabel="detailedName" [clearable]="true" formControlName="destination" placeholder="Select an airport" />
+                  bindLabel="detailedName" [clearable]="true" formControlName="destination" />
               </div>
             </div>
           </div>
