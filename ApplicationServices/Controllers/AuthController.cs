@@ -24,8 +24,8 @@ namespace ApplicationServices.Controllers
             CheckCredentialsResult checkCredentialsResult = await userServicesClient.CheckCredentialsAsync(credentials);
             if (!checkCredentialsResult.IsValidUser) return BadRequest("User is not valid");
             var token = await GenerateToken(credentials.email);
-            var result = new { userId = checkCredentialsResult.UserId, token};
-            var jsonContent = JsonConvert.SerializeObject(result);
+            var tokenObject = JsonConvert.DeserializeObject<dynamic>(token);
+            var jsonContent = JsonConvert.SerializeObject(new { userId = checkCredentialsResult.UserId, token = tokenObject });
 
             return Ok(jsonContent);
         }
