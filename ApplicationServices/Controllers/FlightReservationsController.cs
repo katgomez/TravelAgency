@@ -3,6 +3,7 @@ using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Models.Flights;
 using ApplicationServices.Models.Statistics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;

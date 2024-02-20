@@ -5,7 +5,6 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllers();
 builder.Services.AddCors(options => {
@@ -40,7 +39,6 @@ builder.Services.AddSwaggerGen(options =>
         BearerFormat = "JWT"
     });
 
-    // Añade el esquema de seguridad a todos los métodos
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

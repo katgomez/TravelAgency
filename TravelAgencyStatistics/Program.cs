@@ -12,6 +12,8 @@ internal class Program
         IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var reservationsEndPoint = config["ConnectionStrings:ReservationsEndPoint"];
         var flightSearchEndPoint = config["ConnectionStrings:FlightSearchEndPoint"];
+        var usersEndPoint = config["ConnectionStrings:UsersEndPoint"];
+
         string token = config["ConnectionStrings:token"];
         Console.Clear();
 
@@ -25,8 +27,9 @@ internal class Program
             {
                 case "1":
                     // Lógica para la operación 1
-                    Console.WriteLine("Realizando operación 1...");
+                    Console.WriteLine("Requesting...");
                     Console.WriteLine("Press Enter to continue ...");
+                    ShowNumberUsers(usersEndPoint,token,"SHOWING NUMBER OF USERS IN THE APPLICATION");
                     Console.ReadLine();
                     break;
                 case "2":
@@ -82,6 +85,23 @@ internal class Program
                 Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + ((double)airportCount.AirportCount / total * 100));
                 
             }
+
+
+        }
+
+        static void ShowNumberUsers(string url, string token, string title)
+        {
+            var client = new RestClient(url);
+
+
+            var request = new RestRequest("statistics", Method.Get);
+            request.AddHeader("Authorization", "Bearer " + token);
+            Task<RestResponse<long>> response = client.ExecuteAsync<long>(request);
+            long result = JsonConvert.DeserializeObject<long>(response.Result.Content);
+
+            Console.WriteLine(title);
+            Console.WriteLine("Total users: " + result);
+            
 
 
         }

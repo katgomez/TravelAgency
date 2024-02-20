@@ -20,6 +20,10 @@ namespace DataServices.Service
         public void UpdateUser(User user);
         [OperationContract]
         public void DeleteUser(int userId);
+
+        [OperationContract]
+        public long CountUsers();
+
         [OperationContract]
         public CheckCredentialsResult CheckCredentials(UserCredentials userCredentials);
     }

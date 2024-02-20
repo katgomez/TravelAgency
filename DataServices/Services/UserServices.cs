@@ -98,6 +98,11 @@ namespace DataServices.Service
             return user;
         }
 
+        public long CountUsers()
+        {
+            return _dbContext.Users.Count();
+        }
+
         public CheckCredentialsResult CheckCredentials(UserCredentials userCredentials)
         {
             if (userCredentials.email != null) { 
