@@ -5,6 +5,7 @@ namespace ApplicationServices.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TokenValidation]
     public class UsersController : ControllerBase
     {
         private IConfiguration _configuration;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserDto} from "../model/user/user.dto";
 
@@ -10,8 +10,6 @@ import {UserDto} from "../model/user/user.dto";
 export class UserService {
   private apiUrl = environment.userEndPoint;
   private authUrl = environment.authEndPoint;
-
-
   constructor(private http: HttpClient) {
   }
 
@@ -33,10 +31,19 @@ export class UserService {
   }
 
   getUserById(userId: number): Observable<UserDto> {
-    return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);
+    const headers = this.createHeaders();
+    return this.http.get<UserDto>(`${this.apiUrl}/${userId}`, { headers });
   }
   logout() {
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("token");
+  }
+
+  private createHeaders(): HttpHeaders {
+    const authToken = this.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    });
   }
 }
