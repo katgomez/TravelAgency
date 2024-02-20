@@ -8,8 +8,8 @@ namespace ApplicationServices.Model
 
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Reservation")]
-        public int ReservationID { get; set; }
+        
+        public string SearchId { get; set; }   
         public string CodeOfItinerary { get; set; }
         public string FlightId { get; set; }
         public string Airline { get; set; }

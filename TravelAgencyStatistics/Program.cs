@@ -60,10 +60,10 @@ internal class Program
         {
             Console.WriteLine("\n\nMenú:");
             Console.WriteLine("1. Show number of users");
-            Console.WriteLine("2. Show most booked airports");
-            Console.WriteLine("3. Show most searched airports");
+            Console.WriteLine("2. Show most searched airports");
+            Console.WriteLine("3. Show most booked airports");
             Console.WriteLine("4. Salir");
-            Console.Write("Seleccione una opción: ");
+            Console.Write("Select an option: ");
 
             return Console.ReadLine();
         }
@@ -87,7 +87,7 @@ internal class Program
                 foreach (var airportCount in result)
                 {
 
-                    Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + ((double)airportCount.AirportCount / total * 100));
+                    Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + (Math.Round(((double)airportCount.AirportCount / total * 100))*100.0)/100.0);
 
                 }
                 return;

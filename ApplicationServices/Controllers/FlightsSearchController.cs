@@ -80,8 +80,9 @@ namespace ApplicationServices.Controllers
             {
                 return NoContent();
             }
+            string searchId = Guid.NewGuid().ToString();
             //Se calcula la tarifa seleccionada
-            foreach(FlightResultDto resultDto in result.flights)
+            foreach (FlightResultDto resultDto in result.flights)
             {
                 resultDto.priceWithFare = FareTypeExtensions.PriceWithFare(fare,resultDto.price);
 
@@ -109,6 +110,7 @@ namespace ApplicationServices.Controllers
                         reservationTemp.Duration = segmento.durationMinutes;
                         reservationTemp.Airline = segmento.carrierCode;
                         reservationTemp.FlightId = resultDto.id;
+                        reservationTemp.SearchId = searchId;
                         _context.FlightReservationSearches.Add(reservationTemp);
                         await _context.SaveChangesAsync();
 

@@ -3,6 +3,7 @@ using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Models.Statistics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace ApplicationServices.DAO.Impl;
 
@@ -25,15 +26,30 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
 
     public async Task<List<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
     {
-        var arrivalInfo = await _dataContext.FlightReservationSearches
-                                        .GroupBy(r => r.ArrivalAirport)
-                                        .Select(g => new AirportStatisticsInfo { AirportCode = g.Key, AirportCount = g.Count() })
-                                        .ToListAsync();
+        var groupedByItinerary = await _dataContext.FlightReservationSearches
+                                    .GroupBy(r => r.SearchId)
+                                    .ToListAsync();
+        var arrivalInfo = groupedByItinerary
+                                .SelectMany(group => group
+                                    .GroupBy(r => r.ArrivalAirport)
+                                    .Select(g => new AirportStatisticsInfo
+                                    {
+                                        ItineraryCode = group.Key,
+                                        AirportCode = g.Key,
+                                        AirportCount = 1
+                                    }))
+                                .ToList();
 
-        var departureInfo = await _dataContext.FlightReservationSearches
-                                        .GroupBy(r => r.DepartureAirport)
-                                        .Select(g => new AirportStatisticsInfo { AirportCode = g.Key, AirportCount = g.Count() })
-                                        .ToListAsync();
+        var departureInfo = groupedByItinerary
+                                .SelectMany(group => group
+                                    .GroupBy(r => r.DepartureAirport)
+                                    .Select(g => new AirportStatisticsInfo
+                                    {
+                                        ItineraryCode = group.Key,
+                                        AirportCode = g.Key,
+                                        AirportCount = 1
+                                    }))
+                                .ToList();
 
         return arrivalInfo.Concat(departureInfo)
             .GroupBy(c => c.AirportCode)
