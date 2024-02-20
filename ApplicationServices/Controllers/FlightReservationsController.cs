@@ -14,6 +14,7 @@ namespace ApplicationServices.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TokenValidation]
     public class FlightReservationsController : ControllerBase
     {
         private IConfiguration _configuration;
