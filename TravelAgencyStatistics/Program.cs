@@ -104,7 +104,7 @@ internal class Program
 
             var request = new RestRequest("statistics", Method.Get);
             request.AddHeader("Authorization", "Bearer " + token);
-            var response = client.ExecuteAsync<long>(request).Result;
+            var response = client.ExecuteAsync(request).Result;
             if (response.IsSuccessful)
             {
                 long result = JsonConvert.DeserializeObject<long>(response.Content);

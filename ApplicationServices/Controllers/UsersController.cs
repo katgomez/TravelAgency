@@ -49,14 +49,11 @@ namespace ApplicationServices.Controllers
         [HttpGet("statistics")]
         public async Task<ActionResult<long>> GetUsersStatistics()
         {
-            Task<long> response = userServicesClient.CountUsersAsync();
-            if (response.IsCompletedSuccessfully)
-            {
-                long statistics = response.Result;
+            long response = await userServicesClient.CountUsersAsync();
 
-                return Ok(statistics);
-            }
-            return BadRequest();
+
+             return Ok(response);
+            
             
         }
 
