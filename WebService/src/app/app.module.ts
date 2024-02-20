@@ -10,6 +10,7 @@ import { FlightsSerarchComponent } from './components/flights/flight.search.comp
 import { UserSignupComponent } from './components/user.signup/user.signup.component';
 import { UserLoginComponent } from './components/user.login/user.login.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
+import { LoggedComponent } from './components/logged/logged.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReservationsComponent } from './components/reservations/reservations.co
     FlightsSerarchComponent,
     UserSignupComponent,
     UserLoginComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    LoggedComponent
   ],
   imports: [
     BrowserModule,

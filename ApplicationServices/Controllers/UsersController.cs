@@ -22,11 +22,25 @@ namespace ApplicationServices.Controllers
             return Ok(user);
         }
 
-        [HttpGet("{userEmail}")]
-        public ActionResult<IEnumerable<User>> GetUser(string userEmail)
+        [HttpGet("{userId:int}")]
+        public async Task<ActionResult<User>> GetUserAsync(int userId)
         {
-            var user = userServicesClient.GetUserByEmailAsync(userEmail);
-            if (user == null) return NotFound();
+            var user = await userServicesClient.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
+        [HttpGet("{userEmail}")]
+        public async Task<ActionResult<User>> GetUser(string userEmail)
+        {
+            var user = await userServicesClient.GetUserByEmailAsync(userEmail);
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 

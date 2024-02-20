@@ -32,6 +32,9 @@ export class UserService {
     return sessionStorage.getItem("userId");
   }
 
+  getUserById(userId: number): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.apiUrl}/${userId}`);
+  }
   logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("token");

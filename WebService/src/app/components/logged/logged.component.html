@@ -1,0 +1,6 @@
+<div *ngIf="loggedInUser">
+    <p>Welcome, {{ userData?.firstName + ' ' + userData?.lastName }}!</p>
+</div>
+<div *ngIf="!loggedInUser">
+    Already have an account ? <a routerLink="/login">Login</a> here.
+</div>

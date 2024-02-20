@@ -72,7 +72,7 @@ namespace DataServices.Service
             User user = _dbContext.Users.FirstOrDefault(p => p.Id == id);
             if (user == null)
             {
-                throw new NotFoundException("User not found for the specified email address.");
+                throw new NotFoundException("User not found for the specified id.");
             }
             return user;
         }
