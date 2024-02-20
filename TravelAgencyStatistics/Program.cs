@@ -27,23 +27,23 @@ internal class Program
             {
                 case "1":
                     // Lógica para la operación 1
-                    Console.WriteLine("Requesting...");
-                    Console.WriteLine("Press Enter to continue ...");
-                    ShowNumberUsers(usersEndPoint,token,"SHOWING NUMBER OF USERS IN THE APPLICATION");
+                    Console.WriteLine("\nRequesting...");
+                    ShowNumberUsers(usersEndPoint,token, "\nSHOWING NUMBER OF USERS IN THE APPLICATION");
+                    Console.WriteLine("\nPress Enter to continue ...");
                     Console.ReadLine();
                     break;
                 case "2":
                     // Lógica para la operación 2
                     Console.WriteLine("Requesting...");
-                    ShowAirportsStatistics(flightSearchEndPoint, token, "MORE SEARCHED AIRPORTS STATISTICS");
-                    Console.WriteLine("Press Enter to continue ...");
+                    ShowAirportsStatistics(flightSearchEndPoint, token, "\nMORE SEARCHED AIRPORTS STATISTICS");
+                    Console.WriteLine("\nPress Enter to continue ...");
                     Console.ReadLine(); 
                     break;
                 case "3":
                     // Lógica para consultar estadísticas
-                    Console.WriteLine("Requesting statistics...");
-                    ShowAirportsStatistics(reservationsEndPoint,token, "AIRPORTS WITH MORE RESERVATIONS");
-                    Console.WriteLine("Press Enter to continue ...");
+                    Console.WriteLine("\nRequesting statistics...");
+                    ShowAirportsStatistics(reservationsEndPoint,token, "\nAIRPORTS WITH MORE RESERVATIONS");
+                    Console.WriteLine("\nPress Enter to continue ...");
                     Console.ReadLine(); 
 
                     break;
@@ -51,14 +51,14 @@ internal class Program
                     return; 
                 default:
                     Console.WriteLine("Not valid. Press Enter to continue");
-                    Console.WriteLine("Press Enter to continue ...");
+                    Console.WriteLine("\nPress Enter to continue ...");
                     Console.ReadLine(); 
                     break;
             }
         }
         static string solicitarOpcion()
         {
-            Console.WriteLine("Menú:");
+            Console.WriteLine("\n\nMenú:");
             Console.WriteLine("1. Show number of users");
             Console.WriteLine("2. Show most booked airports");
             Console.WriteLine("3. Show most searched airports");
@@ -74,17 +74,25 @@ internal class Program
 
             var request = new RestRequest("statistics", Method.Get);
             request.AddHeader("Authorization", "Bearer " + token);
-            List<AirportStatisticsInfo> result = JsonConvert.DeserializeObject<List<AirportStatisticsInfo>>(client.ExecuteAsync<List<AirportStatisticsInfo>>(request).Result.Content );
 
-            long total = result.Sum(c => c.AirportCount);
-            Console.WriteLine(title);
-            Console.WriteLine("Iata code \t Total\t Percentage %");
-            foreach (var airportCount in result)
+            var response = client.ExecuteAsync<List<AirportStatisticsInfo>>(request).Result;
+
+            if (response.IsSuccessful)
             {
-               
-                Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + ((double)airportCount.AirportCount / total * 100));
-                
+                List<AirportStatisticsInfo> result = JsonConvert.DeserializeObject<List<AirportStatisticsInfo>>(response.Content);
+
+                long total = result.Sum(c => c.AirportCount);
+                Console.WriteLine(title);
+                Console.WriteLine("Iata code \t Total\t Percentage %");
+                foreach (var airportCount in result)
+                {
+
+                    Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + ((double)airportCount.AirportCount / total * 100));
+
+                }
+                return;
             }
+            Console.WriteLine("Error requesting information: ");
 
 
         }
@@ -96,12 +104,17 @@ internal class Program
 
             var request = new RestRequest("statistics", Method.Get);
             request.AddHeader("Authorization", "Bearer " + token);
-            Task<RestResponse<long>> response = client.ExecuteAsync<long>(request);
-            long result = JsonConvert.DeserializeObject<long>(response.Result.Content);
+            var response = client.ExecuteAsync<long>(request).Result;
+            if (response.IsSuccessful)
+            {
+                long result = JsonConvert.DeserializeObject<long>(response.Content);
 
-            Console.WriteLine(title);
-            Console.WriteLine("Total users: " + result);
-            
+                Console.WriteLine(title);
+                Console.WriteLine("Total users: " + result);
+                return;
+            }
+            Console.WriteLine("Error requesting information: ");
+
 
 
         }
