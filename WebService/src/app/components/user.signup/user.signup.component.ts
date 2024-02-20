@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UserDto} from "../../model/user/user.dto";
 import {UserService} from "../../services/user.service";
 import {catchError, of, tap} from "rxjs";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Router} from "@angular/router";
 
 @Component({

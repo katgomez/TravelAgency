@@ -5,9 +5,7 @@ import { FlightsService } from "../../services/flights.service";
 import { AirportDto } from "../../model/airport/airport.dto";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { FlightSearchResultDto } from "../../model/flights/flight.search.result.dto";
-import { FlightResultDto } from "../../model/flights/flight.result.dto";
 import { FareService } from "../../services/fare.service";
-import { FareResultDto } from "../../model/fares/fare.result.dto";
 import { FareDto } from "../../model/fares/fare.dto";
 import { AirportService } from "../../services/airport.service";
 
