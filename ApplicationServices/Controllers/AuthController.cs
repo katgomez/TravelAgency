@@ -23,8 +23,11 @@ namespace ApplicationServices.Controllers
         {
             CheckCredentialsResult checkCredentialsResult = await userServicesClient.CheckCredentialsAsync(credentials);
             if (!checkCredentialsResult.IsValidUser) return BadRequest("User is not valid");
-            var result = GenerateToken(credentials.email);
-            return Ok();
+            var token = await GenerateToken(credentials.email);
+            var result = new { userId = checkCredentialsResult.UserId, token};
+            var jsonContent = JsonConvert.SerializeObject(result);
+
+            return Ok(jsonContent);
         }
 
         private async Task<string> GenerateToken(string parameter)
