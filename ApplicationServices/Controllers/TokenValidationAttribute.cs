@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
 {
@@ -9,6 +10,9 @@ namespace ApplicationServices.Controllers
     {
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            var serviceProvider = context.HttpContext.RequestServices;
+            var configuration = serviceProvider.GetService<IConfiguration>();
+
             // Check if the token exists in the request headers
             if (!context.HttpContext.Request.Headers.TryGetValue("Authorization", out var token))
             {
@@ -20,7 +24,9 @@ namespace ApplicationServices.Controllers
             try
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync($"http://localhost:9060/api/tokens/{token.ToString().Replace("Bearer ", "")}");
+                var url = configuration?.GetValue<string>("ApplicationSettings:SecurityEndPoint");
+
+                var response = await client.GetAsync($"{url}/{token.ToString().Replace("Bearer ", "")}");
                 if (!response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == HttpStatusCode.NotFound)
