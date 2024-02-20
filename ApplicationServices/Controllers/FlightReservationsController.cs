@@ -1,8 +1,8 @@
 ﻿using ApplicationServices.DAO;
 using ApplicationServices.Data;
 using ApplicationServices.Model;
-using ApplicationServices.Models;
 using ApplicationServices.Models.Flights;
+using ApplicationServices.Models.Statistics;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -16,14 +16,14 @@ namespace ApplicationServices.Controllers
     {
         private IConfiguration _configuration;
         private readonly DataContext _context;
-        private readonly IFlightReservationSearchDao dao;
+        private readonly IFlightReservationSearchDao reservationSearchDao;
 
         private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();
         public FlightReservationsController(IConfiguration configuration, DataContext context)
         {
             this._context = context;
             DAOFactory factory = new DAOFactory(this._context);
-            this.dao = factory.FlightReservationSearchDao;
+            this.reservationSearchDao = factory.FlightReservationSearchDao;
             this._configuration = configuration;
         }
 
@@ -46,7 +46,7 @@ namespace ApplicationServices.Controllers
         [HttpGet("statistics")]
         public ActionResult<AirportStatisticsInfo> GetReservationsStatistics()
         {
-            List<AirportStatisticsInfo> statistics = this.dao.GetReservationStatistics().Result;
+            List<AirportStatisticsInfo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
 
             
             if (statistics == null) return NoContent();
@@ -67,7 +67,7 @@ namespace ApplicationServices.Controllers
         [Consumes(MediaTypeNames.Application.Json)]
         public ActionResult CreateReservation( [FromBody]CreateFlightResevationDto reservation)
         {
-            IEnumerable<FlightReservationSearch> search =  this.dao.FindByItineraryCode(reservation.flightSearchCode).Result;
+            IEnumerable<FlightReservationSearch> search =  this.reservationSearchDao.FindByItineraryCode(reservation.flightSearchCode).Result;
            
             foreach(var flightReservationSearch in search)
             {

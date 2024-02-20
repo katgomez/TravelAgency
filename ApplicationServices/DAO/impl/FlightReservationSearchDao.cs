@@ -1,7 +1,7 @@
 ﻿
 using ApplicationServices.Data;
 using ApplicationServices.Model;
-using ApplicationServices.Models;
+using ApplicationServices.Models.Statistics;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationServices.DAO.Impl;
@@ -23,7 +23,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
             .ToListAsync();
     }
 
-    public async Task<List<AirportStatisticsInfo>> GetReservationStatistics()
+    public async Task<List<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
     {
         var arrivalInfo = await _dataContext.FlightReservationSearches
                                         .GroupBy(r => r.ArrivalAirport)

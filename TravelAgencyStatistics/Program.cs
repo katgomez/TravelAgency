@@ -32,7 +32,7 @@ internal class Program
                     break;
                 case "3":
                     // Lógica para consultar estadísticas
-                    Console.WriteLine("Consultando estadísticas...");
+                    Console.WriteLine("Requesting statistics...");
                     ShowStatisticsMoreSearchedAirports(urlDataService);
                     Console.ReadLine(); 
 
@@ -51,7 +51,7 @@ internal class Program
             Console.WriteLine("Menú:");
             Console.WriteLine("1. Realizar operación 1");
             Console.WriteLine("2. Realizar operación 2");
-            Console.WriteLine("3. Consultar estadísticas");
+            Console.WriteLine("3. More searched airports");
             Console.WriteLine("4. Salir");
             Console.Write("Seleccione una opción: ");
 

@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using ApplicationServices.Models.Statistics;
 using DataServices.Model;
 
 namespace DataServices.Service;
@@ -15,5 +16,8 @@ public interface IFlightReservationServices
     public void CreateFlight(FlightReservation flightReservation);
     [OperationContract]
     public void UpdateFlight(FlightReservation flightReservation);
+
+    [OperationContract]
+    public List<AirportStatisticsInfo> GetAirportReservationStatistics();
 
 }

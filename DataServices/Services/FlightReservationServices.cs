@@ -1,4 +1,7 @@
 ﻿using System.ServiceModel;
+using ApplicationServices.Models.Statistics;
+using DataServices.DAO;
+using DataServices.DAO.Impl;
 using DataServices.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +9,15 @@ namespace DataServices.Service;
 
 public class FlightReservationServices : IFlightReservationServices
 {
-    DataContext _dbContext = new DataContext();
+    DataContext _dbContext;
+    IFlightReservationDao flightReservationDao;
+
+    public FlightReservationServices()
+    {
+        _dbContext = new DataContext();
+        DAOFactory factory = new DAOFactory(_dbContext);
+        flightReservationDao = factory.FlightReservationDao;
+    }
     public FlightReservation[] GetFlights()
     {
         return _dbContext.FlighReservations.ToArray();
@@ -32,4 +43,11 @@ public class FlightReservationServices : IFlightReservationServices
             throw new FaultException(new FaultReason("Flight not found!!!"), new FaultCode("404"), "");
         _dbContext.FlighReservations.Update(flightReservation);
     }
+
+    public List<AirportStatisticsInfo> GetAirportReservationStatistics()
+    {
+        return this.flightReservationDao.GetAirportReservationStatistics().Result;
+    }
+
+
 }

@@ -1,10 +1,11 @@
-﻿using ApplicationServices.Data;
+﻿using ApplicationServices.DAO;
+using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Model.Country;
-using ApplicationServices.Models;
 using ApplicationServices.Models.Fares;
 using ApplicationServices.Models.Flights;
 using ApplicationServices.Models.Flights.search;
+using ApplicationServices.Models.Statistics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -21,18 +22,22 @@ namespace ApplicationServices.Controllers
     {
 
         private readonly DataContext _context;
+        private readonly IFlightReservationSearchDao reservationSearchDao;
         private IConfiguration _configuration;
 
         public FlightsSearchController(IConfiguration configuration, DataContext dbContext)
         {
             this._context = dbContext;
+            DAOFactory factory = new DAOFactory(this._context);
+            this.reservationSearchDao = factory.FlightReservationSearchDao;
             this._configuration = configuration;
         }
 
         [HttpGet("statistics")]
-        public ActionResult<AirportStatisticsInfo> GetReservationsStatistics()
+        [Produces(MediaTypeNames.Application.Json)]
+        public ActionResult<IEnumerable<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
         {
-            List<AirportStatisticsInfo> statistics = this.dao.GetReservationStatistics().Result;
+            List<AirportStatisticsInfo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
 
 
             if (statistics == null) return NoContent();

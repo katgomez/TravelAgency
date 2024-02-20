@@ -1,5 +1,5 @@
 ﻿using ApplicationServices.Model;
-using ApplicationServices.Models;
+using ApplicationServices.Models.Statistics;
 
 namespace ApplicationServices.DAO;
 
@@ -7,6 +7,6 @@ public interface IFlightReservationSearchDao : IGenericDAO<FlightReservationSear
 {
     Task<IEnumerable<FlightReservationSearch>> FindByItineraryCode(string code);
 
-    Task<List<AirportStatisticsInfo>> GetReservationStatistics();
+    Task<List<AirportStatisticsInfo>> GetAirportReservationSearchStatistics();
 
 }
