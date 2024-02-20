@@ -48,13 +48,18 @@ namespace ApplicationServices.Controllers
             return Ok(reservations);
         }
         [HttpGet("statistics")]
-        public async Task<ActionResult<Models.Statistics.AirportStatisticsInfo>> GetReservationsStatistics()
+        public async Task<ActionResult<List<Models.Statistics.AirportStatisticsInfo>>> GetReservationsStatistics()
         {
-            var response = await flightReservationServicesClient.GetAirportReservationStatisticsAsync();
-            
-            
+            List<Models.Statistics.AirportStatisticsInfo> result = new List<Models.Statistics.AirportStatisticsInfo> ();
+            WSClient.FlightReservation.AirportStatisticsInfo[] response = await flightReservationServicesClient.GetAirportReservationStatisticsAsync();
             if (response == null) return NoContent();
-            return Ok(null);
+            foreach (WSClient.FlightReservation.AirportStatisticsInfo responseItem in response)
+            {
+                result.Add(new Models.Statistics.AirportStatisticsInfo() { AirportCode=responseItem.AirportCode, AirportCount=responseItem.AirportCount});
+            }
+            
+           
+            return Ok(result);
         }
 
 
