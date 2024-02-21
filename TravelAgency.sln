@@ -7,20 +7,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServices", "DataService
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServices", "ApplicationServices\ApplicationServices.csproj", "{1820C9C1-E52F-4816-8C73-74DEA8EFBF08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{DA463C1E-84BD-45EF-A9A6-03415157CE96}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServicesTests", "TravelAgencyTest\ApplicationServicesTests.csproj", "{30995E90-714D-404A-9CD9-E61A51948E1B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServicesTests", "DataServicesTests\DataServicesTests.csproj", "{5009CE7E-5AF5-4BD6-BC82-1B4E93426286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{20A56722-01F5-4284-B772-041D9EF7714E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Security.csproj", "{20A56722-01F5-4284-B772-041D9EF7714E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F777D3E3-D0BF-4CD8-917E-5D6D58CE08D2}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgencyStatistics", "TravelAgencyStatistics\TravelAgencyStatistics.csproj", "{61D1F235-953D-41D8-B795-532A02A3AB36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgencyStatistics", "TravelAgencyStatistics\TravelAgencyStatistics.csproj", "{61D1F235-953D-41D8-B795-532A02A3AB36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +34,6 @@ Global
 		{1820C9C1-E52F-4816-8C73-74DEA8EFBF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1820C9C1-E52F-4816-8C73-74DEA8EFBF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1820C9C1-E52F-4816-8C73-74DEA8EFBF08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA463C1E-84BD-45EF-A9A6-03415157CE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA463C1E-84BD-45EF-A9A6-03415157CE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA463C1E-84BD-45EF-A9A6-03415157CE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA463C1E-84BD-45EF-A9A6-03415157CE96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30995E90-714D-404A-9CD9-E61A51948E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
