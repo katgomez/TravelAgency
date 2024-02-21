@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WSClient.FlightReservation;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -9,10 +10,13 @@ namespace ApplicationServices.Controllers
     public class UsersController : ControllerBase
     {
         private IConfiguration _configuration;
-        private UserServicesClient userServicesClient = new UserServicesClient();
+        private UserServicesClient userServicesClient;
         public UsersController(IConfiguration configuration)
         {
             this._configuration = configuration;
+
+            userServicesClient = new UserServicesClient(UserServicesClient.
+            EndpointConfiguration.BasicHttpBinding_IUserServices, _configuration.GetValue<string>("ApplicationSettings:AppDataUserServiceEndPoint"));
         }
 
         [HttpGet]

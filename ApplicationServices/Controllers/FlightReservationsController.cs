@@ -18,7 +18,7 @@ namespace ApplicationServices.Controllers
         private readonly DataContext _context;
         private readonly IFlightReservationSearchDao reservationSearchDao;
 
-        private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();
+        private ReservationServicesClient reservationServicesClient;
         private FlightReservationServicesClient flightReservationServicesClient;
         public FlightReservationsController(IConfiguration configuration, DataContext context)
         {
@@ -27,7 +27,10 @@ namespace ApplicationServices.Controllers
             this.reservationSearchDao = factory.FlightReservationSearchDao;
             this._configuration = configuration;
 
-          flightReservationServicesClient = new FlightReservationServicesClient(FlightReservationServicesClient.
+            reservationServicesClient = new ReservationServicesClient(ReservationServicesClient.
+            EndpointConfiguration.BasicHttpBinding_IReservationServices, _configuration.GetValue<string>("ApplicationSettings:AppDataReservationServiceEndPoint"));
+            
+            flightReservationServicesClient = new FlightReservationServicesClient(FlightReservationServicesClient.
           EndpointConfiguration.BasicHttpBinding_IFlightReservationServices, _configuration.GetValue<string>("ApplicationSettings:AppDataFlightServiceEndPoint"));
         }
 
