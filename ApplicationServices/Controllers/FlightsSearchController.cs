@@ -31,9 +31,9 @@ namespace ApplicationServices.Controllers
 
         [HttpGet("statistics")]
         [Produces(MediaTypeNames.Application.Json)]
-        public ActionResult<IEnumerable<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
+        public ActionResult<IEnumerable<AirportStatisticsInfoTwo>> GetAirportReservationSearchStatistics()
         {
-            List<AirportStatisticsInfo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
+            List<AirportStatisticsInfoTwo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
             if (statistics == null) return NoContent();
             return Ok(statistics);
         }

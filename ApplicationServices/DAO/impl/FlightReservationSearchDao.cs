@@ -23,7 +23,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
             .ToListAsync();
     }
 
-    public async Task<List<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
+    public async Task<List<AirportStatisticsInfoTwo>> GetAirportReservationSearchStatistics()
     {
         var groupedByItinerary = await _dataContext.FlightReservationSearches
                                     .GroupBy(r => r.SearchId)
@@ -31,7 +31,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
         var arrivalInfo = groupedByItinerary
                                 .SelectMany(group => group
                                     .GroupBy(r => r.ArrivalAirport)
-                                    .Select(g => new AirportStatisticsInfo
+                                    .Select(g => new AirportStatisticsInfoTwo
                                     {
                                         ItineraryCode = group.Key,
                                         AirportCode = g.Key,
@@ -42,7 +42,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
         var departureInfo = groupedByItinerary
                                 .SelectMany(group => group
                                     .GroupBy(r => r.DepartureAirport)
-                                    .Select(g => new AirportStatisticsInfo
+                                    .Select(g => new AirportStatisticsInfoTwo
                                     {
                                         ItineraryCode = group.Key,
                                         AirportCode = g.Key,
@@ -52,7 +52,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
 
         return arrivalInfo.Concat(departureInfo)
             .GroupBy(c => c.AirportCode)
-            .Select(g => new AirportStatisticsInfo { AirportCode = g.Key, AirportCount = g.Sum(c => c.AirportCount) })
+            .Select(g => new AirportStatisticsInfoTwo { AirportCode = g.Key, AirportCount = g.Sum(c => c.AirportCount) })
             .ToList();
     }
 

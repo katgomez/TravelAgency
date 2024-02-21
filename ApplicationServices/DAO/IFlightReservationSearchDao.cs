@@ -7,6 +7,6 @@ public interface IFlightReservationSearchDao : IGenericDAO<FlightReservationSear
 {
     Task<IEnumerable<FlightReservationSearch>> FindByItineraryCode(string code);
 
-    Task<List<AirportStatisticsInfo>> GetAirportReservationSearchStatistics();
+    Task<List<AirportStatisticsInfoTwo>> GetAirportReservationSearchStatistics();
 
 }

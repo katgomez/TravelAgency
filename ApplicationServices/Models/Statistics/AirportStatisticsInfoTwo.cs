@@ -2,7 +2,7 @@
 
 namespace ApplicationServices.Models.Statistics
 {
-    public class AirportStatisticsInfo
+    public class AirportStatisticsInfoTwo
     {
 
         public string ItineraryCode { get; set; }
