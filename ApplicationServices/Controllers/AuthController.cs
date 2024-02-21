@@ -44,5 +44,13 @@ namespace ApplicationServices.Controllers
             
             return response.StatusCode.ToString();
         }
+
+        [HttpPost("user")]
+        public async Task<ActionResult> CreateAuthUser([FromBody] User user)
+        {
+            int createdUser = await userServicesClient.CreateUserAsync(user);
+            if (createdUser == null) return StatusCode(500, "Failed to create user");
+            return Ok(createdUser);
+        }
     }
 }

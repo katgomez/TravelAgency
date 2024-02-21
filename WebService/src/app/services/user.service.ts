@@ -15,7 +15,7 @@ export class UserService {
 
   userSignUp(user: UserDto | undefined): Observable<UserDto> {
     let params = new HttpParams();
-    return this.http.post<UserDto>(this.apiUrl, user);
+    return this.http.post<UserDto>(`${this.authUrl}/user`, user);
   }
 
   checkOutCredentials(userCredentials: any): Observable<any> {
@@ -37,6 +37,7 @@ export class UserService {
   logout() {
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("token");
+    window.location.reload();
   }
 
   private createHeaders(): HttpHeaders {
