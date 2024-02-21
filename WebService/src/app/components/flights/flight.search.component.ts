@@ -16,7 +16,6 @@ import {UserService} from "../../services/user.service";
   styleUrl: './flight.search.component.css'
 })
 export class FlightsSerarchComponent {
-
   constructor(private countryService: CountryService, private flightService: FlightsService, private fareService: FareService,
      private airportService: AirportService,private formBuilder: FormBuilder, private userService: UserService) {
     this.setMinDate();
@@ -89,15 +88,6 @@ export class FlightsSerarchComponent {
     // Format today's date as "YYYY-MM-DD"
     this.minDate = today.toISOString().split('T')[0];
   }
-
-
-  filterCountries(event: any) {
-    const value = event.target.value;
-    this.filteredCountries = this.countries.filter(country =>
-      country.name.toLowerCase().includes(value.toLowerCase())
-    );
-  }
-
 
   searchOrigins() {
     console.log(this.countryOriginSelected);
