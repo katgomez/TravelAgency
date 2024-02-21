@@ -58,11 +58,11 @@ internal class Program
         }
         static string solicitarOpcion()
         {
-            Console.WriteLine("\n\nMenú:");
+            Console.WriteLine("\n\nOptions:");
             Console.WriteLine("1. Show number of users");
             Console.WriteLine("2. Show most searched airports");
             Console.WriteLine("3. Show most booked airports");
-            Console.WriteLine("4. Salir");
+            Console.WriteLine("4. Exit");
             Console.Write("Select an option: ");
 
             return Console.ReadLine();
