@@ -7,3 +7,5 @@ RUN npm run build
 FROM nginx:alpine
 COPY --from=node /app/dist/web-service /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
+
+CMD ["nginx", "-g", "daemon off;"]
