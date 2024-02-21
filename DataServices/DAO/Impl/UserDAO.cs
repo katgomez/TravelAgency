@@ -1,7 +1,4 @@
-﻿using DataServices;
-using DataServices.DAO;
-using DataServices.DAO.Impl;
-using DataServices.Model;
+﻿using DataServices.Model;
 
 namespace DataServices.DAO.Impl
 {

@@ -1,5 +1,5 @@
-﻿using ApplicationServices.DAO.Impl;
-using ApplicationServices.DAO;
+﻿using ApplicationServices.DAO;
+using ApplicationServices.DAO.Impl;
 using ApplicationServices.Data;
 
 namespace ApplicationServices

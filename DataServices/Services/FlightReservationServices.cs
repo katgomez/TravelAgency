@@ -1,9 +1,7 @@
-﻿using System.ServiceModel;
-using ApplicationServices.Models.Statistics;
+﻿using ApplicationServices.Models.Statistics;
 using DataServices.DAO;
-using DataServices.DAO.Impl;
 using DataServices.Model;
-using Microsoft.EntityFrameworkCore;
+using System.ServiceModel;
 
 namespace DataServices.Service;
 

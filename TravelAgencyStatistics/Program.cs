@@ -28,7 +28,7 @@ internal class Program
                 case "1":
                     // Lógica para la operación 1
                     Console.WriteLine("\nRequesting...");
-                    ShowNumberUsers(usersEndPoint,token, "\nSHOWING NUMBER OF USERS IN THE APPLICATION");
+                    ShowNumberUsers(usersEndPoint, token, "\nSHOWING NUMBER OF USERS IN THE APPLICATION");
                     Console.WriteLine("\nPress Enter to continue ...");
                     Console.ReadLine();
                     break;
@@ -37,22 +37,22 @@ internal class Program
                     Console.WriteLine("Requesting...");
                     ShowAirportsStatistics(flightSearchEndPoint, token, "\nMORE SEARCHED AIRPORTS STATISTICS");
                     Console.WriteLine("\nPress Enter to continue ...");
-                    Console.ReadLine(); 
+                    Console.ReadLine();
                     break;
                 case "3":
                     // Lógica para consultar estadísticas
                     Console.WriteLine("\nRequesting statistics...");
-                    ShowAirportsStatistics(reservationsEndPoint,token, "\nAIRPORTS WITH MORE RESERVATIONS");
+                    ShowAirportsStatistics(reservationsEndPoint, token, "\nAIRPORTS WITH MORE RESERVATIONS");
                     Console.WriteLine("\nPress Enter to continue ...");
-                    Console.ReadLine(); 
+                    Console.ReadLine();
 
                     break;
                 case "4":
-                    return; 
+                    return;
                 default:
                     Console.WriteLine("Not valid. Press Enter to continue");
                     Console.WriteLine("\nPress Enter to continue ...");
-                    Console.ReadLine(); 
+                    Console.ReadLine();
                     break;
             }
         }
@@ -67,7 +67,7 @@ internal class Program
 
             return Console.ReadLine();
         }
-        static void ShowAirportsStatistics(string url,string token, string title)
+        static void ShowAirportsStatistics(string url, string token, string title)
         {
             var client = new RestClient(url);
 
@@ -87,7 +87,7 @@ internal class Program
                 foreach (var airportCount in result)
                 {
 
-                    Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + (Math.Round(((double)airportCount.AirportCount / total * 100))*100.0)/100.0);
+                    Console.WriteLine(airportCount.AirportCode + " \t\t" + airportCount.AirportCount + " \t\t " + (Math.Round(((double)airportCount.AirportCount / total * 100)) * 100.0) / 100.0);
 
                 }
                 return;

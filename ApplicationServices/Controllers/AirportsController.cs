@@ -1,8 +1,5 @@
 ﻿using ApplicationServices.Models.Flights;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System.Net.Mime;
 

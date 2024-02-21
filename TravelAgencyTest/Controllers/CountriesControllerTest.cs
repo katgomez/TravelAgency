@@ -1,19 +1,8 @@
 ﻿using ApplicationServices.Controllers;
 using ApplicationServices.Model.Country;
-using AutoFixture;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataServices;
-using DataServices.Model;
 using DataServices.Service;
-using WSClient.UserWS;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace TravelAgencyTest.Controllers
 {
@@ -23,11 +12,12 @@ namespace TravelAgencyTest.Controllers
         private readonly UserServices _userService;
 
         private IConfiguration _configuration;
-        
 
-        public CountriesControllerTest() {
+
+        public CountriesControllerTest()
+        {
             _configuration = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build();
-            
+
 
             //var options = new DbContextOptionsBuilder<DataContext>().UseInMemoryDatabase(databaseName: $"temp-{Guid.NewGuid()}");
             _controller = new CountriesController(_configuration);

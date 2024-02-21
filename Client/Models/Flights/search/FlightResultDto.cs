@@ -2,7 +2,7 @@
 {
     public class FlightResultDto
     {
-        public string id {  get; set; }
+        public string id { get; set; }
 
         public List<FlightItineraryDto> departureDayItineraries { get; set; }
         public List<FlightItineraryDto> returnDayItineraries { get; set; }

@@ -1,6 +1,6 @@
-﻿using System.ServiceModel;
-using DataServices.Model;
+﻿using DataServices.Model;
 using DataServices.Models.Users;
+using System.ServiceModel;
 
 namespace DataServices.Service
 {

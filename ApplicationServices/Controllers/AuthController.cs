@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Newtonsoft.Json;
-using RestSharp;
-using System.Net.Http;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController: ControllerBase
+    public class AuthController : ControllerBase
     {
         private IConfiguration _configuration;
         private UserServicesClient userServicesClient = new UserServicesClient();
@@ -41,7 +37,7 @@ namespace ApplicationServices.Controllers
 
             if (response.IsSuccessStatusCode)
                 return await response.Content.ReadAsStringAsync();
-            
+
             return response.StatusCode.ToString();
         }
 

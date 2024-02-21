@@ -1,9 +1,6 @@
 ﻿using ApplicationServices.Model.Country;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System.Net.Mime;
 
@@ -26,12 +23,12 @@ namespace ApplicationServices.Controllers
 
             var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:CountriesEndPoint"));
 
-            var request = new RestRequest("",Method.Get);
+            var request = new RestRequest("", Method.Get);
 
-            CountryResultDto dto =  client.ExecuteAsync<CountryResultDto>(request).Result.Data;
+            CountryResultDto dto = client.ExecuteAsync<CountryResultDto>(request).Result.Data;
             dto.countries = dto.countries.OrderBy(c => c.name).ToList();
             return Ok(dto);
         }
-    
+
     }
 }

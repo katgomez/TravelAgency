@@ -1,9 +1,8 @@
-﻿using System.ServiceModel;
-using DataServices.Errors;
+﻿using DataServices.Errors;
 using DataServices.Model;
 using DataServices.Models.Users;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ServiceModel;
 
 namespace DataServices.Service
 {
@@ -35,13 +34,13 @@ namespace DataServices.Service
         public User[] GetUsers()
         {
             return _dbContext.Users.Select(u => new User
-                    {
-                        Id = u.Id,
-                        FirstName = u.FirstName,
-                        LastName = u.LastName,
-                        Email = u.Email,
-                        Password = ""
-                    }).ToArray();
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                Password = ""
+            }).ToArray();
         }
 
         public void UpdateUser(User user)
@@ -73,19 +72,19 @@ namespace DataServices.Service
                 throw new NotFoundException("User not found for the specified email address.");
             }
             return user;
-            
+
         }
 
         public User GetUserById(int id)
         {
             User user = _dbContext.Users.Where(p => p.Id == id).Select(u => new User
-                            {
-                                Id = u.Id,
-                                FirstName = u.FirstName,
-                                LastName = u.LastName,
-                                Email = u.Email,
-                                Password = ""
-                            }).FirstOrDefault();
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                Password = ""
+            }).FirstOrDefault();
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified id.");
@@ -100,7 +99,8 @@ namespace DataServices.Service
 
         public CheckCredentialsResult CheckCredentials(UserCredentials userCredentials)
         {
-            if (userCredentials.email != null) { 
+            if (userCredentials.email != null)
+            {
                 User checkedUser = GetUserByEmail(userCredentials.email);
                 return new CheckCredentialsResult
                 {

@@ -1,6 +1,6 @@
-﻿using System.ServiceModel;
-using ApplicationServices.Models.Statistics;
+﻿using ApplicationServices.Models.Statistics;
 using DataServices.Model;
+using System.ServiceModel;
 
 namespace DataServices.Service;
 

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DataServices.Model;
+﻿using DataServices.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataServices
 {

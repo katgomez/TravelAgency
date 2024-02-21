@@ -3,7 +3,6 @@ using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Models.Statistics;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace ApplicationServices.DAO.Impl;
 
@@ -17,7 +16,7 @@ public class FlightReservationSearchDao : GenericDAO<FlightReservationSearch>, I
     }
 
 
-    public  async  Task<IEnumerable<FlightReservationSearch>> FindByItineraryCode(string code)
+    public async Task<IEnumerable<FlightReservationSearch>> FindByItineraryCode(string code)
     {
         return await _dataContext.FlightReservationSearches
             .Where(m => m.CodeOfItinerary == code)

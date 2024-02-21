@@ -49,8 +49,8 @@ namespace Client.Controllers
                 // Agregar un SelectListItem para cada aeropuert
                 filteredOptions.Add(new SelectListItem { Value = airportJson, Text = airport.name });
 
-                }
-        
+            }
+
 
             // Devolver las opciones filtradas en formato JSON
             return Ok(filteredOptions);

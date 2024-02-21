@@ -2,7 +2,7 @@
 {
     public class FlightResultDto
     {
-        public string id {  get; set; }
+        public string id { get; set; }
 
         public string flightCode { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationServices.Model
 {
@@ -8,8 +7,8 @@ namespace ApplicationServices.Model
 
         [Key]
         public int Id { get; set; }
-        
-        public string SearchId { get; set; }   
+
+        public string SearchId { get; set; }
         public string CodeOfItinerary { get; set; }
         public string FlightId { get; set; }
         public string Airline { get; set; }

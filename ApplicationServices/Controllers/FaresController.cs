@@ -1,6 +1,4 @@
 ﻿using ApplicationServices.Models.Fares;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -21,7 +19,7 @@ namespace ApplicationServices.Controllers
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<ActionResult<FareResultDto>> GetFares()
-        {   
+        {
             return Ok(new FareResultDto());
         }
     }

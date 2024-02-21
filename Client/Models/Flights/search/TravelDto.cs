@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Client.Models.Flights.search
+﻿namespace Client.Models.Flights.search
 {
     public class TravelDto
     {

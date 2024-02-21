@@ -1,14 +1,14 @@
-using ApplicationServices;
 using ApplicationServices.Data;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllers();
-builder.Services.AddCors(options => {
-    options.AddDefaultPolicy(builder => {
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
         builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
@@ -62,7 +62,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    
+
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Mime;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -52,9 +51,9 @@ namespace ApplicationServices.Controllers
             long response = await userServicesClient.CountUsersAsync();
 
 
-             return Ok(response);
-            
-            
+            return Ok(response);
+
+
         }
 
         [HttpPost]

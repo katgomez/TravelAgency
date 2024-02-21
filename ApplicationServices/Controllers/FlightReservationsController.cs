@@ -2,11 +2,7 @@
 using ApplicationServices.Data;
 using ApplicationServices.Model;
 using ApplicationServices.Models.Flights;
-using ApplicationServices.Models.Statistics;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Net.Mime;
 using WSClient.FlightReservation;
 using WSClient.ReservationWS;
@@ -51,15 +47,13 @@ namespace ApplicationServices.Controllers
         [HttpGet("statistics")]
         public async Task<ActionResult<List<Models.Statistics.AirportStatisticsInfo>>> GetReservationsStatistics()
         {
-            List<Models.Statistics.AirportStatisticsInfo> result = new List<Models.Statistics.AirportStatisticsInfo> ();
+            List<Models.Statistics.AirportStatisticsInfo> result = new List<Models.Statistics.AirportStatisticsInfo>();
             WSClient.FlightReservation.AirportStatisticsInfo[] response = await flightReservationServicesClient.GetAirportReservationStatisticsAsync();
             if (response == null) return NoContent();
             foreach (WSClient.FlightReservation.AirportStatisticsInfo responseItem in response)
             {
-                result.Add(new Models.Statistics.AirportStatisticsInfo() { AirportCode=responseItem.AirportCode, AirportCount=responseItem.AirportCount});
+                result.Add(new Models.Statistics.AirportStatisticsInfo() { AirportCode = responseItem.AirportCode, AirportCount = responseItem.AirportCount });
             }
-            
-           
             return Ok(result);
         }
 
@@ -75,14 +69,24 @@ namespace ApplicationServices.Controllers
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult CreateReservation([FromBody]CreateFlightResevationDto reservation, [FromQuery] int userId)
+        public ActionResult CreateReservation([FromBody] CreateFlightResevationDto reservation, [FromQuery] int userId)
         {
-            IEnumerable<FlightReservationSearch> search =  this.reservationSearchDao.FindByItineraryCode(reservation.flightSearchCode).Result;
+            IEnumerable<FlightReservationSearch> search = this.reservationSearchDao.FindByItineraryCode(reservation.flightSearchCode).Result;
 
             foreach (var flightReservationSearch in search)
             {
                 Console.WriteLine(flightReservationSearch);
+                Reservation reservationNew = new Reservation()
+                {
+                    UserId = userId,
+                    ReservationDate = new DateTime(),
+                    ReservationStatus = "confirmed",
+                    Price = (decimal)flightReservationSearch.PriceWithFare,
+                };
+                int createdReservation = reservationServicesClient.CreateReservationAsync(reservationNew);
             }
+
+
             return Ok();
         }
 
@@ -96,7 +100,7 @@ namespace ApplicationServices.Controllers
                 if (updated == null) return NotFound();
                 return NoContent();
             }
-        
+
         }
 
         [HttpDelete("{id}")]

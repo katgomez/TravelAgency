@@ -1,5 +1,5 @@
-﻿using System.ServiceModel;
-using DataServices.Model;
+﻿using DataServices.Model;
+using System.ServiceModel;
 
 namespace DataServices.Service;
 
@@ -18,7 +18,7 @@ public interface IReservationServices
     public Reservation GetReservationById(int id);
 
     [OperationContract]
-    public void CreateReservation(Reservation reservation);
+    public Task<int> CreateReservation(Reservation reservation);
 
     [OperationContract]
     public void UpdateReservation(Reservation reservation);

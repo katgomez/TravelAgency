@@ -3,10 +3,7 @@ using DataServices;
 using DataServices.Errors;
 using DataServices.Model;
 using DataServices.Service;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Diagnostics;
 using System.ServiceModel;
 
 namespace DataServicesTests.Services
@@ -73,7 +70,7 @@ namespace DataServicesTests.Services
                 Password = "newdummy"
             };
             int userId = await userServices.CreateUser(user);
-            Assert.NotEqual(-1, userId); 
+            Assert.NotEqual(-1, userId);
         }
 
         [Fact]
@@ -127,7 +124,7 @@ namespace DataServicesTests.Services
             Assert.NotNull(userInDatabase);
             Assert.Equal(updatedUser.FirstName, userInDatabase.FirstName);
             Assert.Equal(updatedUser.LastName, userInDatabase.LastName);
-            
+
         }
 
         [Fact]
@@ -151,8 +148,8 @@ namespace DataServicesTests.Services
             UserServices userServices = new UserServices(dataContext);
             userServices.DeleteUser(user.Id);
             var deletedUser = fakeDataContext.Users.FirstOrDefault(u => u.Id == user.Id);
-            Assert.Null(deletedUser); 
-            
+            Assert.Null(deletedUser);
+
         }
 
         [Fact]

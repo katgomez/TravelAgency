@@ -3,7 +3,7 @@ import { CountryService } from '../../services/country.service';
 import { CountryDto } from '../../model/countries/CountryDto';
 import { FlightsService } from "../../services/flights.service";
 import { AirportDto } from "../../model/airport/airport.dto";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { FlightSearchResultDto } from "../../model/flights/flight.search.result.dto";
 import { FareService } from "../../services/fare.service";
 import { FareDto } from "../../model/fares/fare.dto";
@@ -22,16 +22,16 @@ export class FlightsSerarchComponent {
     this.setMinDate();
 
     this.flightsSearchForm = this.formBuilder.group({
-      countryOrigin: [],
-      origin: [],
-      originText: [],
-      countryDestination: [],
-      destination: [],
-      destinationText: [''],
-      departureDate: [],
-      returnDate: [],
+      countryOrigin: [null, Validators.required],
+      origin: [null, Validators.required],
+      originText: ['', Validators.required],
+      countryDestination: [null, Validators.required],
+      destination: [null, Validators.required],
+      destinationText: ['', Validators.required],
+      departureDate: ['', Validators.required],
+      returnDate: ['', Validators.required],
       passengers: [1],
-      fare: [this.fares.length > 0 ? this.fares[0] : null]
+      fare: [this.fares.length > 0 ? this.fares[0] : null, Validators.required]
     });
 
     this.flightsSearchForm.get('countryOrigin')?.valueChanges.subscribe((valor) => {
@@ -137,19 +137,23 @@ export class FlightsSerarchComponent {
   }
 
   onSubmitSearch() {
-    const origen = this.flightsSearchForm.value.origin?.iataCode;
-    const destination = this.flightsSearchForm.value.destination?.iataCode;
-    const departureDate = this.flightsSearchForm.value.departureDate;
-    const returnDate = this.flightsSearchForm.value.returnDate;
-    const fare = this.flightsSearchForm.value.fare;
-    const passengers: number = this.flightsSearchForm.value.passengers;
-    console.log(this.flightsSearchForm.value);
-    if (origen != null && destination != null && departureDate != null
-      && passengers != null&& fare !=null) {
-      console.log("Buscando vuelos");
-      this.flightService.searchFlights(origen, destination, departureDate, returnDate, passengers, fare.name).subscribe(data => {
-        this.flights = data;
-      });
+    if (this.flightsSearchForm.valid) {
+      const origen = this.flightsSearchForm.value.origin?.iataCode;
+      const destination = this.flightsSearchForm.value.destination?.iataCode;
+      const departureDate = this.flightsSearchForm.value.departureDate;
+      const returnDate = this.flightsSearchForm.value.returnDate;
+      const fare = this.flightsSearchForm.value.fare;
+      const passengers: number = this.flightsSearchForm.value.passengers;
+      console.log(this.flightsSearchForm.value);
+      if (origen != null && destination != null && departureDate != null
+        && passengers != null&& fare !=null) {
+        console.log("Buscando vuelos");
+        this.flightService.searchFlights(origen, destination, departureDate, returnDate, passengers, fare.name).subscribe(data => {
+          this.flights = data;
+        });
+      }
+    }else {
+      alert('Please fill out all fields before searching for flights.');
     }
   }
 }

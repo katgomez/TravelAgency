@@ -1,18 +1,13 @@
 ﻿using ApplicationServices.DAO;
 using ApplicationServices.Data;
 using ApplicationServices.Model;
-using ApplicationServices.Model.Country;
 using ApplicationServices.Models.Fares;
-using ApplicationServices.Models.Flights;
 using ApplicationServices.Models.Flights.search;
 using ApplicationServices.Models.Statistics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net.Mime;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ApplicationServices.Controllers
 {
@@ -46,7 +41,7 @@ namespace ApplicationServices.Controllers
 
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult<FlightSearchResultDto>> GetFlights([FromQuery] string originCode, [FromQuery] string destinationCode, 
+        public async Task<ActionResult<FlightSearchResultDto>> GetFlights([FromQuery] string originCode, [FromQuery] string destinationCode,
             [FromQuery] string departureDate, [FromQuery] string? returnDate,
             [FromQuery] int adults, [FromQuery] string fareType)
         {
@@ -74,9 +69,9 @@ namespace ApplicationServices.Controllers
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore
             };
-            FlightSearchResultDto result = JsonConvert.DeserializeObject <FlightSearchResultDto>(client.ExecuteAsync<FlightSearchResultDto>(request).Result.Content, settings);
+            FlightSearchResultDto result = JsonConvert.DeserializeObject<FlightSearchResultDto>(client.ExecuteAsync<FlightSearchResultDto>(request).Result.Content, settings);
 
-            if(result == null || result.numberResults == 0)
+            if (result == null || result.numberResults == 0)
             {
                 return NoContent();
             }
@@ -84,21 +79,21 @@ namespace ApplicationServices.Controllers
             //Se calcula la tarifa seleccionada
             foreach (FlightResultDto resultDto in result.flights)
             {
-                resultDto.priceWithFare = FareTypeExtensions.PriceWithFare(fare,resultDto.price);
+                resultDto.priceWithFare = FareTypeExtensions.PriceWithFare(fare, resultDto.price);
 
-                
+
 
                 string uuid = Guid.NewGuid().ToString();
                 resultDto.flightCode = uuid;
                 foreach (FlightItineraryDto itinerary in resultDto.departureDayItineraries)
                 {
-                    if(itinerary.itinerary.Count > 0)
+                    if (itinerary.itinerary.Count > 0)
                     {
-                        
+
 
                         SegmentDto segmento = itinerary.itinerary[0];
 
-                        
+
                         FlightReservationSearch reservationTemp = new FlightReservationSearch();
                         reservationTemp.CodeOfItinerary = uuid;
                         reservationTemp.DepartureAirport = segmento.departure.iataCode;
@@ -116,7 +111,7 @@ namespace ApplicationServices.Controllers
 
                     }
                 }
-                
+
             }
 
 
