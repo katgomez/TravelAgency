@@ -20,4 +20,15 @@ RUN dotnet publish "./ApplicationServices.csproj" -c $BUILD_CONFIGURATION -o /ap
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+ENV ConnectionStrings__SecurityEndPoint="http://localhost:9060/api/tokens"
+
+ENV ConnectionStrings__CountriesEndPoint="http://156.35.98.149:8081/travelApi/api/v1/countries"
+ENV ConnectionStrings__AirportsEndPoint="http://156.35.98.149:8081/travelApi/api/v1/airports"
+ENV ConnectionStrings__FlightEndPoint="http://156.35.98.149:8081/travelApi/api/v1/flights"
+
+ENV ConnectionStrings__AppDataFlightServiceEndPoint="http://156.35.98.149:9090/FlightServices.svc"
+ENV ConnectionStrings__AppDataReservationServiceEndPoint="http://156.35.98.149:9090/ReservationServices.svc"
+ENV ConnectionStrings__AppDataUserServiceEndPoint="http://156.35.98.149:9090/UserServices.svc"
+
 ENTRYPOINT ["dotnet", "ApplicationServices.dll"]
