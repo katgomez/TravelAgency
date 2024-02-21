@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using WS.Unit10.Task2.Security.Utils;
+using Security.Utils;
 
-namespace WS.Unit10.Task2.Security.Controllers
+namespace Security.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

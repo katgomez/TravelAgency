@@ -132,13 +132,17 @@ namespace WSClient.ReservationWS
         
         private string AirlineField;
         
+        private string ArrivalAirportField;
+        
+        private System.DateTime ArrivalDateField;
+        
+        private int CodeOfItineraryField;
+        
         private string DepartureAirportField;
         
         private System.DateTime DepartureDateField;
         
-        private string DestinationAirportField;
-        
-        private System.DateTime DestinationDateField;
+        private string DurationField;
         
         private string FlightIdField;
         
@@ -147,6 +151,8 @@ namespace WSClient.ReservationWS
         private decimal PriceField;
         
         private int ReservationIDField;
+        
+        private int numberOfStopsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Airline
@@ -158,6 +164,45 @@ namespace WSClient.ReservationWS
             set
             {
                 this.AirlineField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ArrivalAirport
+        {
+            get
+            {
+                return this.ArrivalAirportField;
+            }
+            set
+            {
+                this.ArrivalAirportField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ArrivalDate
+        {
+            get
+            {
+                return this.ArrivalDateField;
+            }
+            set
+            {
+                this.ArrivalDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CodeOfItinerary
+        {
+            get
+            {
+                return this.CodeOfItineraryField;
+            }
+            set
+            {
+                this.CodeOfItineraryField = value;
             }
         }
         
@@ -188,28 +233,15 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DestinationAirport
+        public string Duration
         {
             get
             {
-                return this.DestinationAirportField;
+                return this.DurationField;
             }
             set
             {
-                this.DestinationAirportField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DestinationDate
-        {
-            get
-            {
-                return this.DestinationDateField;
-            }
-            set
-            {
-                this.DestinationDateField = value;
+                this.DurationField = value;
             }
         }
         
@@ -264,6 +296,19 @@ namespace WSClient.ReservationWS
                 this.ReservationIDField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int numberOfStops
+        {
+            get
+            {
+                return this.numberOfStopsField;
+            }
+            set
+            {
+                this.numberOfStopsField = value;
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -282,7 +327,7 @@ namespace WSClient.ReservationWS
         System.Threading.Tasks.Task<WSClient.ReservationWS.Reservation> GetReservationByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/CreateReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/CreateReservationResponse")]
-        System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation);
+        System.Threading.Tasks.Task<int> CreateReservationAsync(WSClient.ReservationWS.Reservation reservation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/reservation/IReservationServices/UpdateReservation", ReplyAction="http://agencytravel/reservation/IReservationServices/UpdateReservationResponse")]
         System.Threading.Tasks.Task UpdateReservationAsync(WSClient.ReservationWS.Reservation reservation);
@@ -356,7 +401,7 @@ namespace WSClient.ReservationWS
             return base.Channel.GetReservationByIdAsync(id);
         }
         
-        public System.Threading.Tasks.Task CreateReservationAsync(WSClient.ReservationWS.Reservation reservation)
+        public System.Threading.Tasks.Task<int> CreateReservationAsync(WSClient.ReservationWS.Reservation reservation)
         {
             return base.Channel.CreateReservationAsync(reservation);
         }

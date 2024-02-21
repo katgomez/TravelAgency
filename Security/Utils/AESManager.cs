@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace WS.Unit10.Task2.Security.Utils
+namespace Security.Utils
 {
     public class AESManager
     {
