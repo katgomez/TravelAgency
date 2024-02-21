@@ -123,7 +123,7 @@ export class FlightsSerarchComponent {
   }
 
   buyFlight(flightCode: string ) {
-    this.flightService.makeReservation(flightCode).pipe(
+    this.flightService.makeReservation(flightCode, this.flightsSearchForm.value.passengers).pipe(
       tap(flight => {
         console.log('Flight was created:', flight);
         this.router.navigate(['/reservations']);

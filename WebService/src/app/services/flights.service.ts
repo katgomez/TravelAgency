@@ -35,10 +35,17 @@ export class FlightsService {
     return this.http.get<FlightSearchResultDto>(this.searchUrl, { params });
   }
 
-  makeReservation(flightCode:string): any {
+  makeReservation(flightCode:string, adults:number): any {
     const headers = this.createHeaders();
     const userId = this.userService.getUserId();
-    if(userId) return this.http.post<FlightSearchResultDto>(`${this.reservationUrl}?userId=${userId}`, {flightSearchCode:flightCode},{ headers });
+    if (userId) {
+      const requestBody = {
+        userId: userId,
+        adults: adults,
+        flightSearchCode: flightCode
+      };
+    return this.http.post(`${this.reservationUrl}`, requestBody,{ headers });
+    }
   }
 
   private createHeaders(): HttpHeaders {
@@ -53,7 +60,4 @@ export class FlightsService {
     return this.http.get<ReservationDto[]>(`${this.reservationUrl}?userId=${userId}`, { headers });
   }
 
-  private sendLogInMessage() {
-
-  }
 }

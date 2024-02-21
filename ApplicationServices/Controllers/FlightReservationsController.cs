@@ -75,7 +75,7 @@ namespace ApplicationServices.Controllers
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult> CreateReservationAsync([FromBody] CreateFlightResevationDto reservation, [FromQuery] int userId)
+        public async Task<ActionResult> CreateReservationAsync([FromBody] CreateFlightResevationDto reservation)
         {
             int createdReservation=0;
             IEnumerable<FlightReservationSearch> search = this.reservationSearchDao.FindByItineraryCode(reservation.flightSearchCode).Result;
@@ -85,7 +85,8 @@ namespace ApplicationServices.Controllers
                 Console.WriteLine(flightReservationSearch);
                 Reservation reservationNew = new Reservation()
                 {
-                    UserId = userId,
+                    UserId = reservation.userId,
+                    NumberOfClients = reservation.adults,
                     ReservationDate = DateTime.Now,
                     ReservationStatus = "Confirmed",
                     Price = (decimal)flightReservationSearch.PriceWithFare,
