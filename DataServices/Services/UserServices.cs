@@ -64,16 +64,10 @@ namespace DataServices.Service
 
         }
 
+        //needs password for checking credentials
         public User GetUserByEmail(string email)
         {
-            User user = _dbContext.Users.Where(p => p.Email == email).Select(u => new User
-                        {
-                            Id = u.Id,
-                            FirstName = u.FirstName,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Password = ""
-                        }).FirstOrDefault();
+            User user = _dbContext.Users.Where(p => p.Email == email).FirstOrDefault();
             if (user == null)
             {
                 throw new NotFoundException("User not found for the specified email address.");
