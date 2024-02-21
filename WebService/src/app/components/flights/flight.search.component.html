@@ -158,7 +158,10 @@
       <div class="row">
         <div class="col">
         <p>Precio total: {{ flight.priceWithFare }} EUR</p>
-        <button (click)="buyFlight(flight.flightCode)">Buy now - Vuelo Id: {{ flight.id }}</button>
+          <div *ngIf="!isActiveUser">
+            Do you want to buy ? Please <a routerLink="/login">login</a> here.
+          </div>
+          <button *ngIf="isActiveUser" (click)="buyFlight(flight.flightCode)">Buy now - Vuelo Id: {{ flight.id }}</button>
         </div>
       </div>
 

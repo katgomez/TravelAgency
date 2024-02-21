@@ -8,6 +8,7 @@ import { FlightSearchResultDto } from "../../model/flights/flight.search.result.
 import { FareService } from "../../services/fare.service";
 import { FareDto } from "../../model/fares/fare.dto";
 import { AirportService } from "../../services/airport.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'flight-search',
@@ -17,8 +18,7 @@ import { AirportService } from "../../services/airport.service";
 export class FlightsSerarchComponent {
 
   constructor(private countryService: CountryService, private flightService: FlightsService, private fareService: FareService,
-     private airportService: AirportService,private formBuilder: FormBuilder) {
-
+     private airportService: AirportService,private formBuilder: FormBuilder, private userService: UserService) {
     this.setMinDate();
 
     this.flightsSearchForm = this.formBuilder.group({
@@ -58,26 +58,22 @@ export class FlightsSerarchComponent {
   }
 
   fares: FareDto[] = [];
-
   flightsSearchForm: FormGroup;
-
   countries: CountryDto[] = [];
-
   filteredCountries: any[] = [];
   originResults: AirportDto[] = [];
-
   countryOriginSelected?: string;
   isOriginDisabled: boolean = true;
   origintCityText?: string;
-
   destinationResults: AirportDto[] = [];
   countryDestinationSelected?: string;
   isDestinationDisabled: boolean = true;
   destinationCityText?: string;
-
   flights?: FlightSearchResultDto;
   minDate?: string;
+  isActiveUser = false;
   ngOnInit(): void {
+    this.isActiveUser = (this.userService.getUserId() != null);
     this.countryService.getCountries().subscribe(data => {
       this.countries = data.countries;
     });
