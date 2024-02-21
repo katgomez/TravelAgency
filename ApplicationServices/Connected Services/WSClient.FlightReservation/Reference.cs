@@ -13,7 +13,7 @@ namespace WSClient.FlightReservation
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FlightReservation", Namespace="http://schemas.datacontract.org/2004/07/DataServices.Model")]
     public partial class FlightReservation : object
     {
@@ -24,19 +24,19 @@ namespace WSClient.FlightReservation
         
         private System.DateTime ArrivalDateField;
         
-        private int CodeOfItineraryField;
+        private string CodeOfItineraryField;
         
         private string DepartureAirportField;
         
         private System.DateTime DepartureDateField;
         
-        private string DurationField;
+        private double DurationField;
         
         private string FlightIdField;
         
         private int IdField;
         
-        private decimal PriceField;
+        private double PriceField;
         
         private int ReservationIDField;
         
@@ -82,7 +82,7 @@ namespace WSClient.FlightReservation
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CodeOfItinerary
+        public string CodeOfItinerary
         {
             get
             {
@@ -121,7 +121,7 @@ namespace WSClient.FlightReservation
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Duration
+        public double Duration
         {
             get
             {
@@ -160,7 +160,7 @@ namespace WSClient.FlightReservation
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Price
+        public double Price
         {
             get
             {
@@ -200,7 +200,7 @@ namespace WSClient.FlightReservation
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AirportStatisticsInfo", Namespace="http://schemas.datacontract.org/2004/07/ApplicationServices.Models.Statistics")]
     public partial class AirportStatisticsInfo : object
     {
@@ -236,7 +236,7 @@ namespace WSClient.FlightReservation
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://agencytravel/flight/", ConfigurationName="WSClient.FlightReservation.IFlightReservationServices")]
     public interface IFlightReservationServices
     {
@@ -259,13 +259,13 @@ namespace WSClient.FlightReservation
         System.Threading.Tasks.Task<WSClient.FlightReservation.AirportStatisticsInfo[]> GetAirportReservationStatisticsAsync();
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public interface IFlightReservationServicesChannel : WSClient.FlightReservation.IFlightReservationServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public partial class FlightReservationServicesClient : System.ServiceModel.ClientBase<WSClient.FlightReservation.IFlightReservationServices>, WSClient.FlightReservation.IFlightReservationServices
     {
         

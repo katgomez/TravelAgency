@@ -85,7 +85,6 @@ export class FlightsSerarchComponent {
 
   setMinDate(): void {
     const today = new Date();
-    // Format today's date as "YYYY-MM-DD"
     this.minDate = today.toISOString().split('T')[0];
   }
 

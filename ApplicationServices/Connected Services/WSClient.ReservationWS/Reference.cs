@@ -9,6 +9,7 @@
 
 namespace WSClient.ReservationWS
 {
+    using System;
     using System.Runtime.Serialization;
     
     
@@ -121,6 +122,11 @@ namespace WSClient.ReservationWS
             {
                 this.UserIdField = value;
             }
+        }
+
+        public static implicit operator Reservation(Reservation v)
+        {
+            throw new NotImplementedException();
         }
     }
     

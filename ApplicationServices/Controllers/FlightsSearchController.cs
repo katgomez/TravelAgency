@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net.Mime;
+using WSClient.FlightReservation;
 
 namespace ApplicationServices.Controllers
 {
@@ -33,8 +34,6 @@ namespace ApplicationServices.Controllers
         public ActionResult<IEnumerable<AirportStatisticsInfo>> GetAirportReservationSearchStatistics()
         {
             List<AirportStatisticsInfo> statistics = this.reservationSearchDao.GetAirportReservationSearchStatistics().Result;
-
-
             if (statistics == null) return NoContent();
             return Ok(statistics);
         }
@@ -46,7 +45,6 @@ namespace ApplicationServices.Controllers
             [FromQuery] int adults, [FromQuery] string fareType)
         {
             var client = new RestClient(_configuration.GetValue<string>("ApplicationSettings:FlightEndPoint"));
-
 
             var request = new RestRequest("", Method.Get);
             request.AddParameter("originLocationCode", originCode, ParameterType.QueryString);
