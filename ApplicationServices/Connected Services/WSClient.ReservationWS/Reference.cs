@@ -124,10 +124,6 @@ namespace WSClient.ReservationWS
             }
         }
 
-        public static implicit operator Reservation(Reservation v)
-        {
-            throw new NotImplementedException();
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
