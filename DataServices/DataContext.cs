@@ -20,7 +20,7 @@ namespace DataServices
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json",optional:true).AddEnvironmentVariables().Build();
                 var connection = config.GetValue<string>("ConnectionStrings:AgencyTravelMysql");
                 optionsBuilder.UseMySql(connection, ServerVersion.AutoDetect(connection));
             }

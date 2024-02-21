@@ -6,7 +6,6 @@ internal class Program
     {
         var host = new WebHostBuilder()
         .UseKestrel(x => x.AllowSynchronousIO = true)
-        .UseUrls("http://*:9090")
         .UseContentRoot(Directory.GetCurrentDirectory())
         .UseStartup<Startup>()
         .ConfigureLogging(x =>
