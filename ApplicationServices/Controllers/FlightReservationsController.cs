@@ -19,13 +19,16 @@ namespace ApplicationServices.Controllers
         private readonly IFlightReservationSearchDao reservationSearchDao;
 
         private ReservationServicesClient reservationServicesClient = new ReservationServicesClient();
-        private FlightReservationServicesClient flightReservationServicesClient = new FlightReservationServicesClient();
+        private FlightReservationServicesClient flightReservationServicesClient;
         public FlightReservationsController(IConfiguration configuration, DataContext context)
         {
             this._context = context;
             DAOFactory factory = new DAOFactory(this._context);
             this.reservationSearchDao = factory.FlightReservationSearchDao;
             this._configuration = configuration;
+
+          flightReservationServicesClient = new FlightReservationServicesClient(FlightReservationServicesClient.
+          EndpointConfiguration.BasicHttpBinding_IFlightReservationServices, _configuration.GetValue<string>("ApplicationSettings:AppDataFlightServiceEndPoint"));
         }
 
         [HttpGet]
