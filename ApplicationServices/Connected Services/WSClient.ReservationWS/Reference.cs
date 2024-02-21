@@ -9,7 +9,6 @@
 
 namespace WSClient.ReservationWS
 {
-    using System;
     using System.Runtime.Serialization;
     
     
@@ -123,7 +122,6 @@ namespace WSClient.ReservationWS
                 this.UserIdField = value;
             }
         }
-
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -138,19 +136,19 @@ namespace WSClient.ReservationWS
         
         private System.DateTime ArrivalDateField;
         
-        private int CodeOfItineraryField;
+        private string CodeOfItineraryField;
         
         private string DepartureAirportField;
         
         private System.DateTime DepartureDateField;
         
-        private string DurationField;
+        private double DurationField;
         
         private string FlightIdField;
         
         private int IdField;
         
-        private decimal PriceField;
+        private double PriceField;
         
         private int ReservationIDField;
         
@@ -196,7 +194,7 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CodeOfItinerary
+        public string CodeOfItinerary
         {
             get
             {
@@ -235,7 +233,7 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Duration
+        public double Duration
         {
             get
             {
@@ -274,7 +272,7 @@ namespace WSClient.ReservationWS
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Price
+        public double Price
         {
             get
             {

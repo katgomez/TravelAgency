@@ -39,7 +39,6 @@ export class FlightsService {
     const headers = this.createHeaders();
     const userId = this.userService.getUserId();
     if(userId) return this.http.post<FlightSearchResultDto>(`${this.reservationUrl}?userId=${userId}`, {flightSearchCode:flightCode},{ headers });
-    this.sendLogInMessage();
   }
 
   private createHeaders(): HttpHeaders {

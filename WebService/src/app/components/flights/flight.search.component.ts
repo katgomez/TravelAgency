@@ -9,6 +9,9 @@ import { FareService } from "../../services/fare.service";
 import { FareDto } from "../../model/fares/fare.dto";
 import { AirportService } from "../../services/airport.service";
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
+import {catchError, tap} from "rxjs/operators";
+import {of} from "rxjs";
 
 @Component({
   selector: 'flight-search',
@@ -17,7 +20,7 @@ import {UserService} from "../../services/user.service";
 })
 export class FlightsSerarchComponent {
   constructor(private countryService: CountryService, private flightService: FlightsService, private fareService: FareService,
-     private airportService: AirportService,private formBuilder: FormBuilder, private userService: UserService) {
+     private airportService: AirportService,private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.setMinDate();
 
     this.flightsSearchForm = this.formBuilder.group({
@@ -120,9 +123,16 @@ export class FlightsSerarchComponent {
   }
 
   buyFlight(flightCode: string ) {
-    this.flightService.makeReservation(flightCode).subscribe(
-
-    );
+    this.flightService.makeReservation(flightCode).pipe(
+      tap(flight => {
+        console.log('Flight was created:', flight);
+        this.router.navigate(['/reservations']);
+      }),
+      catchError(error => {
+        console.error('Error creating Flight:', error);
+        return of(null);
+      })
+    ).subscribe();
   }
 
   onSubmitSearch() {
