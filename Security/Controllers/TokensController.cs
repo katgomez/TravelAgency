@@ -41,7 +41,7 @@ namespace Security.Controllers
             try
             {
                 var userName = JsonConvert.DeserializeObject<dynamic>(
-                                          tokenRequest.ToString()).UserName.ToString();
+                                          tokenRequest.ToString()).userName.ToString();
                 var token = AESManager.Encrypt(JsonConvert.SerializeObject(
                         new { UserName = userName, ExpirationDate = DateTime.Now.AddDays(30) }));
                 return CreatedAtAction(

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using WSClient.ReservationWS;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -11,10 +12,12 @@ namespace ApplicationServices.Controllers
     public class AuthController : ControllerBase
     {
         private IConfiguration _configuration;
-        private UserServicesClient userServicesClient = new UserServicesClient();
+        private UserServicesClient userServicesClient;
         public AuthController(IConfiguration configuration)
         {
             this._configuration = configuration;
+            userServicesClient = new UserServicesClient(UserServicesClient.
+            EndpointConfiguration.BasicHttpBinding_IUserServices, _configuration.GetValue<string>("ApplicationSettings:AppDataUserServiceEndPoint"));
         }
         [HttpPost]
         public async Task<IActionResult> CheckCredentials([FromBody] UserCredentials credentials)
@@ -42,7 +45,7 @@ namespace ApplicationServices.Controllers
 
             RestClient client = new RestClient(options);
             var request = new RestRequest("", Method.Post);
-            var requestData = new { UserName = parameter };
+            var requestData = new { userName = parameter };
 
             request.AddBody(requestData);
 
