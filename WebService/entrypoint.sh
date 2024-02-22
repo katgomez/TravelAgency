@@ -9,6 +9,4 @@ if [[ $ENVIRONMENT = "Production" ]]; then
    cp /usr/share/nginx/html/config/app-config.prod.json /usr/share/nginx/html/app-config.json
 fi
 
-
-
-nginx -g 'daemon off;
+nginx -g 'daemon off;'
