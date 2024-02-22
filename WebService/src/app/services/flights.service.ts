@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -9,15 +9,17 @@ import { FlightSearchResultDto } from '../model/flights/flight.search.result.dto
 import {tap} from "rxjs/operators";
 import {UserService} from "./user.service";
 import {ReservationDto} from "../model/reservation/reservation.dto";
+import {ConfigService} from "./ConfigService";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightsService {
+  configService = inject(ConfigService);
 
-  private searchUrl = environment.flightsSearchEndPoint;
-  private reservationUrl = environment.flightsReservationEndPoint;
+  private searchUrl = this.configService.readConfig().API_URL + 'flightsSearch';
+  private reservationUrl = this.configService.readConfig().API_URL + 'flightReservations';
 
   constructor(private http: HttpClient, private userService: UserService) { }
 

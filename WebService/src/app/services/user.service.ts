@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserDto} from "../model/user/user.dto";
+import {ConfigService} from "./ConfigService";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = environment.userEndPoint;
-  private authUrl = environment.authEndPoint;
+  configService = inject(ConfigService);
+  private apiUrl = this.configService.readConfig().API_URL + 'users';
+  private authUrl = this.configService.readConfig().API_URL + 'auth';
   constructor(private http: HttpClient) {
+    console.log(this.configService.readConfig().API_URL);
   }
 
   userSignUp(user: UserDto | undefined): Observable<UserDto> {
