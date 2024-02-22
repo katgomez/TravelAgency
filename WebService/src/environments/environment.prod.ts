@@ -1,10 +1,10 @@
 export const environment = {
-  production: false,
-  countriesEndPoint:  'http://localhost:9080/api/countries',
-  flightsSearchEndPoint: 'http://localhost:9080/api/flightsSearch',
-  flightsReservationEndPoint: 'http://localhost:9080/api/flightReservations',
-  airportsEndPoint: 'http://localhost:9080/api/airports',
-  faresEndPoint: 'http://localhost:9080/api/fares',
-  userEndPoint: 'http://localhost:9080/api/users',
-  authEndPoint: 'http://localhost:9080/api/auth'
+  production: true,
+  countriesEndPoint: process.env["APP_URL"]+"/api/countries",
+  flightsSearchEndPoint: process.env["APP_URL"]+"/api/flightsSearch",
+  flightsReservationEndPoint: process.env["APP_URL"]+"/api/flightReservations",
+  airportsEndPoint: process.env["APP_URL"]+"/api/airports",
+  faresEndPoint: process.env["APP_URL"]+"/api/fares",
+  userEndPoint: process.env["APP_URL"]+"/api/users",
+  authEndPoint: process.env["APP_URL"]+"/api/auth"
 };

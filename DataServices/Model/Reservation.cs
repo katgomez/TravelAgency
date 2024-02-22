@@ -13,7 +13,7 @@ namespace DataServices.Model
         public int NumberOfClients { get; set; }
         public string ReservationStatus { get; set; } = "started";
         public decimal Price { get; set; }
-        public FlightReservation[] FlightReservations { get; set; }
+        public FlightReservation FlightReservations { get; set; }
 
     }
 }

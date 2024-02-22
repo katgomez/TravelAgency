@@ -13,7 +13,7 @@ public interface IFlightReservationServices
     [OperationContract]
     public FlightReservation GetFlight(int id);
     [OperationContract]
-    public void CreateFlight(FlightReservation flightReservation);
+    public Task<int> CreateFlight(FlightReservation flightReservation);
     [OperationContract]
     public void UpdateFlight(FlightReservation flightReservation);
 

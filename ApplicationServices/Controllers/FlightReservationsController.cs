@@ -83,6 +83,8 @@ namespace ApplicationServices.Controllers
             foreach (var flightReservationSearch in search)
             {
                 Console.WriteLine(flightReservationSearch);
+
+                
                 Reservation reservationNew = new Reservation()
                 {
                     UserId = reservation.userId,
@@ -91,7 +93,24 @@ namespace ApplicationServices.Controllers
                     ReservationStatus = "Confirmed",
                     Price = (decimal)flightReservationSearch.PriceWithFare,
                 };
-                 createdReservation = await reservationServicesClient.CreateReservationAsync(reservationNew);
+                createdReservation = await reservationServicesClient.CreateReservationAsync(reservationNew);
+
+                //WSClient.FlightReservation.FlightReservation flightReservation = new WSClient.FlightReservation.FlightReservation
+                //{
+                //    ReservationID = createdReservation,
+                //    Airline = flightReservationSearch.Airline,
+                //    ArrivalAirport = flightReservationSearch.ArrivalAirport,
+                //    ArrivalDate = flightReservationSearch.ArrivalDate,
+                //    CodeOfItinerary = flightReservationSearch.CodeOfItinerary,
+                //    DepartureAirport = flightReservationSearch.DepartureAirport,
+                //    DepartureDate = flightReservationSearch.DepartureDate,
+                //    Duration = flightReservationSearch.Duration,
+                //    FlightId = flightReservationSearch.FlightId,
+                //    numberOfStops = flightReservationSearch.numberOfStops,
+                //    Price = flightReservationSearch.Price,
+                //};
+                //await flightReservationServicesClient.CreateFlightAsync(flightReservation);
+
             }
             return Ok(createdReservation);
         }

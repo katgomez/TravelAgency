@@ -248,7 +248,7 @@ namespace WSClient.FlightReservation
         System.Threading.Tasks.Task<WSClient.FlightReservation.FlightReservation> GetFlightAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/flight/IFlightReservationServices/CreateFlight", ReplyAction="http://agencytravel/flight/IFlightReservationServices/CreateFlightResponse")]
-        System.Threading.Tasks.Task CreateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation);
+        System.Threading.Tasks.Task<int> CreateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://agencytravel/flight/IFlightReservationServices/UpdateFlight", ReplyAction="http://agencytravel/flight/IFlightReservationServices/UpdateFlightResponse")]
         System.Threading.Tasks.Task UpdateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation);
@@ -319,7 +319,7 @@ namespace WSClient.FlightReservation
             return base.Channel.GetFlightAsync(id);
         }
         
-        public System.Threading.Tasks.Task CreateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation)
+        public System.Threading.Tasks.Task<int> CreateFlightAsync(WSClient.FlightReservation.FlightReservation flightReservation)
         {
             return base.Channel.CreateFlightAsync(flightReservation);
         }
