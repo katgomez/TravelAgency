@@ -9,13 +9,13 @@ services:
       replicas: 1
     image: dorviz/agency_app
     environment: 
-      - ApplicationSettings__SecurityEndPoint=https://security:80/api/tokens
-      - ConnectionStrings__CountriesEndPoint=http://travelapi:8081/travelApi/api/v1/countries
-      - ConnectionStrings__AirportsEndPoint=http://travelapi:8081/travelApi/api/v1/airports
-      - ConnectionStrings__FlightEndPoint=http://travelapi:8081/travelApi/api/v1/flights
-      - ConnectionStrings__AppDataFlightServiceEndPoint=http://data:80/FlightServices.svc
-      - ConnectionStrings__AppDataReservationServiceEndPoint=http://data:80/ReservationServices.svc
-      - ConnectionStrings__AppDataUserServiceEndPoint=http://data:80/UserServices.svc
+      - ApplicationSettings__SecurityEndPoint=https://security:443/api/tokens
+      - ApplicationSettings__CountriesEndPoint=http://travelapi:8080/travelApi/api/v1/countries
+      - ApplicationSettings__AirportsEndPoint=http://travelapi:8080/travelApi/api/v1/airports
+      - ApplicationSettings__FlightEndPoint=http://travelapi:8080/travelApi/api/v1/flights
+      - ApplicationSettings__AppDataFlightServiceEndPoint=http://data:80/FlightServices.svc
+      - ApplicationSettings__AppDataReservationServiceEndPoint=http://data:80/ReservationServices.svc
+      - ApplicationSettings__AppDataUserServiceEndPoint=http://data:80/UserServices.svc
     ports:
     - published: 8082
       target: 80
@@ -32,3 +32,6 @@ services:
     deploy:
       replicas: 1
     image: dorviz/security
+    ports:
+    - published: 9060
+      target: 80

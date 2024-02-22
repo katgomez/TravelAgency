@@ -1,11 +1,11 @@
-FROM node:20 as node
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build --prod
-# Stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/web-service /usr/share/nginx/html
+FROM nginx
+
+EXPOSE 2000
+
+COPY ./dist/web-service /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN chown root /usr/share/nginx/html/*
+RUN chmod 755 /usr/share/nginx/html/*
 
 CMD ["nginx", "-g", "daemon off;"]

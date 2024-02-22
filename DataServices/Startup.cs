@@ -38,6 +38,7 @@ namespace DataServices
                 //context.Database.EnsureDeleted(); //Delete ddbb always
                 //context.Database.Migrate();
             }
+            app.UseCors();
             app.UseSoapEndpoint<IUserServices>("/UserServices.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer,
             false, null, null, true, true);
             app.UseSoapEndpoint<IReservationServices>("/ReservationServices.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer,

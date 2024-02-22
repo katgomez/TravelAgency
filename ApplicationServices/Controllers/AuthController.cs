@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 using WSClient.UserWS;
 
 namespace ApplicationServices.Controllers
@@ -19,26 +21,39 @@ namespace ApplicationServices.Controllers
         {
             CheckCredentialsResult checkCredentialsResult = await userServicesClient.CheckCredentialsAsync(credentials);
             if (!checkCredentialsResult.IsValidUser) return BadRequest("User is not valid");
-            var token = await GenerateToken(credentials.email);
-            var tokenObject = JsonConvert.DeserializeObject<dynamic>(token);
-            var jsonContent = JsonConvert.SerializeObject(new { userId = checkCredentialsResult.UserId, token = tokenObject });
-
-            return Ok(jsonContent);
+            var token = GenerateToken(credentials.email);
+            if (token != null)
+            {
+                var jsonContent = JsonConvert.SerializeObject(new { userId = checkCredentialsResult.UserId, token = token });
+                return Ok(jsonContent);
+            }
+            return Unauthorized();
         }
 
-        private async Task<string> GenerateToken(string parameter)
+        private String GenerateToken(string parameter)
         {
-            HttpClient client = new HttpClient();
+
+            var options = new RestClientOptions(
+              _configuration.GetValue<string>("ApplicationSettings:SecurityEndPoint"));
+
+            options.RemoteCertificateValidationCallback =
+                                 (sender, certificate, chain, sslPolicyErrors) => true;
+
+
+            RestClient client = new RestClient(options);
+            var request = new RestRequest("", Method.Post);
             var requestData = new { UserName = parameter };
-            var jsonContent = JsonConvert.SerializeObject(requestData);
-            var stringContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
-            var url = _configuration.GetValue<string>("ApplicationSettings:SecurityEndPoint");
-            HttpResponseMessage response = await client.PostAsync(url, stringContent);
 
-            if (response.IsSuccessStatusCode)
-                return await response.Content.ReadAsStringAsync();
+            request.AddBody(requestData);
 
-            return response.StatusCode.ToString();
+            var response = client.ExecuteAsync(request).Result;
+
+            if (response.IsSuccessStatusCode) {
+
+                var response2 = JsonConvert.DeserializeAnonymousType(response.Content, new { token = "" });
+                return response2.token;
+            }
+            return null;
         }
 
         [HttpPost("user")]
