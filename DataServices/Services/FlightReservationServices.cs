@@ -16,6 +16,11 @@ public class FlightReservationServices : IFlightReservationServices
         DAOFactory factory = new DAOFactory(_dbContext);
         flightReservationDao = factory.FlightReservationDao;
     }
+
+    public FlightReservationServices(DataContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
     public FlightReservation[] GetFlights()
     {
         return _dbContext.FlighReservations.ToArray();
@@ -26,13 +31,16 @@ public class FlightReservationServices : IFlightReservationServices
         return _dbContext.FlighReservations.First(p => p.Id == id);
     }
 
-    public void CreateFlight(FlightReservation flightReservation)
+    public async Task<int> CreateFlight(FlightReservation flightReservation)
     {
         FlightReservation flight = _dbContext.FlighReservations.FirstOrDefault(p => p.Id == flightReservation.Id);
         if (flight != null)
             throw new FaultException(new FaultReason("Flight already exists!!!"), new FaultCode("400"), "");
-        _dbContext.FlighReservations.Add(flightReservation);
+        await _dbContext.FlighReservations.AddAsync(flightReservation);
+        await _dbContext.SaveChangesAsync();
+        return flightReservation.Id;
     }
+
 
     public void UpdateFlight(FlightReservation flightReservation)
     {
