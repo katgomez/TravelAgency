@@ -14,7 +14,7 @@ namespace ApplicationServices.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
                 var connection = config.GetValue<string>("ConnectionStrings:AgencyTravelApplication");
                 optionsBuilder.UseSqlite(connection);
             }
