@@ -1,6 +1,6 @@
 FROM nginx
 
-EXPOSE 2000
+EXPOSE 80
 
 COPY ./dist/web-service /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
