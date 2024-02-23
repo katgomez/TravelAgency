@@ -35,3 +35,10 @@ services:
     ports:
     - published: 9060
       target: 80
+  web:
+    deploy:
+      replicas: 1
+    image: dorviz/agency_web
+    ports:
+    - published: 6060
+      target: 2000

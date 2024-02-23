@@ -1,0 +1,26 @@
+# Etapa de compilación
+FROM node:20 as build
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos de la aplicación
+COPY . .
+
+# Instalar las dependencias
+RUN npm install
+
+# Construir la aplicación Angular
+RUN npm run build --prod --env=countriesEndPoint=${COUNTRIES_END_POINT}
+
+# Etapa de producción
+FROM nginx:latest
+
+# Copiar los archivos de construcción de la aplicación Angular a la ubicación de Nginx
+COPY --from=build /app/dist/web-service/browser/* /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/nginx.conf
+
+ENV COUNTRIES_END_POINT="http://156.35.98.143:8082/api/countries"
+EXPOSE 2000
+
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]

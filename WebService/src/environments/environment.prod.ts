@@ -1,10 +1,11 @@
+
 export const environment = {
   production: true,
-  countriesEndPoint: process.env["APP_URL"]+"/api/countries",
-  flightsSearchEndPoint: process.env["APP_URL"]+"/api/flightsSearch",
-  flightsReservationEndPoint: process.env["APP_URL"]+"/api/flightReservations",
-  airportsEndPoint: process.env["APP_URL"]+"/api/airports",
-  faresEndPoint: process.env["APP_URL"]+"/api/fares",
-  userEndPoint: process.env["APP_URL"]+"/api/users",
-  authEndPoint: process.env["APP_URL"]+"/api/auth"
+  countriesEndPoint: "http://156.35.98.143:8082/api/countries",
+  flightsSearchEndPoint: 'http://156.35.98.143:8082/api/flightsSearch',
+  flightsReservationEndPoint: 'http://156.35.98.143:8082/api/flightReservations',
+  airportsEndPoint: 'http://156.35.98.143:8082/api/airports',
+  faresEndPoint: 'http://156.35.98.143:8082/api/fares',
+  userEndPoint: 'http://156.35.98.143:8082/api/users',
+  authEndPoint: 'http://156.35.98.143:8082/api/auth'
 };
